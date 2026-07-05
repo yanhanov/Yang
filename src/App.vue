@@ -11,7 +11,7 @@ import CursorGlow from './components/UI/CursorGlow.vue'
   <CursorGlow />
   <ScrollProgress />
   <Header />
-  <main class="pt-14 relative z-10 page-main">
+  <main class="pt-[3.75rem] relative z-10 page-main">
     <RouterView v-slot="{ Component, route }">
       <Transition name="page">
         <component :is="Component" :key="route.path" />

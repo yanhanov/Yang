@@ -10,8 +10,20 @@ let timer
 
 const roles = computed(() =>
   locale.value === 'ru'
-    ? ['Lead Frontend', 'Frontend-инженер', 'Vue.js разработчик', 'TypeScript']
-    : ['Lead Frontend Developer', 'Frontend Engineer', 'Vue.js Developer', 'TypeScript'],
+    ? [
+        'Frontend-инженер',
+        'Software-инженер',
+        'Fullstack-инженер',
+        'Мобильный разработчик',
+        'Backend-разработчик',
+      ]
+    : [
+        'Frontend Engineer',
+        'Software Engineer',
+        'Full Stack Engineer',
+        'Mobile Developer',
+        'Backend Developer',
+      ],
 )
 
 const tick = () => {
@@ -54,9 +66,7 @@ watch(locale, () => {
 </script>
 
 <template>
-  <span class="color-brand">
-    {{ display }}<span class="cursor-blink">|</span>
-  </span>
+  <span class="color-brand"> {{ display }}<span class="cursor-blink">|</span> </span>
 </template>
 
 <style scoped>
@@ -66,6 +76,8 @@ watch(locale, () => {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 </style>

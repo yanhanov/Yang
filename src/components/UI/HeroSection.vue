@@ -34,11 +34,11 @@ onMounted(() => {
 <template>
   <section
     id="hero"
-    class="page-section page-section--hero hero-section relative overflow-hidden min-h-[calc(100vh-3.5rem)] flex items-center py-12 lg:py-16"
+    class="page-section page-section--hero hero-section page-top-gradient relative overflow-hidden min-h-screen flex items-center py-12 lg:py-16"
   >
-    <div class="hero-mesh" aria-hidden="true" />
-    <div class="hero-glow hero-glow--left" aria-hidden="true" />
-    <div class="hero-glow hero-glow--right" aria-hidden="true" />
+    <div class="page-top-gradient__mesh" aria-hidden="true" />
+    <div class="page-top-gradient__glow page-top-gradient__glow--left" aria-hidden="true" />
+    <div class="page-top-gradient__glow page-top-gradient__glow--right" aria-hidden="true" />
     <div class="hero-line hero-line--1" aria-hidden="true" />
     <div class="hero-line hero-line--2" aria-hidden="true" />
 
@@ -175,41 +175,6 @@ onMounted(() => {
 <style scoped>
 .hero-section {
   isolation: isolate;
-}
-
-.hero-mesh {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(18, 247, 214, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 247, 214, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 70% at 40% 30%, black 10%, transparent 75%);
-  pointer-events: none;
-}
-
-.hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(80px);
-  opacity: 0.35;
-}
-
-.hero-glow--left {
-  width: 28rem;
-  height: 28rem;
-  top: -6rem;
-  left: -8rem;
-  background: radial-gradient(circle, rgba(18, 247, 214, 0.5), transparent 70%);
-}
-
-.hero-glow--right {
-  width: 22rem;
-  height: 22rem;
-  top: 20%;
-  right: -4rem;
-  background: radial-gradient(circle, rgba(12, 115, 184, 0.45), transparent 70%);
 }
 
 .hero-line {

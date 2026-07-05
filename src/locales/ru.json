@@ -20,7 +20,9 @@
       "contact": "Контакт"
     },
     "russian": "RU",
-    "english": "EN"
+    "english": "EN",
+    "menu-label": "// навигация",
+    "sections-label": "// секции"
   },
   "footer": {
     "copy": "©2026 Yazmyrat Hanov.",
@@ -35,7 +37,7 @@
     "hero-greeting": "Привет, я",
     "bio-name": "Ян",
     "bio-fullname": "Язмырат Ханов",
-    "bio-prof": "Frontend Engineer · Vue.js",
+    "bio-prof": "Frontend Engineer · Software Engineer",
     "bio-job": "Ашхабад · Удалённо",
     "bio-write": "Telegram",
     "bio-cv": "Скачать резюме",

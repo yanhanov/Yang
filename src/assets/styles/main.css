@@ -138,6 +138,52 @@
     background: linear-gradient(180deg, transparent, rgba(18, 247, 214, 0.02) 50%, transparent);
     pointer-events: none;
   }
+
+  .page-top-gradient {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin-top: -3.75rem;
+    padding-top: 3.75rem;
+    background:
+      radial-gradient(ellipse 90% 65% at 30% -5%, rgba(18, 247, 214, 0.16), transparent 52%),
+      radial-gradient(ellipse 55% 45% at 85% 5%, rgba(12, 115, 184, 0.14), transparent 48%);
+  }
+
+  .page-top-gradient__mesh {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(18, 247, 214, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(18, 247, 214, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 95% 85% at 40% 15%, black 15%, transparent 78%);
+    pointer-events: none;
+  }
+
+  .page-top-gradient__glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.35;
+  }
+
+  .page-top-gradient__glow--left {
+    width: 32rem;
+    height: 32rem;
+    top: -12rem;
+    left: -10rem;
+    background: radial-gradient(circle, rgba(18, 247, 214, 0.55), transparent 70%);
+  }
+
+  .page-top-gradient__glow--right {
+    width: 26rem;
+    height: 26rem;
+    top: -4rem;
+    right: -6rem;
+    background: radial-gradient(circle, rgba(12, 115, 184, 0.5), transparent 70%);
+  }
 }
 
 @keyframes text-shimmer {
