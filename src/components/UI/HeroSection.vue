@@ -34,7 +34,7 @@ onMounted(() => {
 <template>
   <section
     id="hero"
-    class="page-section page-section--hero hero-section page-top-gradient relative overflow-hidden min-h-screen flex items-center py-12 lg:py-16"
+    class="page-section page-section--hero hero-section page-top-gradient relative overflow-hidden min-h-screen flex items-start lg:items-center pt-16 pb-12 md:pt-20 lg:py-16"
   >
     <div class="page-top-gradient__mesh" aria-hidden="true" />
     <div class="page-top-gradient__glow page-top-gradient__glow--left" aria-hidden="true" />

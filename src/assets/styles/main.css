@@ -208,6 +208,10 @@ html {
   content-visibility: visible;
 }
 
+.page-section--media {
+  content-visibility: visible;
+}
+
 :focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 3px;
@@ -285,6 +289,7 @@ body::after {
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 .reveal-delay-1 { transition-delay: 0.08s; }

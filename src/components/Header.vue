@@ -28,9 +28,12 @@ watch(menuIsActive, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
 })
 
-watch(() => route.path, () => {
-  closeMenu()
-})
+watch(
+  () => route.path,
+  () => {
+    closeMenu()
+  },
+)
 
 const closeMenu = () => {
   menuIsActive.value = false
@@ -70,9 +73,9 @@ useScrollFrame(() => {
     />
 
     <div class="container site-header__inner">
-      <router-link to="/" class="site-header__logo" @click="closeMenu">
-        <span class="site-header__logo-mark base-font" aria-hidden="true">&lt;/&gt;</span>
-        <span class="site-header__logo-name secont-font">Yan</span>
+      <router-link to="/" class="site-header__logo base-font" @click="closeMenu">
+        <span class="site-header__logo-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span class="site-header__logo-name">yan hanov</span>
       </router-link>
 
       <nav class="site-header__nav hidden md:flex" aria-label="Main">
@@ -151,7 +154,12 @@ useScrollFrame(() => {
           @click="closeMenu"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path
+              d="M6 6L18 18M18 6L6 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
           </svg>
         </button>
       </div>
@@ -167,10 +175,24 @@ useScrollFrame(() => {
             :style="{ '--i': i }"
             @click="closeMenu"
           >
-            <span class="site-header__drawer-index base-font">{{ String(i + 1).padStart(2, '0') }}</span>
+            <span class="site-header__drawer-index base-font">{{
+              String(i + 1).padStart(2, '0')
+            }}</span>
             <span class="site-header__drawer-title secont-font">{{ t(link.labelKey) }}</span>
-            <svg class="site-header__drawer-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+            <svg
+              class="site-header__drawer-arrow"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 12H19M19 12L13 6M19 12L13 18"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+              />
             </svg>
           </router-link>
         </div>
@@ -270,9 +292,10 @@ useScrollFrame(() => {
 }
 
 .site-header__logo-name {
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
 }
 
 .site-header__logo:hover .site-header__logo-mark {
@@ -648,6 +671,24 @@ useScrollFrame(() => {
 .site-header__burger--open .site-header__burger-line:nth-child(3) {
   bottom: 50%;
   transform: translateY(50%) rotate(-45deg);
+}
+
+@media (min-width: 48rem) {
+  .site-header__burger,
+  .site-header__drawer,
+  .site-header__backdrop {
+    display: none;
+  }
+
+  .site-header__nav {
+    display: flex;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .site-header__nav {
+    display: none;
+  }
 }
 
 @keyframes header-fade-in {

@@ -4,8 +4,9 @@
     <div class="container relative">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="text-center md:text-left">
-          <router-link to="/" class="text-xl font-medium secont-font inline-block mb-1">
-            <span class="color-brand">&lt;/&gt;</span>Yan
+          <router-link to="/" class="footer-logo base-font">
+            <span class="footer-logo__mark color-brand">&lt;/&gt;</span>
+            yan hanov
           </router-link>
           <p class="text-[var(--text-muted)] text-sm">
             {{ $t('footer.copy') }} {{ $t('footer.all') }}
@@ -100,6 +101,24 @@
 .footer-link {
   color: var(--text-muted);
   transition: color 0.2s;
+}
+
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  transition: opacity 0.2s;
+}
+
+.footer-logo:hover {
+  opacity: 0.85;
+}
+
+.footer-logo__mark {
+  margin-right: 0.125rem;
 }
 
 .footer-link:hover {

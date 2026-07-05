@@ -124,7 +124,7 @@ useTilt(aboutImg, 10)
     </div>
   </section>
 
-  <section v-if="projects.length" id="featured" class="page-section py-16 lg:py-24">
+  <section v-if="projects.length" id="featured" class="page-section page-section--media py-16 lg:py-24">
     <div class="container">
       <SectionHeading
         class="reveal"
@@ -132,14 +132,19 @@ useTilt(aboutImg, 10)
         :title="$t('home.featured-title')"
         :subtitle="$t('home.featured-sub')"
       />
-      <div class="grid md:grid-cols-2 gap-6 reveal reveal-delay-1">
-        <ProjectCard
+      <div class="grid md:grid-cols-2 gap-6">
+        <div
           v-for="(project, i) in projects"
           :key="project.id"
-          :project="project"
-          :featured="i === 0"
-          :index="i"
-        />
+          class="reveal min-w-0"
+          :class="[i === 0 ? 'md:col-span-2' : '', `reveal-delay-${Math.min(i + 1, 3)}`]"
+        >
+          <ProjectCard
+            :project="project"
+            :featured="i === 0"
+            :index="i"
+          />
+        </div>
       </div>
       <div class="text-center mt-10 reveal reveal-delay-2">
         <RouterLink to="/portfolio" class="btn-ghost">
