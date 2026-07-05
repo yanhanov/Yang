@@ -146,7 +146,7 @@ onMounted(() => {
                 </p>
                 <p>
                   <span class="tok-prop">location</span><span class="tok-punct">:</span>
-                  <span class="tok-string"> '{{ $t('home.bio-con') }}'</span><span class="tok-punct">,</span>
+                  <span class="tok-string">'{{ $t("home.bio-con") }}'</span><span class="tok-punct">,</span>
                 </p>
                 <p>
                   <span class="tok-prop">remote</span><span class="tok-punct">:</span>

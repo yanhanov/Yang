@@ -62,7 +62,7 @@ const isActive = (key) => activeBlogIds.value.includes(key)
             <span v-else>{{ blog.textRu }}</span>
           </p>
           <p class="mt-4 text-sm color-brand base-font">
-            {{ isActive(blog.key) ? $t('blogs.collapse') : $t('blogs.read-more') }}
+            {{ isActive(blog.key) ? $t('collapse') : $t('read-more') }}
           </p>
         </div>
       </article>
