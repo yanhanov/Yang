@@ -22,7 +22,9 @@ const bioTech = [
         </div>
         <div>
           <p class="text-2xl secont-font font-medium">{{ $t('home.bio-name') }}</p>
-          <p class="text-xs text-[var(--text-muted)] base-font mt-0.5">{{ $t('home.bio-fullname') }}</p>
+          <p class="text-xs text-[var(--text-muted)] base-font mt-0.5">
+            {{ $t('home.bio-fullname') }}
+          </p>
           <p class="text-sm color-brand mt-1">{{ $t('home.bio-prof') }}</p>
         </div>
       </div>
@@ -40,7 +42,11 @@ const bioTech = [
           <span class="bio-link__icon">◈</span>
           {{ $t('home.bio-job') }}
         </p>
-        <a href="https://t.me/itisyang" target="_blank" class="bio-link flex items-center gap-2.5 color-brand">
+        <a
+          href="https://t.me/yanhanov"
+          target="_blank"
+          class="bio-link flex items-center gap-2.5 color-brand"
+        >
           <span class="bio-link__icon">→</span>
           {{ $t('home.bio-write') }}
         </a>
@@ -57,10 +63,19 @@ const bioTech = [
         </span>
       </div>
 
-      <a href="/yan-hanov.pdf" download="yan-hanov.pdf" class="btn-primary w-full justify-center mt-5 text-sm">
+      <a
+        href="/yan-hanov.pdf"
+        download="yan-hanov.pdf"
+        class="btn-primary w-full justify-center mt-5 text-sm"
+      >
         {{ $t('home.bio-cv') }}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3v11m0 0l-4-4m4 4l4-4M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path
+            d="M12 3v11m0 0l-4-4m4 4l4-4M4 19h16"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
       </a>
     </div>
@@ -102,7 +117,9 @@ const bioTech = [
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .bio-link {

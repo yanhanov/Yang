@@ -22,7 +22,8 @@
     "russian": "RU",
     "english": "EN",
     "menu-label": "// навигация",
-    "sections-label": "// секции"
+    "sections-label": "// секции",
+    "lang-label": "Язык"
   },
   "footer": {
     "copy": "©2026 Yazmyrat Hanov.",
@@ -45,11 +46,28 @@
     "hero-text": "Строю масштабируемые веб-приложения и образовательные платформы. От Junior до Lead Frontend — архитектура, компонентные системы, перформанс и продакшен.",
     "hero-talk": "Обсудить проект",
     "about-hi": "Кратко обо мне",
+    "about-close-toast": "Хорошая попытка!",
     "hero-products": "Продуктовых проектов",
     "hero-tech": "Технологий в стеке",
     "hero-years": "Лет в разработке",
     "about-title": "Обо мне",
-    "about-text": "<p>Frontend-разработчик с опытом создания масштабируемых веб-приложений и EdTech-платформ. Прошёл путь от Junior до <span class=\"color-brand\">Lead Frontend Developer</span> — отвечаю за архитектуру, переиспользуемые компоненты и оптимизацию.</p><p>Основной стек: <span class=\"color-brand\">Vue 3</span>, <span class=\"color-brand\">TypeScript</span>, <span class=\"color-brand\">Nuxt</span>, REST API и WebSockets. Также работаю с React, Next.js, Flutter и Rust.</p><p>Русский — родной, английский — B2. Открыт к сильным командам и амбициозным продуктам.</p>",
+    "about": {
+      "p1Before": "Frontend-разработчик с сильным продакшен-опытом — от фриланса до ",
+      "p1After": " в EdTech и продуктовых командах. Архитектура, дизайн-системы, перформанс и стабильные релизы.",
+      "p2Before": "Основной стек: ",
+      "p2Sep": ", ",
+      "p2After": " — REST API, WebSockets, CI и code review. React и Next.js — когда этого требует проект.",
+      "p3Before": "Осваиваю ",
+      "p3Mid": " для mobile и ",
+      "p3After": " для backend — pet-проекты, интеграция API и быстрый рост в сильной команде.",
+      "p4": "Русский — родной, английский — B2. Сильный frontend с быстрым impact — и готов расти в mobile и backend вместе с командой.",
+      "role": "Lead Frontend Developer",
+      "vue": "Vue 3",
+      "ts": "TypeScript",
+      "nuxt": "Nuxt",
+      "flutter": "Flutter",
+      "rust": "Rust"
+    },
     "skills": "Навыки",
     "skills-sub": "Технологии из актуального резюме",
     "skills-groups": {

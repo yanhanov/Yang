@@ -67,10 +67,15 @@ onMounted(() => {
           <p class="hero-desc reveal reveal-delay-1">{{ $t('home.hero-text') }}</p>
 
           <div class="hero-actions reveal reveal-delay-2">
-            <a href="https://t.me/itisyang" target="_blank" class="btn-primary">
+            <a href="https://t.me/yanhanov" target="_blank" class="btn-primary">
               {{ $t('home.hero-talk') }}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path
+                  d="M5 12H19M19 12L13 6M19 12L13 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
               </svg>
             </a>
             <RouterLink to="/portfolio" class="btn-ghost">
@@ -129,11 +134,7 @@ onMounted(() => {
               </div>
 
               <div class="hero-profile__stack">
-                <span
-                  v-for="item in stack"
-                  :key="item.icon"
-                  class="hero-profile__tag base-font"
-                >
+                <span v-for="item in stack" :key="item.icon" class="hero-profile__tag base-font">
                   <TechIcon :name="item.icon" :size="16" />
                   {{ item.label }}
                 </span>
@@ -142,11 +143,14 @@ onMounted(() => {
               <div class="hero-profile__meta base-font">
                 <p>
                   <span class="tok-prop">email</span><span class="tok-punct">:</span>
-                  <a href="mailto:yanhanow@gmail.ru" class="tok-string hero-profile__link">'yanhanow@gmail.ru'</a><span class="tok-punct">,</span>
+                  <a href="mailto:yanhanow@gmail.ru" class="tok-string hero-profile__link"
+                    >'yanhanow@gmail.ru'</a
+                  ><span class="tok-punct">,</span>
                 </p>
                 <p>
                   <span class="tok-prop">location</span><span class="tok-punct">:</span>
-                  <span class="tok-string">'{{ $t("home.bio-con") }}'</span><span class="tok-punct">,</span>
+                  <span class="tok-string">'{{ $t('home.bio-con') }}'</span
+                  ><span class="tok-punct">,</span>
                 </p>
                 <p>
                   <span class="tok-prop">remote</span><span class="tok-punct">:</span>
@@ -154,10 +158,19 @@ onMounted(() => {
                 </p>
               </div>
 
-              <a href="https://t.me/itisyang" target="_blank" class="btn-primary hero-profile__btn text-sm">
+              <a
+                href="https://t.me/yanhanov"
+                target="_blank"
+                class="btn-primary hero-profile__btn text-sm"
+              >
                 {{ $t('home.bio-write') }}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path
+                    d="M5 12H19M19 12L13 6M19 12L13 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
                 </svg>
               </a>
             </div>
@@ -235,8 +248,15 @@ onMounted(() => {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.85); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
 }
 
 .hero-eyebrow {
@@ -308,13 +328,27 @@ onMounted(() => {
   color: var(--text-muted);
 }
 
-.tok-comment { color: #6a737d; }
-.tok-keyword { color: #ff79c6; }
-.tok-prop { color: #8be9fd; }
-.tok-string { color: #f1fa8c; }
-.tok-bool { color: #bd93f9; }
-.tok-brace { color: var(--text); }
-.tok-punct { color: var(--text-muted); }
+.tok-comment {
+  color: #6a737d;
+}
+.tok-keyword {
+  color: #ff79c6;
+}
+.tok-prop {
+  color: #8be9fd;
+}
+.tok-string {
+  color: #f1fa8c;
+}
+.tok-bool {
+  color: #bd93f9;
+}
+.tok-brace {
+  color: var(--text);
+}
+.tok-punct {
+  color: var(--text-muted);
+}
 
 .hero-desc {
   margin-top: 1.5rem;
@@ -508,13 +542,24 @@ onMounted(() => {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
 }
 
 @keyframes scroll-dot {
-  0% { opacity: 1; top: 0.375rem; }
-  100% { opacity: 0; top: 0.875rem; }
+  0% {
+    opacity: 1;
+    top: 0.375rem;
+  }
+  100% {
+    opacity: 0;
+    top: 0.875rem;
+  }
 }
 
 @media (max-width: 63.99rem) {

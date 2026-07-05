@@ -2,6 +2,10 @@
 import { useI18n } from 'vue-i18n'
 import { ref, onMounted, onUnmounted } from 'vue'
 
+defineProps({
+  segmented: { type: Boolean, default: false },
+})
+
 const { locale } = useI18n()
 const open = ref(false)
 const root = ref(null)
@@ -23,7 +27,31 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
 </script>
 
 <template>
-  <div ref="root" class="lang">
+  <div
+    v-if="segmented"
+    class="lang lang--segmented base-font"
+    role="group"
+    :aria-label="$t('header.lang-label')"
+  >
+    <button
+      type="button"
+      class="lang__segment"
+      :class="{ 'lang__segment--active': locale === 'en' }"
+      @click="changeLanguage('en')"
+    >
+      {{ $t('header.english') }}
+    </button>
+    <button
+      type="button"
+      class="lang__segment"
+      :class="{ 'lang__segment--active': locale === 'ru' }"
+      @click="changeLanguage('ru')"
+    >
+      {{ $t('header.russian') }}
+    </button>
+  </div>
+
+  <div v-else ref="root" class="lang">
     <button
       type="button"
       class="lang__trigger base-font"
@@ -151,5 +179,36 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
 .lang__option--active {
   color: var(--brand);
   background: var(--brand-dim);
+}
+
+.lang--segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+}
+
+.lang__segment {
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.lang__segment--active {
+  color: var(--brand);
+  background: var(--brand-dim);
+  box-shadow: inset 0 0 0 1px var(--border-accent);
 }
 </style>

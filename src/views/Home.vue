@@ -14,6 +14,7 @@ import ExperienceTimeline from '@/components/UI/ExperienceTimeline.vue'
 import WorkProjectCard from '@/components/UI/WorkProjectCard.vue'
 import ProcessSteps from '@/components/UI/ProcessSteps.vue'
 import LanguagesSection from '@/components/UI/LanguagesSection.vue'
+import AboutText from '@/components/UI/AboutText.vue'
 
 useScrollReveal()
 
@@ -39,15 +40,17 @@ useTilt(aboutImg, 10)
           <h2 class="secont-font lg:text-6xl md:text-5xl text-4xl font-medium">
             {{ $t('home.about-title') }}
           </h2>
-          <div class="glass-card py-6 md:px-10 px-6 mt-10">
-            <h3 class="color-brand text-2xl secont-font mb-4">{{ $t('home.about-hi') }}</h3>
-            <div class="text-[var(--text-muted)] leading-relaxed space-y-4" v-html="$t('home.about-text')" />
-          </div>
+          <AboutText class="mt-10" />
         </div>
         <div class="about-img w-30% z-50 hidden md:block reveal reveal-delay-2">
           <div ref="aboutImg" class="relative about-tilt">
             <div class="absolute -inset-4 bg-[var(--brand)] opacity-10 blur-2xl rounded-full" />
-            <img src="/Image.png" alt="Developer" class="relative w-full drop-shadow-2xl" loading="lazy" />
+            <img
+              src="/Image.png"
+              alt="Developer"
+              class="relative w-full drop-shadow-2xl"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
@@ -142,7 +145,12 @@ useTilt(aboutImg, 10)
         <RouterLink to="/portfolio" class="btn-ghost">
           {{ $t('home.featured-more') }}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path
+              d="M5 12H19M19 12L13 6M19 12L13 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
           </svg>
         </RouterLink>
       </div>
@@ -151,18 +159,24 @@ useTilt(aboutImg, 10)
 
   <section id="contact" class="page-section py-16 lg:py-24">
     <div class="container">
-      <div class="reveal relative overflow-hidden rounded-3xl glass-card px-8 py-14 md:px-16 text-center cta-card">
-        <div class="gradient-orb gradient-orb--teal w-64 h-64 -top-20 left-1/2 -translate-x-1/2 opacity-15" />
+      <div
+        class="reveal relative overflow-hidden rounded-3xl glass-card px-8 py-14 md:px-16 text-center cta-card"
+      >
+        <div
+          class="gradient-orb gradient-orb--teal w-64 h-64 -top-20 left-1/2 -translate-x-1/2 opacity-15"
+        />
         <p class="section-label mb-4 relative z-10">// contact</p>
-        <h2 class="secont-font text-3xl md:text-5xl relative z-10 font-medium">{{ $t('home.cta-title') }}</h2>
-        <p class="mt-4 text-[var(--text-muted)] max-w-xl mx-auto relative z-10">{{ $t('home.cta-text') }}</p>
+        <h2 class="secont-font text-3xl md:text-5xl relative z-10 font-medium">
+          {{ $t('home.cta-title') }}
+        </h2>
+        <p class="mt-4 text-[var(--text-muted)] max-w-xl mx-auto relative z-10">
+          {{ $t('home.cta-text') }}
+        </p>
         <div class="flex flex-wrap justify-center gap-3 mt-8 relative z-10">
-          <a href="https://t.me/itisyang" target="_blank" class="btn-primary text-base">
+          <a href="https://t.me/yanhanov" target="_blank" class="btn-primary text-base">
             {{ $t('home.cta-btn') }}
           </a>
-          <a href="mailto:yanhanow@gmail.ru" class="btn-ghost text-base">
-            yanhanow@gmail.ru
-          </a>
+          <a href="mailto:yanhanow@gmail.ru" class="btn-ghost text-base"> yanhanow@gmail.ru </a>
         </div>
       </div>
     </div>
@@ -208,18 +222,34 @@ useTilt(aboutImg, 10)
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, var(--brand), transparent 40%, #0c73b8, transparent 80%, var(--brand));
+  background: linear-gradient(
+    135deg,
+    var(--brand),
+    transparent 40%,
+    #0c73b8,
+    transparent 80%,
+    var(--brand)
+  );
   background-size: 300% 300%;
   animation: border-shift 6s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
 
 @keyframes border-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 </style>

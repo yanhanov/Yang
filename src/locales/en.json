@@ -22,7 +22,8 @@
     "russian": "RU",
     "english": "EN",
     "menu-label": "// navigation",
-    "sections-label": "// sections"
+    "sections-label": "// sections",
+    "lang-label": "Language"
   },
   "footer": {
     "copy": "©2026 Yazmyrat Hanov.",
@@ -45,11 +46,28 @@
     "hero-text": "I build scalable web applications and educational platforms — from Junior to Lead Frontend, owning architecture, component systems, performance, and production delivery.",
     "hero-talk": "Let's talk",
     "about-hi": "In short",
+    "about-close-toast": "Good try!",
     "hero-products": "Product projects",
     "hero-tech": "Technologies in stack",
     "hero-years": "Years in development",
     "about-title": "About Me",
-    "about-text": "<p>Frontend developer with experience building scalable web apps and EdTech platforms. Grew from Junior to <span class=\"color-brand\">Lead Frontend Developer</span> — owning architecture, reusable components, and optimization.</p><p>Core stack: <span class=\"color-brand\">Vue 3</span>, <span class=\"color-brand\">TypeScript</span>, <span class=\"color-brand\">Nuxt</span>, REST API & WebSockets. Also work with React, Next.js, Flutter, and Rust.</p><p>Russian — native, English — B2. Open to strong teams and ambitious products.</p>",
+    "about": {
+      "p1Before": "Frontend developer with solid production experience — from freelance to ",
+      "p1After": " in EdTech and product teams. I own architecture, design systems, performance, and shipping to production.",
+      "p2Before": "Core stack: ",
+      "p2Sep": ", ",
+      "p2After": " — REST APIs, WebSockets, CI, and code review. React & Next.js when the stack requires it.",
+      "p3Before": "Growing as a ",
+      "p3Mid": " mobile and ",
+      "p3After": " backend developer: pet projects, API integration, and ready to learn fast on a strong team.",
+      "p4": "Russian — native, English — B2. Strong frontend with immediate impact — ready to grow into mobile and backend with the team.",
+      "role": "Lead Frontend Developer",
+      "vue": "Vue 3",
+      "ts": "TypeScript",
+      "nuxt": "Nuxt",
+      "flutter": "Flutter",
+      "rust": "Rust"
+    },
     "skills": "Skills",
     "skills-sub": "Technologies from my current resume",
     "skills-groups": {
