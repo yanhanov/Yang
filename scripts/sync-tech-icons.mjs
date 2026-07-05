@@ -9,7 +9,6 @@ const outDir = join(root, 'public/icons/tech')
 const icons = {
   vue: 'Vue.js',
   typescript: 'TypeScript',
-  nuxt: 'Nuxt-JS',
   react: 'React',
   nextjs: 'Next.js',
   javascript: 'JavaScript',
@@ -18,8 +17,9 @@ const icons = {
   rust: 'Rust',
   git: 'Git',
   socketio: 'Socket.io',
-  rest: 'OpenAPI',
 }
+
+// Custom icons (not from CDN): rest.svg, nuxt.svg
 
 const base = 'https://icon.icepanel.io/Technology/svg'
 

@@ -50,6 +50,12 @@
     "about-text": "<p>Frontend-разработчик с опытом создания масштабируемых веб-приложений и EdTech-платформ. Прошёл путь от Junior до <span class=\"color-brand\">Lead Frontend Developer</span> — отвечаю за архитектуру, переиспользуемые компоненты и оптимизацию.</p><p>Основной стек: <span class=\"color-brand\">Vue 3</span>, <span class=\"color-brand\">TypeScript</span>, <span class=\"color-brand\">Nuxt</span>, REST API и WebSockets. Также работаю с React, Next.js, Flutter и Rust.</p><p>Русский — родной, английский — B2. Открыт к сильным командам и амбициозным продуктам.</p>",
     "skills": "Навыки",
     "skills-sub": "Технологии из актуального резюме",
+    "skills-groups": {
+      "frontend": "// frontend",
+      "api": "// api & realtime",
+      "other": "// также работаю с"
+    },
+    "skills-primary-label": "// основной стек",
     "experience-title": "Опыт работы",
     "experience-sub": "От фриланса до Lead Frontend в продуктовых командах",
     "work-title": "Продукты",
@@ -116,7 +122,7 @@
     },
     "kwork": {
       "role": "Frontend Developer",
-      "period": "12.2024 — 06.2025",
+      "period": "12.2024 — н.в.",
       "bullet1": "Адаптивные веб-приложения для клиентов в срок",
       "bullet2": "Полный цикл: анализ, архитектура, разработка, деплой",
       "bullet3": "Коммуникация со стейкхолдерами и перевод требований в код",

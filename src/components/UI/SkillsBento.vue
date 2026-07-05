@@ -1,104 +1,263 @@
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import TechIcon from './TechIcon.vue'
+import { skills, skillGroups } from '@/data/skills'
 
-const skills = [
-  { name: 'Vue 3', icon: 'vue', level: 95, color: '#42b883', span: 'md:col-span-2 md:row-span-2', featured: true },
-  { name: 'TypeScript', icon: 'typescript', level: 90, color: '#3178c6', span: '', featured: false },
-  { name: 'Nuxt.js', icon: 'nuxt', level: 85, color: '#00dc82', span: '', featured: false },
-  { name: 'React / Next.js', icon: 'react', level: 78, color: '#61dafb', span: 'md:col-span-2', featured: false, extra: 'nextjs' },
-  { name: 'JavaScript', icon: 'javascript', level: 92, color: '#f0db4f', span: '', featured: false },
-  { name: 'REST / WebSockets', icon: 'api', level: 88, color: '#12f7d6', span: '', featured: false, extra: 'websocket' },
-  { name: 'Tailwind CSS', icon: 'tailwind', level: 90, color: '#38bdf8', span: '', featured: false },
-  { name: 'Flutter / Rust', icon: 'flutter', level: 55, color: '#3fb6d3', span: '', featured: false, extra: 'rust' },
-]
+const { t } = useI18n()
+
+const primary = computed(() => skills.filter((s) => s.primary))
+
+const groups = computed(() =>
+  skillGroups.map((group) => ({
+    ...group,
+    label: t(group.labelKey),
+    skills: skills.filter((s) => s.group === group.id && !s.primary),
+  })).filter((g) => g.skills.length),
+)
 </script>
 
 <template>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-    <div
-      v-for="skill in skills"
-      :key="skill.name"
-      class="skill-card glass-card p-5 flex flex-col justify-between group"
-      :class="skill.span"
-      :style="{ '--skill-color': skill.color }"
-    >
-      <div class="flex items-start justify-between">
-        <div
-          class="icon-box flex items-center justify-center gap-1.5 rounded-xl transition-transform duration-300 group-hover:scale-110"
-          :class="skill.featured ? 'w-16 h-16' : skill.extra ? 'w-14 h-12' : 'w-12 h-12'"
-        >
-          <TechIcon :name="skill.icon" :size="skill.featured ? 36 : 26" />
-          <TechIcon v-if="skill.extra" :name="skill.extra" :size="skill.featured ? 22 : 18" />
-        </div>
-        <span
-          class="text-2xl font-medium secont-font tabular-nums opacity-20 group-hover:opacity-50 transition-opacity"
-          :style="{ color: skill.color }"
-        >
-          {{ skill.level }}%
-        </span>
-      </div>
+  <div class="stack reveal">
+    <h3 class="stack__primary-label section-label">{{ t('home.skills-primary-label') }}</h3>
 
-      <div class="mt-4">
-        <p class="secont-font font-medium" :class="skill.featured ? 'text-xl' : 'text-base'">
-          {{ skill.name }}
-        </p>
-        <div class="mt-3 h-1.5 rounded-full bg-[var(--border)] overflow-hidden">
-          <div
-            class="skill-bar h-full rounded-full"
-            :style="{ width: skill.level + '%', background: skill.color }"
-          />
+    <div class="stack__primary">
+      <div
+        v-for="skill in primary"
+        :key="skill.name"
+        class="stack-card stack-card--primary glass-card"
+        :style="{ '--skill-color': skill.color }"
+      >
+        <div class="stack-card__icon stack-card__icon--lg">
+          <TechIcon :name="skill.icon" :size="36" />
         </div>
+        <p class="stack-card__name secont-font">{{ skill.name }}</p>
+        <div class="stack-card__track">
+          <div class="stack-card__fill" :style="{ width: skill.level + '%' }" />
+        </div>
+        <span class="stack-card__level base-font">{{ skill.level }}%</span>
       </div>
     </div>
+
+    <section
+      v-for="(group, gi) in groups"
+      :key="group.id"
+      class="stack__group"
+      :class="`reveal-delay-${Math.min(gi + 1, 3)}`"
+    >
+      <h3 class="stack__group-label section-label">{{ group.label }}</h3>
+      <div class="stack__grid">
+        <div
+          v-for="skill in group.skills"
+          :key="skill.name"
+          class="stack-card glass-card"
+          :style="{ '--skill-color': skill.color }"
+        >
+          <div class="stack-card__row">
+            <div class="stack-card__icon">
+              <TechIcon :name="skill.icon" :size="26" />
+            </div>
+            <div class="stack-card__content">
+              <div class="stack-card__head">
+                <span class="stack-card__name secont-font">{{ skill.name }}</span>
+                <span class="stack-card__level base-font">{{ skill.level }}%</span>
+              </div>
+              <div class="stack-card__track">
+                <div class="stack-card__fill" :style="{ width: skill.level + '%' }" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.skill-card {
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stack__primary-label {
+  margin-bottom: 1rem;
+}
+
+.stack__primary {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 40rem) {
+  .stack__primary {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+.stack__group + .stack__group {
+  margin-top: 2rem;
+}
+
+.stack__group-label {
+  margin-bottom: 0.875rem;
+}
+
+.stack__grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .stack__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .stack__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stack-card {
   position: relative;
   overflow: hidden;
   transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.skill-card::before {
+.stack-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, color-mix(in srgb, var(--skill-color) 12%, transparent), transparent 60%);
+  background: radial-gradient(circle at top left, color-mix(in srgb, var(--skill-color) 14%, transparent), transparent 65%);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.25s;
+  pointer-events: none;
 }
 
-.skill-card:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--skill-color) 40%, transparent);
-  box-shadow: 0 16px 48px -16px color-mix(in srgb, var(--skill-color) 35%, transparent);
+.stack-card:hover {
+  border-color: color-mix(in srgb, var(--skill-color) 38%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -20px color-mix(in srgb, var(--skill-color) 30%, transparent);
 }
 
-.skill-card:hover::before {
+.stack-card:hover::before {
   opacity: 1;
 }
 
-.icon-box {
-  position: relative;
+.stack-card--primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem 1.25rem;
+  border-color: color-mix(in srgb, var(--skill-color) 28%, transparent);
+}
+
+.stack-card--primary .stack-card__name {
+  margin-top: 0.875rem;
+  font-size: 1.0625rem;
+}
+
+.stack-card--primary .stack-card__track {
+  width: 100%;
+  margin-top: 0.875rem;
+}
+
+.stack-card--primary .stack-card__level {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.stack-card {
+  padding: 1rem 1.125rem;
+}
+
+.stack-card__row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.stack-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
   background: color-mix(in srgb, var(--skill-color) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--skill-color) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--skill-color) 22%, transparent);
 }
 
-.skill-bar {
-  transform-origin: left;
-  animation: growBar 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.stack-card__icon--lg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
 }
 
-@keyframes growBar {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
+.stack-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.stack-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.stack-card__name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.stack-card__level {
+  font-size: 0.6875rem;
+  color: var(--skill-color);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.stack-card__track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.stack-card--primary .stack-card__track {
+  height: 5px;
+}
+
+.stack-card__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--skill-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--skill-color) 50%, transparent);
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal:not(.revealed) .stack-card__fill {
+  width: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-card__fill {
+    transition: none;
   }
 }
 </style>

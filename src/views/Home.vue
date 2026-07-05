@@ -93,9 +93,7 @@ useTilt(aboutImg, 10)
         :title="$t('home.skills')"
         :subtitle="$t('home.skills-sub')"
       />
-      <div class="reveal reveal-delay-1">
-        <SkillsBento />
-      </div>
+      <SkillsBento />
     </div>
   </section>
 

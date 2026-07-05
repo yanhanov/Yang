@@ -1,7 +1,7 @@
 /**
- * Tech stack icons from https://techicons.dev
- * CDN source: icon.icepanel.io (devicons-based)
- * Re-download: npm run icons:sync
+ * Tech stack icons
+ * Most from https://techicons.dev — re-download: npm run icons:sync
+ * Custom: rest.svg, nuxt.svg (local files in public/icons/tech/)
  */
 export const techIconMap = {
   vue: 'vue',
