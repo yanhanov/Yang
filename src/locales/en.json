@@ -5,41 +5,148 @@
       "awards": "Blogs",
       "about": "Portfolio",
       "telegram": "Telegram",
-      "github": "GitHub"
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "resume": "Resume",
+      "about-section": "About",
+      "experience-section": "Experience",
+      "contact-section": "Contact"
+    },
+    "sections": {
+      "hero": "Home",
+      "about": "About",
+      "experience": "Experience",
+      "skills": "Stack",
+      "contact": "Contact"
     },
     "russian": "RU",
     "english": "EN"
   },
   "footer": {
-    "copy": "©2025 Yan Khanov.",
-    "all": "All rights reserved"
+    "copy": "©2026 Yazmyrat Hanov.",
+    "all": "All rights reserved",
+    "tagline": "Frontend Engineer · Vue.js · EdTech & SaaS"
   },
   "home": {
-    "hero-title": "Developer",
+    "hero-title": "Frontend Engineer",
+    "hero-badge": "Open to work",
+    "hero-surname": "Hanov",
+    "hero-terminal-comment": "available for hire",
+    "hero-greeting": "Hey, I'm",
     "bio-name": "Yan",
-    "bio-prof": "Frontend developer",
-    "bio-job": "Full time/Freelancer",
-    "bio-write": "Write me on Telegram",
-    "bio-cv": "Download CV",
-    "bio-con": "Turkmenistan",
-    "hero-hey": "Hey<br />I'm<span class=\"color-brand\"> Yan</span>,<br /> <span class=\"flex justify-between\">Fronted Developer<span class=\"color-brand-2 text-base self-end\">&lt/h1&gt;</span></span>",
-    "hero-text": "I help business grow by crafting amazing web experisences. If ypu're looking for a developer that likes to get stuff done",
-    "hero-talk": "Let's Talk",
-    "about-hi": "Hello!",
-    "hero-lang": "Programming Languages",
-    "hero-tools": "Development Tools",
-    "hero-year": "Year of Experiences",
+    "bio-fullname": "Yazmyrat Hanov",
+    "bio-prof": "Frontend Engineer · Vue.js",
+    "bio-job": "Ashgabat · Remote",
+    "bio-write": "Telegram",
+    "bio-cv": "Download Resume",
+    "bio-con": "Ashgabat, Turkmenistan",
+    "hero-text": "I build scalable web applications and educational platforms — from Junior to Lead Frontend, owning architecture, component systems, performance, and production delivery.",
+    "hero-talk": "Let's talk",
+    "about-hi": "In short",
+    "hero-products": "Product projects",
+    "hero-tech": "Technologies in stack",
+    "hero-years": "Years in development",
     "about-title": "About Me",
-    "about-text": "<p> My name is Yang and I specialize in web developement that utilizes<span class=\"color-brand\">HTML</span>, <span class=\"color-brand\">CSS</span>,<span class=\"color-brand\">JS</span>, and <span class=\"color-brand\">VUE</span> etc.<br /></p><p>I am a highly motivated individual and eternal optimist dedicated to writing clear,concise, robust code that works. Striving to never stop learning and improving.</p><p>When I'm not coding, I am writing bolgs, reading, or picking up some new hands-on artproject like photography.</p><p>I like to have my perspective and belief systems challenged so that I see the worldthrough new eyes.</p>",
+    "about-text": "<p>Frontend developer with experience building scalable web apps and EdTech platforms. Grew from Junior to <span class=\"color-brand\">Lead Frontend Developer</span> — owning architecture, reusable components, and optimization.</p><p>Core stack: <span class=\"color-brand\">Vue 3</span>, <span class=\"color-brand\">TypeScript</span>, <span class=\"color-brand\">Nuxt</span>, REST API & WebSockets. Also work with React, Next.js, Flutter, and Rust.</p><p>Russian — native, English — B2. Open to strong teams and ambitious products.</p>",
     "skills": "Skills",
-    "skills-sub": "I am striving to never stop learning and imporiving",
-    "skills-job": "Web Development"
+    "skills-sub": "Technologies from my current resume",
+    "experience-title": "Experience",
+    "experience-sub": "From freelance to Lead Frontend in product teams",
+    "work-title": "Products",
+    "work-sub": "Projects I worked on in teams",
+    "process-title": "How I Work",
+    "process-sub": "A transparent process from idea to launch",
+    "process": {
+      "discover": {
+        "title": "Discover",
+        "text": "I break down the problem, goals, and constraints — then propose architecture and a clear plan."
+      },
+      "build": {
+        "title": "Build",
+        "text": "Clean code, responsive layouts, and thoughtful UX at every step of development."
+      },
+      "ship": {
+        "title": "Ship",
+        "text": "Testing, performance optimization, and helping you get the product to production."
+      }
+    },
+    "featured-title": "More Projects",
+    "featured-sub": "Freelance and personal work",
+    "featured-more": "All projects",
+    "view-project": "View project",
+    "cta-title": "Got an idea?",
+    "cta-text": "Email yanhanow@gmail.ru or message on Telegram — I'll reply quickly.",
+    "cta-btn": "Message on Telegram",
+    "ups": "Oops... Refresh the page",
+    "languages-title": "Languages",
+    "languages-sub": "Russian — native, English — B2",
+    "languages": {
+      "ru": { "name": "Russian", "level": "Native" },
+      "en": { "name": "English", "level": "B2 — Upper Intermediate" }
+    }
+  },
+  "experience": {
+    "current": "Current",
+    "remote": "Remote",
+    "freelance": "Freelance",
+    "cookie": {
+      "role": "Middle Frontend Engineer",
+      "period": "Apr 2026 — Present",
+      "bullet1": "Built a web platform for programming and computer science education",
+      "bullet2": "Interactive interfaces and learning-focused user experiences",
+      "bullet3": "Reusable components and scalable frontend architecture",
+      "bullet4": "Improved usability and performance across devices"
+    },
+    "lookformer": {
+      "role": "Lead Frontend Developer",
+      "period": "Dec 2025 — Apr 2026",
+      "bullet1": "Led frontend from planning to production release",
+      "bullet2": "Designed application architecture and dev standards",
+      "bullet3": "Built reusable component architecture for faster delivery",
+      "bullet4": "Made technical decisions on stack, structure, and optimization",
+      "bullet5": "Code reviews and mentoring other developers"
+    },
+    "neurounite": {
+      "role": "Frontend Engineer",
+      "period": "Jun 2025 — Jan 2026",
+      "bullet1": "Improved application performance and user experience",
+      "bullet2": "Developed scalable features using the Vue ecosystem",
+      "bullet3": "Integrated REST APIs and external services",
+      "bullet4": "Collaborated with backend developers and designers"
+    },
+    "kwork": {
+      "role": "Frontend Developer",
+      "period": "Dec 2024 — Jun 2025",
+      "bullet1": "Delivered responsive web apps for clients on deadline",
+      "bullet2": "Full SDLC: requirements, architecture, implementation, deployment",
+      "bullet3": "Direct stakeholder communication and requirement translation",
+      "bullet4": "Performance and accessibility optimization",
+      "bullet5": "High client satisfaction and reliable post-launch support"
+    }
+  },
+  "work": {
+    "cookie": {
+      "title": "cookie.rf",
+      "desc": "EdTech platform for programming and CS education with interactive, learning-focused interfaces."
+    },
+    "lookformer": {
+      "title": "Lookformer.ru",
+      "desc": "Product project where I led frontend: architecture, component system, and production release."
+    },
+    "neurounite": {
+      "title": "Neurounite",
+      "desc": "AI platform neurounit.ai — Vue features, REST API, UX and performance optimization."
+    }
   },
   "blogs": "Blogs",
+  "blogs-sub": "Thoughts on development, tools, and experience",
+  "read-more": "↓ read more",
+  "collapse": "↑ collapse",
   "ups": "Oops... Refresh the page",
-  "portfolio": "Portfolio - My projects",
-  "html": "HTML",
-  "css": "CSS",
-  "js": "JS",
-  "vue": "VUE"
+  "portfolio": "Portfolio",
+  "portfolio-sub": "Freelance and personal projects",
+  "notfound": {
+    "text": "Page not found. It may have moved or never existed.",
+    "back": "Back to home"
+  }
 }

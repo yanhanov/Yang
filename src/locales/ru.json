@@ -5,41 +5,148 @@
       "awards": "Блоги",
       "about": "Портфолио",
       "telegram": "Telegram",
-      "github": "GitHub"
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "resume": "Резюме",
+      "about-section": "Обо мне",
+      "experience-section": "Опыт",
+      "contact-section": "Контакт"
+    },
+    "sections": {
+      "hero": "Главная",
+      "about": "Обо мне",
+      "experience": "Опыт",
+      "skills": "Стек",
+      "contact": "Контакт"
     },
     "russian": "RU",
     "english": "EN"
   },
   "footer": {
-    "copy": "©2025 Yan Khanov.",
-    "all": "Все права защищены"
+    "copy": "©2026 Yazmyrat Hanov.",
+    "all": "Все права защищены",
+    "tagline": "Frontend Engineer · Vue.js · EdTech & SaaS"
   },
   "home": {
-    "hero-title": "Разработчик",
+    "hero-title": "Frontend Engineer",
+    "hero-badge": "Открыт к предложениям",
+    "hero-surname": "Ханов",
+    "hero-terminal-comment": "открыт к работе",
+    "hero-greeting": "Привет, я",
     "bio-name": "Ян",
-    "bio-prof": "Frontend разработчик",
-    "bio-job": "Полная занятость/Фрилансер",
-    "bio-write": "Напишите мне в Telegram",
-    "bio-cv": "Скачать CV",
-    "bio-con": "Туркменистан",
-    "hero-hey": "Привет<br />Я<span class=\"color-brand\"> Ян</span>,<br /> <span class=\"flex justify-between\">Frontend разработчик<span class=\"color-brand-2 text-base self-end\">&lt/h1&gt;</span></span>",
-    "hero-text": "Я помогаю бизнесу расти, создавая потрясающие веб-приложения. Если вы ищете разработчика, который любит доводить дело до конца",
-    "hero-talk": "Давайте поговорим",
-    "about-hi": "Привет!",
-    "hero-lang": "Языки программирования",
-    "hero-tools": "Инструменты разработки",
-    "hero-year": "Год опыта",
+    "bio-fullname": "Язмырат Ханов",
+    "bio-prof": "Frontend Engineer · Vue.js",
+    "bio-job": "Ашхабад · Удалённо",
+    "bio-write": "Telegram",
+    "bio-cv": "Скачать резюме",
+    "bio-con": "Ашхабад, Туркменистан",
+    "hero-text": "Строю масштабируемые веб-приложения и образовательные платформы. От Junior до Lead Frontend — архитектура, компонентные системы, перформанс и продакшен.",
+    "hero-talk": "Обсудить проект",
+    "about-hi": "Кратко обо мне",
+    "hero-products": "Продуктовых проектов",
+    "hero-tech": "Технологий в стеке",
+    "hero-years": "Лет в разработке",
     "about-title": "Обо мне",
-    "about-text": "<p> Меня зовут Ян, и я специализируюсь на веб-разработке с использованием<span class=\"color-brand\"> HTML</span>, <span class=\"color-brand\"> CSS</span>, <span class=\"color-brand\">JS</span> и <span class=\"color-brand\">VUE</span> и т. д.<br /></p><p>Я высоко мотивированный человек и вечный оптимист, стремящийся писать понятный, лаконичный и надежный код, который работает. Стремлюсь никогда не прекращать учиться и совершенствоваться.</p><p>Когда я не пишу код, я пишу статьи, читаю или берусь за новый практический художественный проект, например, за фотографию.</p><p>Мне нравится, когда мои взгляды и убеждения подвергаются сомнению, чтобы я мог увидеть мир новыми глазами.</p>",
+    "about-text": "<p>Frontend-разработчик с опытом создания масштабируемых веб-приложений и EdTech-платформ. Прошёл путь от Junior до <span class=\"color-brand\">Lead Frontend Developer</span> — отвечаю за архитектуру, переиспользуемые компоненты и оптимизацию.</p><p>Основной стек: <span class=\"color-brand\">Vue 3</span>, <span class=\"color-brand\">TypeScript</span>, <span class=\"color-brand\">Nuxt</span>, REST API и WebSockets. Также работаю с React, Next.js, Flutter и Rust.</p><p>Русский — родной, английский — B2. Открыт к сильным командам и амбициозным продуктам.</p>",
     "skills": "Навыки",
-    "skills-sub": "Я стремлюсь никогда не прекращать учиться и совершенствоваться",
-    "skills-job": "Веб-разработка"
+    "skills-sub": "Технологии из актуального резюме",
+    "experience-title": "Опыт работы",
+    "experience-sub": "От фриланса до Lead Frontend в продуктовых командах",
+    "work-title": "Продукты",
+    "work-sub": "Проекты, над которыми работал в командах",
+    "process-title": "Как я работаю",
+    "process-sub": "Прозрачный процесс от идеи до релиза",
+    "process": {
+      "discover": {
+        "title": "Анализ",
+        "text": "Разбираю задачу, цели и ограничения. Предлагаю архитектуру и план реализации."
+      },
+      "build": {
+        "title": "Разработка",
+        "text": "Пишу чистый код, делаю адаптивную вёрстку и продумываю UX на каждом шаге."
+      },
+      "ship": {
+        "title": "Релиз",
+        "text": "Тестирую, оптимизирую перформанс и помогаю довести продукт до продакшена."
+      }
+    },
+    "featured-title": "Другие проекты",
+    "featured-sub": "Фриланс и личные работы",
+    "featured-more": "Все проекты",
+    "view-project": "Смотреть проект",
+    "cta-title": "Есть идея?",
+    "cta-text": "Напишите на yanhanow@gmail.ru или в Telegram — отвечу быстро.",
+    "cta-btn": "Написать в Telegram",
+    "ups": "Упс... Обновите страницу",
+    "languages-title": "Языки",
+    "languages-sub": "Русский — родной, английский — B2",
+    "languages": {
+      "ru": { "name": "Русский", "level": "Родной" },
+      "en": { "name": "English", "level": "B2 — Upper Intermediate" }
+    }
+  },
+  "experience": {
+    "current": "Сейчас",
+    "remote": "Удалённо",
+    "freelance": "Фриланс",
+    "cookie": {
+      "role": "Middle Frontend Engineer",
+      "period": "04.2026 — н.в.",
+      "bullet1": "Разработка веб-платформы для обучения программированию и computer science",
+      "bullet2": "Интерактивные интерфейсы и UX, ориентированный на обучение",
+      "bullet3": "Переиспользуемые компоненты и масштабируемая frontend-архитектура",
+      "bullet4": "Улучшение юзабилити и перформанса на всех устройствах"
+    },
+    "lookformer": {
+      "role": "Lead Frontend Developer",
+      "period": "12.2025 — 04.2026",
+      "bullet1": "Вёл frontend от планирования до продакшена",
+      "bullet2": "Проектировал архитектуру и стандарты разработки",
+      "bullet3": "Создал переиспользуемую компонентную систему",
+      "bullet4": "Принимал технические решения по стеку и оптимизации",
+      "bullet5": "Code review и поддержка других разработчиков"
+    },
+    "neurounite": {
+      "role": "Frontend Engineer",
+      "period": "06.2025 — 01.2026",
+      "bullet1": "Улучшение перформанса и пользовательского опыта",
+      "bullet2": "Масштабируемые фичи на Vue-экосистеме",
+      "bullet3": "Интеграция REST API и внешних сервисов",
+      "bullet4": "Совместная работа с backend и дизайнерами"
+    },
+    "kwork": {
+      "role": "Frontend Developer",
+      "period": "12.2024 — 06.2025",
+      "bullet1": "Адаптивные веб-приложения для клиентов в срок",
+      "bullet2": "Полный цикл: анализ, архитектура, разработка, деплой",
+      "bullet3": "Коммуникация со стейкхолдерами и перевод требований в код",
+      "bullet4": "Оптимизация перформанса и доступности",
+      "bullet5": "Высокий рейтинг клиентов и пост-релизная поддержка"
+    }
+  },
+  "work": {
+    "cookie": {
+      "title": "cookie.rf",
+      "desc": "EdTech-платформа для обучения программированию и computer science с интерактивными интерфейсами."
+    },
+    "lookformer": {
+      "title": "Lookformer.ru",
+      "desc": "Продуктовый проект, где я вёл frontend: архитектура, компонентная система и релиз в продакшен."
+    },
+    "neurounite": {
+      "title": "Neurounite",
+      "desc": "AI-платформа neurounit.ai — Vue-фичи, REST API, оптимизация UX и перформанса."
+    }
   },
   "blogs": "Блоги",
+  "blogs-sub": "Мысли о разработке, инструментах и опыте",
+  "read-more": "↓ читать далее",
+  "collapse": "↑ свернуть",
   "ups": "Упс... Обновите страницу",
-  "portfolio": "Портфолио - Мои проекты",
-  "html": "HTML",
-  "css": "CSS",
-  "js": "JS",
-  "vue": "VUE"
+  "portfolio": "Портфолио",
+  "portfolio-sub": "Фриланс и личные проекты",
+  "notfound": {
+    "text": "Страница не найдена. Возможно, она переехала или никогда не существовала.",
+    "back": "На главную"
+  }
 }

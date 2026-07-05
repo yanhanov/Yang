@@ -1,27 +1,15 @@
 <script setup>
-import PageLoader from '@/components/UI/PageLoader.vue'
-import { ref, onMounted } from 'vue'
-import { getBlogs } from '@/api/getBlogs'
+import { ref } from 'vue'
+import PageHero from '@/components/UI/PageHero.vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+import { blogs as blogData } from '@/data/blogs'
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
-const blogs = ref([])
-const loader = ref(false)
+const blogs = ref([...blogData].reverse())
 const activeBlogIds = ref([])
 
-const fetchBlogs = async () => {
-  loader.value = true
-  try {
-    blogs.value = await getBlogs()
-    blogs.value.reverse()
-  } catch (err) {
-    console.error('Ошибка при загрузке блогов:', err)
-  } finally {
-    loader.value = false
-  }
-}
-
-onMounted(fetchBlogs)
+useScrollReveal()
 
 const toggleBlog = (key) => {
   if (activeBlogIds.value.includes(key)) {
@@ -35,54 +23,49 @@ const isActive = (key) => activeBlogIds.value.includes(key)
 </script>
 
 <template>
-  <section class="mt-5 mb-20">
+  <PageHero label="// blog" :title="$t('blogs')" :subtitle="$t('blogs-sub')" />
+  <section class="mb-20">
     <div class="container">
-      <PageLoader v-if="loader" />
-      <div v-else>
-        <div v-if="blogs.length" class="flex flex-col">
-          <h1 class="font-bold text-5xl text-center my-6">{{ $t('blogs') }}</h1>
-          <div
-            v-for="blog in blogs"
-            :key="blog.key"
-            class="blog my-5 md:p-6 p-4 bg-white text-black rounded-3xl overflow-hidden transition-all duration-300 ease-in-out cursor-pointer"
-            @click="toggleBlog(blog.key)"
-            :class="{
-              'max-h-[10000px]': isActive(blog.key),
-              'md:max-h-[500px] max-h-[480px]': !isActive(blog.key),
-            }"
+      <article
+        v-for="blog in blogs"
+        :key="blog.key"
+        class="reveal glass-card my-5 overflow-hidden transition-all duration-500 ease-out cursor-pointer hover:border-[var(--brand)]/30"
+        @click="toggleBlog(blog.key)"
+        :class="{
+          'max-h-[10000px]': isActive(blog.key),
+          'md:max-h-[420px] max-h-[400px]': !isActive(blog.key),
+        }"
+      >
+        <div class="relative overflow-hidden">
+          <img
+            :src="blog.img"
+            :alt="locale === 'en' ? blog.titleEn : blog.titleRu"
+            class="w-full h-56 md:h-72 object-cover transition-transform duration-700 hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+          <time
+            v-if="blog.date"
+            class="absolute top-4 right-4 text-xs base-font px-2 py-1 rounded-md bg-black/50 backdrop-blur-sm color-brand border border-[var(--border-accent)]"
           >
-            <img
-              :src="blog.img"
-              alt="Blog image"
-              class="w-full h-100 object-cover rounded-2xl shadow-2xl"
-            />
-            <h2
-              class="font-bold md:text-2xl text-lg my-5 md:whitespace-normal overflow-hidden text-ellipsis whitespace-nowrap"
-            >
-              <span v-if="locale === 'en'">
-                {{ blog.titleEn }}
-              </span>
-              <span v-if="locale === 'ru'">
-                {{ blog.titleRu }}
-              </span>
-            </h2>
-            <p class="text-lg pb-1">
-              <span v-if="locale === 'en'">
-                {{ blog.textEn }}
-              </span>
-              <span v-if="locale === 'ru'">
-                {{ blog.textRu }}
-              </span>
-            </p>
-          </div>
+            {{ blog.date }}
+          </time>
         </div>
-        <div class="min-h-[100vh] h-full justify-start text-center" v-else>
-          <p class="text-red m-auto mt-12">{{ $t('ups') }}</p>
-          <div>
-            <img src="/ups.gif" alt="cutty cat" class="mx-auto" />
-          </div>
+        <div class="p-6 md:p-8">
+          <p class="section-label mb-2">article</p>
+          <h2 class="secont-font font-medium text-xl md:text-2xl leading-snug">
+            <span v-if="locale === 'en'">{{ blog.titleEn }}</span>
+            <span v-else>{{ blog.titleRu }}</span>
+          </h2>
+          <p class="mt-4 text-[var(--text-muted)] leading-relaxed">
+            <span v-if="locale === 'en'">{{ blog.textEn }}</span>
+            <span v-else>{{ blog.textRu }}</span>
+          </p>
+          <p class="mt-4 text-sm color-brand base-font">
+            {{ isActive(blog.key) ? $t('blogs.collapse') : $t('blogs.read-more') }}
+          </p>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 </template>

@@ -2,14 +2,22 @@
 import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import ScrollProgress from './components/UI/ScrollProgress.vue'
+import BackToTop from './components/UI/BackToTop.vue'
+import CursorGlow from './components/UI/CursorGlow.vue'
 </script>
 
 <template>
+  <CursorGlow />
+  <ScrollProgress />
   <Header />
-  <main class="pt-14">
-    <RouterView />
+  <main class="pt-14 relative z-10 page-main">
+    <RouterView v-slot="{ Component, route }">
+      <Transition name="page">
+        <component :is="Component" :key="route.path" />
+      </Transition>
+    </RouterView>
   </main>
   <Footer />
+  <BackToTop />
 </template>
-
-<style scoped></style>
