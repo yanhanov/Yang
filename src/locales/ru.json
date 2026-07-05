@@ -87,8 +87,16 @@
     "languages-title": "Языки",
     "languages-sub": "Русский — родной, английский — B2",
     "languages": {
-      "ru": { "name": "Русский", "level": "Родной" },
-      "en": { "name": "English", "level": "B2 — Upper Intermediate" }
+      "ru": {
+        "name": "Русский",
+        "level": "Родной",
+        "usage": "Основной язык — работа, общение и контент"
+      },
+      "en": {
+        "name": "English",
+        "level": "B2 — Upper Intermediate",
+        "usage": "Документация, созвоны и технические тексты"
+      }
     }
   },
   "experience": {

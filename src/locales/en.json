@@ -87,8 +87,16 @@
     "languages-title": "Languages",
     "languages-sub": "Russian — native, English — B2",
     "languages": {
-      "ru": { "name": "Russian", "level": "Native" },
-      "en": { "name": "English", "level": "B2 — Upper Intermediate" }
+      "ru": {
+        "name": "Russian",
+        "level": "Native",
+        "usage": "Primary language — work, communication, and content"
+      },
+      "en": {
+        "name": "English",
+        "level": "B2 — Upper Intermediate",
+        "usage": "Documentation, calls, and technical writing"
+      }
     }
   },
   "experience": {
