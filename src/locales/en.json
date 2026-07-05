@@ -61,19 +61,40 @@
     "work-title": "Products",
     "work-sub": "Projects I worked on in teams",
     "process-title": "How I Work",
-    "process-sub": "A transparent process from idea to launch",
+    "process-sub": "From ambiguity to production — with ownership at every stage",
+    "process-principles": {
+      "ownership": "End-to-end ownership",
+      "quality": "Quality by default",
+      "clarity": "Clear async communication"
+    },
     "process": {
-      "discover": {
-        "title": "Discover",
-        "text": "I break down the problem, goals, and constraints — then propose architecture and a clear plan."
+      "align": {
+        "title": "Align",
+        "text": "Understand the problem before touching code.",
+        "bullet1": "Clarify goals, constraints, and success metrics with product & design",
+        "bullet2": "Surface trade-offs early — scope, timeline, technical debt",
+        "bullet3": "Agree on deliverables and definition of done upfront"
       },
-      "build": {
-        "title": "Build",
-        "text": "Clean code, responsive layouts, and thoughtful UX at every step of development."
+      "architect": {
+        "title": "Architect",
+        "text": "Design systems that scale beyond the first release.",
+        "bullet1": "Component boundaries, state management, and API contracts",
+        "bullet2": "Break work into shippable increments with clear milestones",
+        "bullet3": "Document key decisions for the team"
       },
-      "ship": {
-        "title": "Ship",
-        "text": "Testing, performance optimization, and helping you get the product to production."
+      "deliver": {
+        "title": "Deliver",
+        "text": "Ship iteratively without cutting corners.",
+        "bullet1": "Readable code, reviews, and automated checks in CI",
+        "bullet2": "Performance budgets, accessibility, and responsive UX",
+        "bullet3": "Unblock teammates and raise the bar through mentoring"
+      },
+      "own": {
+        "title": "Own",
+        "text": "Responsibility doesn't end at merge.",
+        "bullet1": "Deploy safely, monitor metrics, and catch regressions fast",
+        "bullet2": "Iterate based on user feedback and real data",
+        "bullet3": "Leave the codebase better than I found it"
       }
     },
     "featured-title": "More Projects",
