@@ -7,6 +7,7 @@ const display = ref('')
 const roleIndex = ref(0)
 const isDeleting = ref(false)
 let timer
+let suspended = false
 
 const roles = computed(() =>
   locale.value === 'ru'
@@ -27,6 +28,8 @@ const roles = computed(() =>
 )
 
 const tick = () => {
+  if (suspended) return
+
   const current = roles.value[roleIndex.value % roles.value.length]
   const full = current
 
@@ -50,18 +53,37 @@ const tick = () => {
   }
 }
 
+const resume = () => {
+  if (!suspended) return
+  suspended = false
+  timer = setTimeout(tick, 200)
+}
+
+const onVisibility = () => {
+  if (document.hidden) {
+    suspended = true
+    clearTimeout(timer)
+    return
+  }
+  resume()
+}
+
 onMounted(() => {
   timer = setTimeout(tick, 600)
+  document.addEventListener('visibilitychange', onVisibility)
 })
 
-onUnmounted(() => clearTimeout(timer))
+onUnmounted(() => {
+  clearTimeout(timer)
+  document.removeEventListener('visibilitychange', onVisibility)
+})
 
 watch(locale, () => {
   clearTimeout(timer)
   display.value = ''
   roleIndex.value = 0
   isDeleting.value = false
-  timer = setTimeout(tick, 300)
+  if (!suspended) timer = setTimeout(tick, 300)
 })
 </script>
 

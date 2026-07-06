@@ -1,5 +1,10 @@
 <script setup>
+import { ref } from 'vue'
 import TechIcon from './TechIcon.vue'
+import { useInView } from '@/composables/useInView'
+
+const wrap = ref(null)
+const inView = useInView(wrap)
 
 const techs = [
   { icon: 'vue', label: 'Vue 3' },
@@ -18,8 +23,11 @@ const techs = [
 </script>
 
 <template>
-  <div class="marquee-wrap overflow-hidden py-5 border-y border-[var(--border)]/60 bg-[var(--bg)]/40">
-    <div class="marquee-track flex items-center gap-4">
+  <div
+    ref="wrap"
+    class="marquee-wrap overflow-hidden py-5 border-y border-[var(--border)]/60 bg-[var(--bg)]/40"
+  >
+    <div class="marquee-track flex items-center gap-4" :class="{ 'marquee-track--paused': !inView }">
       <div
         v-for="(tech, i) in [...techs, ...techs]"
         :key="`${tech.icon}-${i}`"
@@ -36,7 +44,10 @@ const techs = [
 .marquee-track {
   animation: marquee 40s linear infinite;
   width: max-content;
-  will-change: transform;
+}
+
+.marquee-track--paused {
+  animation-play-state: paused;
 }
 
 .marquee-track:hover {
@@ -44,7 +55,9 @@ const techs = [
 }
 
 .marquee-pill {
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .marquee-pill:hover {
@@ -54,10 +67,10 @@ const techs = [
 
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 </style>

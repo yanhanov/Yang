@@ -1,10 +1,13 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import { usePageVisible } from '@/composables/usePageVisible'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import ScrollProgress from './components/UI/ScrollProgress.vue'
 import BackToTop from './components/UI/BackToTop.vue'
 import CursorGlow from './components/UI/CursorGlow.vue'
+
+usePageVisible()
 </script>
 
 <template>

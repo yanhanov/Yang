@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://yangbang74.github.io/Yang/sitemap.xml
+Sitemap: https://yanhanov.com/sitemap.xml

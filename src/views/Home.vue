@@ -44,13 +44,19 @@ useTilt(aboutImg, 10)
         </div>
         <div class="about-img w-30% z-50 hidden md:block reveal reveal-delay-2">
           <div ref="aboutImg" class="relative about-tilt">
-            <div class="absolute -inset-4 bg-[var(--brand)] opacity-10 blur-2xl rounded-full" />
-            <img
-              src="/Image.png"
-              alt="Developer"
-              class="relative w-full drop-shadow-2xl"
-              loading="lazy"
-            />
+            <div class="about-img__glow" aria-hidden="true" />
+            <picture>
+              <source srcset="/Image-400.webp 400w" sizes="400px" type="image/webp" />
+              <img
+                src="/Image-400.webp"
+                alt="Developer"
+                class="relative w-full drop-shadow-2xl"
+                width="400"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>
@@ -190,7 +196,15 @@ useTilt(aboutImg, 10)
 
 <style scoped>
 .about-tilt {
-  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.about-img__glow {
+  position: absolute;
+  inset: -1rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(18, 247, 214, 0.14) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .about {
@@ -227,16 +241,7 @@ useTilt(aboutImg, 10)
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(
-    135deg,
-    var(--brand),
-    transparent 40%,
-    #0c73b8,
-    transparent 80%,
-    var(--brand)
-  );
-  background-size: 300% 300%;
-  animation: border-shift 6s ease infinite;
+  background: linear-gradient(135deg, var(--brand), transparent 40%, #0c73b8, transparent 80%, var(--brand));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -246,15 +251,5 @@ useTilt(aboutImg, 10)
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-}
-
-@keyframes border-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
 }
 </style>

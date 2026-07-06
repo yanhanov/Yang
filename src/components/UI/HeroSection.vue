@@ -2,12 +2,15 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useTilt } from '@/composables/useTilt'
+import { useInView } from '@/composables/useInView'
 import TypingRoles from './TypingRoles.vue'
 import TechIcon from './TechIcon.vue'
 
 const stats = ref({ products: 0, tech: 0, years: 0 })
-const targets = { products: 4, tech: 10, years: 2 }
+const targets = { products: 5, tech: 15, years: 3 }
 const profileCard = ref(null)
+const profileSection = ref(null)
+const profileInView = useInView(profileSection)
 
 const focusStack = [
   { icon: 'vue', labelKey: 'home.profile-focus.frontend' },
@@ -134,7 +137,7 @@ onMounted(() => {
         </div>
 
         <!-- Right: profile -->
-        <div class="hero-profile reveal reveal-delay-1">
+        <div ref="profileSection" class="hero-profile reveal reveal-delay-1">
           <div class="hero-profile__glow" aria-hidden="true" />
           <div ref="profileCard" class="hero-profile__tilt">
             <div class="hero-terminal hero-profile__window glow-border">
@@ -147,20 +150,34 @@ onMounted(() => {
                 </div>
                 <span class="hero-profile__status base-font">
                   <span class="hero-profile__status-dot" />
-                  <span class="hero-profile__status-text">{{ $t('home.hero-terminal-comment') }}</span>
+                  <span class="hero-profile__status-text">{{
+                    $t('home.hero-terminal-comment')
+                  }}</span>
                 </span>
               </div>
 
               <div class="hero-profile__body">
                 <div class="hero-profile__header">
-                  <div class="hero-profile__photo-wrap avatar-ring">
-                    <img
-                      src="/yan-profile.png"
-                      alt="Yazmyrat Hanov"
-                      class="hero-profile__photo"
-                      width="256"
-                      height="256"
-                    />
+                  <div
+                    class="hero-profile__photo-wrap avatar-ring"
+                    :class="{ 'avatar-ring--paused': !profileInView }"
+                  >
+                    <picture>
+                      <source
+                        srcset="/yan-profile-140.webp 140w, /yan-profile-280.webp 280w"
+                        sizes="(min-width: 64rem) 136px, 112px"
+                        type="image/webp"
+                      />
+                      <img
+                        src="/yan-profile-140.webp"
+                        alt="Yazmyrat Hanov"
+                        class="hero-profile__photo"
+                        width="140"
+                        height="158"
+                        decoding="async"
+                        fetchpriority="high"
+                      />
+                    </picture>
                   </div>
 
                   <div class="hero-profile__info">
@@ -197,7 +214,7 @@ onMounted(() => {
                   <pre
                     class="hero-profile__code base-font"
                     aria-label="Profile data"
-                  ><code><span class="tok-comment">// yanhanov.dev</span>
+                  ><code><span class="tok-comment">// yanhanov.com</span>
 <span class="tok-keyword">export const</span> <span class="tok-prop">profile</span> <span class="tok-punct">= {</span>
   <span class="tok-prop">email</span><span class="tok-punct">:</span> <a href="mailto:yanhanow@gmail.ru" class="tok-string hero-profile__link">'yanhanow@gmail.ru'</a><span class="tok-punct">,</span>
   <span class="tok-prop">location</span><span class="tok-punct">:</span> <span class="tok-string">'{{ $t('home.bio-con') }}'</span><span class="tok-punct">,</span>
@@ -650,6 +667,10 @@ onMounted(() => {
   opacity: 0.55;
 }
 
+.avatar-ring--paused::before {
+  animation-play-state: paused;
+}
+
 .avatar-ring::after {
   content: '';
   position: absolute;
@@ -662,6 +683,14 @@ onMounted(() => {
   to {
     transform: rotate(360deg);
   }
+}
+
+.hero-profile__photo-wrap picture {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-profile__photo {
@@ -889,12 +918,13 @@ onMounted(() => {
   position: absolute;
   top: 0.375rem;
   left: 50%;
-  transform: translateX(-50%);
   width: 3px;
   height: 6px;
   background: currentColor;
   border-radius: 2px;
+  transform: translateX(-50%);
   animation: scroll-dot 2s infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes bounce {
@@ -910,11 +940,11 @@ onMounted(() => {
 @keyframes scroll-dot {
   0% {
     opacity: 1;
-    top: 0.375rem;
+    transform: translateX(-50%) translateY(0);
   }
   100% {
     opacity: 0;
-    top: 0.875rem;
+    transform: translateX(-50%) translateY(8px);
   }
 }
 
@@ -993,6 +1023,18 @@ onMounted(() => {
 
   .hero-stats {
     max-width: none;
+  }
+}
+
+@media (max-width: 48rem) {
+  .hero-profile__glow {
+    display: none;
+  }
+
+  .hero-profile__tilt:hover .hero-profile__window {
+    box-shadow:
+      0 32px 80px -40px rgba(0, 0, 0, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 }
 

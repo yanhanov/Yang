@@ -1,10 +1,13 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRafThrottle } from '@/composables/useRafThrottle'
 
 const glow = ref(null)
 let visible = false
+let throttle
+let moveHandler
 
-const onMove = (e) => {
+const applyMove = (e) => {
   const el = glow.value
   if (!el) return
 
@@ -17,6 +20,7 @@ const onMove = (e) => {
 }
 
 const onLeave = () => {
+  throttle?.cancel()
   const el = glow.value
   if (!el) return
   visible = false
@@ -27,12 +31,15 @@ onMounted(() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   if (!window.matchMedia('(pointer: fine)').matches) return
 
-  window.addEventListener('mousemove', onMove, { passive: true })
+  throttle = useRafThrottle(applyMove)
+  moveHandler = throttle.handler
+  window.addEventListener('mousemove', moveHandler, { passive: true })
   document.documentElement.addEventListener('mouseleave', onLeave)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('mousemove', onMove)
+  throttle?.cancel()
+  if (moveHandler) window.removeEventListener('mousemove', moveHandler)
   document.documentElement.removeEventListener('mouseleave', onLeave)
 })
 </script>
@@ -46,15 +53,15 @@ onUnmounted(() => {
   position: fixed;
   left: 0;
   top: 0;
-  width: 480px;
-  height: 480px;
-  margin: -240px 0 0 -240px;
+  width: 360px;
+  height: 360px;
+  margin: -180px 0 0 -180px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(18, 247, 214, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(18, 247, 214, 0.06) 0%, transparent 65%);
   pointer-events: none;
   z-index: 1;
   opacity: 0;
-  will-change: transform;
+  contain: strict;
   transition: opacity 0.4s ease;
 }
 </style>

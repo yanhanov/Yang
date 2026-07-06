@@ -27,6 +27,6 @@ useScrollFrame(() => {
   z-index: 200;
   background: linear-gradient(90deg, var(--brand), #0c73b8);
   box-shadow: 0 0 12px var(--brand);
-  will-change: width;
+  contain: strict;
 }
 </style>

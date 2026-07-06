@@ -3,7 +3,7 @@ export const projects = [
     id: 'yang-portfolio',
     title: 'Yang Portfolio',
     img: '/projects/0.png',
-    url: 'https://yang-vert.vercel.app/',
+    url: 'https://yanhanov.com/',
     tags: ['Vue 3', 'TypeScript', 'Tailwind'],
     aboutRu:
       'Личный сайт-портфолио с i18n, анимациями, таймлайном опыта и bento-сеткой навыков. Полностью на Vue 3 + Vite, без бэкенда.',

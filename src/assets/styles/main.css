@@ -120,11 +120,9 @@
 
   .gradient-text {
     background: linear-gradient(135deg, #ececec 0%, #12f7d6 50%, #0c73b8 100%);
-    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: text-shimmer 8s ease-in-out infinite;
   }
 
   .section-stripe {
@@ -184,11 +182,6 @@
     right: -6rem;
     background: radial-gradient(circle, rgba(12, 115, 184, 0.5), transparent 70%);
   }
-}
-
-@keyframes text-shimmer {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
 }
 
 html {
@@ -257,6 +250,25 @@ body::after {
   .gradient-orb {
     animation: none;
   }
+
+  .page-top-gradient__glow {
+    display: none;
+  }
+
+  .page-top-gradient__mesh {
+    opacity: 0.45;
+    background-size: 72px 72px;
+  }
+}
+
+html.page-hidden .marquee-track,
+html.page-hidden .avatar-ring::before,
+html.page-hidden .gradient-orb,
+html.page-hidden .scroll-hint,
+html.page-hidden .hero-badge__dot,
+html.page-hidden .hero-profile__status-dot,
+html.page-hidden .cursor-blink {
+  animation-play-state: paused !important;
 }
 
 ::-webkit-scrollbar {
@@ -301,7 +313,6 @@ body::after {
   border-radius: 50%;
   pointer-events: none;
   opacity: 0.35;
-  will-change: transform;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -420,7 +431,8 @@ a {
   .gradient-orb,
   .scroll-hint,
   .avatar-ring::before,
-  .gradient-text {
+  .gradient-text,
+  .marquee-track {
     animation: none !important;
   }
 
