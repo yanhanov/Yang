@@ -224,7 +224,14 @@
     "author-role": "Frontend Engineer",
     "end": "конец статьи",
     "more-label": "// ещё",
-    "more": "Читать дальше"
+    "more": "Читать дальше",
+    "seo": {
+      "title-suffix": "Блог",
+      "list-title": "Блог — статьи о фронтенд-разработке",
+      "list-description": "Статьи о Vue.js, архитектуре фронтенда, карьерном росте и продуктовой разработке от Язмырата Ханова.",
+      "breadcrumb-home": "Главная",
+      "breadcrumb-blog": "Блог"
+    }
   },
   "read-more": "читать далее",
   "collapse": "↑ свернуть",

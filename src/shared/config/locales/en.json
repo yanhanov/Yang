@@ -224,7 +224,14 @@
     "author-role": "Frontend Engineer",
     "end": "end of article",
     "more-label": "// more",
-    "more": "Keep reading"
+    "more": "Keep reading",
+    "seo": {
+      "title-suffix": "Blog",
+      "list-title": "Blog — Frontend Development Articles",
+      "list-description": "Articles about Vue.js, frontend architecture, career growth, and product development by Yazmyrat Hanov.",
+      "breadcrumb-home": "Home",
+      "breadcrumb-blog": "Blog"
+    }
   },
   "read-more": "read more",
   "collapse": "↑ collapse",

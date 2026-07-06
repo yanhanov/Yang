@@ -56,3 +56,7 @@ export function getBlogExcerpt(blog, locale, limit = 180) {
   const text = paragraphs.join(' ')
   return text.length > limit ? `${text.slice(0, limit).trim()}…` : text
 }
+
+export function getBlogSlug(blog) {
+  return blog.id
+}
