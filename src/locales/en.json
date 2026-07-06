@@ -43,6 +43,12 @@
     "bio-write": "Telegram",
     "bio-cv": "Download Resume",
     "bio-con": "Ashgabat, Turkmenistan",
+    "profile-focus": {
+      "label": "focus",
+      "frontend": "Frontend",
+      "mobile": "Mobile",
+      "rust": "Rust"
+    },
     "hero-text": "I build scalable web applications and educational platforms — from Junior to Lead Frontend, owning architecture, component systems, performance, and production delivery.",
     "hero-talk": "Let's talk",
     "about-hi": "In short",

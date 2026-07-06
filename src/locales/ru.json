@@ -43,6 +43,12 @@
     "bio-write": "Telegram",
     "bio-cv": "Скачать резюме",
     "bio-con": "Ашхабад, Туркменистан",
+    "profile-focus": {
+      "label": "фокус",
+      "frontend": "Frontend",
+      "mobile": "Mobile",
+      "rust": "Rust"
+    },
     "hero-text": "Строю масштабируемые веб-приложения и образовательные платформы. От Junior до Lead Frontend — архитектура, компонентные системы, перформанс и продакшен.",
     "hero-talk": "Обсудить проект",
     "about-hi": "Кратко обо мне",
