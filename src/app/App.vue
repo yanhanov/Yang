@@ -11,16 +11,18 @@ usePageVisible()
 </script>
 
 <template>
-  <CursorGlow />
-  <ScrollProgress />
-  <SiteHeader />
-  <main class="pt-[3.75rem] relative z-10 page-main">
-    <RouterView v-slot="{ Component, route }">
-      <Transition name="page">
-        <component :is="Component" :key="route.path" />
-      </Transition>
-    </RouterView>
-  </main>
-  <SiteFooter />
-  <BackToTop />
+  <div class="app-shell">
+    <CursorGlow />
+    <ScrollProgress />
+    <SiteHeader />
+    <main class="app-shell__main pt-[3.75rem] relative z-10 page-main">
+      <RouterView v-slot="{ Component, route }">
+        <Transition name="page">
+          <component :is="Component" :key="route.path" />
+        </Transition>
+      </RouterView>
+    </main>
+    <SiteFooter />
+    <BackToTop />
+  </div>
 </template>

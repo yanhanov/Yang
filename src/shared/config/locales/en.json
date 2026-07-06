@@ -190,8 +190,20 @@
   },
   "work": {
     "cookie": {
-      "title": "cookie.rf",
+      "title": "informatics.online",
       "desc": "EdTech platform for programming and CS education with interactive, learning-focused interfaces."
+    },
+    "stern-school": {
+      "title": "Stern School",
+      "desc": "Online school of exact sciences — landing and UI for an educational product."
+    },
+    "stern-olymp": {
+      "title": "STERN Olympiad",
+      "desc": "Olympiad platform for the School of Exact Sciences — registration, content, and user flows."
+    },
+    "yumashev": {
+      "title": "Mikhail Yumashev",
+      "desc": "Tutor website — EGE, olympiad, and MSU entrance exam prep with conversion-focused UX."
     },
     "lookformer": {
       "title": "Lookformer.ru",

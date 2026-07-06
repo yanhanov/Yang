@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useScrollReveal, useTilt } from '@/shared/lib'
-import { projects, WorkProjectCard } from '@/entities/project'
+import { featuredProjects, WorkProjectCard } from '@/entities/project'
 import { HeroSection } from '@/widgets/hero'
 import { TechMarquee } from '@/widgets/tech-marquee'
 import { SectionHeading } from '@/shared/ui/section-heading'
@@ -76,13 +77,26 @@ useTilt(aboutImg, 10)
         :title="$t('home.work-title')"
         :subtitle="$t('home.work-sub')"
       />
-      <div class="grid md:grid-cols-3 gap-4 reveal reveal-delay-1">
+      <div class="projects-showcase reveal reveal-delay-1">
         <WorkProjectCard
-          v-for="(item, i) in projects"
+          v-for="(item, i) in featuredProjects"
           :key="item.id"
           :project="item"
           :index="i"
         />
+      </div>
+      <div class="text-center mt-10 reveal reveal-delay-2">
+        <RouterLink to="/portfolio" class="btn-ghost">
+          {{ $t('home.view-all-projects') }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12H19M19 12L13 6M19 12L13 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </RouterLink>
       </div>
     </div>
   </section>
@@ -206,5 +220,17 @@ useTilt(aboutImg, 10)
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+.projects-showcase {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .projects-showcase {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 </style>

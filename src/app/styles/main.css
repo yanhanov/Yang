@@ -186,6 +186,29 @@
 
 html {
   scroll-behavior: auto;
+  min-height: 100%;
+}
+
+body,
+#app {
+  min-height: 100dvh;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.app-shell__main {
+  flex: 1 0 auto;
 }
 
 [id] {

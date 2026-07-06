@@ -6,7 +6,7 @@ import TypingRoles from './TypingRoles.vue'
 import { TechIcon } from '@/shared/ui/tech-icon'
 
 const stats = ref({ products: 0, tech: 0, years: 0 })
-const targets = { products: 3, tech: 15, years: 3 }
+const targets = { products: 6, tech: 15, years: 3 }
 const profileCard = ref(null)
 const profileSection = ref(null)
 const profileInView = useInView(profileSection)
