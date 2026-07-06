@@ -20,6 +20,7 @@ const pageLinks = [
 const sectionLinks = [
   { href: '#about', labelKey: 'header.sections.about' },
   { href: '#experience', labelKey: 'header.sections.experience' },
+  { href: '#projects', labelKey: 'header.sections.projects' },
   { href: '#skills', labelKey: 'header.sections.skills' },
   { href: '#contact', labelKey: 'header.sections.contact' },
 ]

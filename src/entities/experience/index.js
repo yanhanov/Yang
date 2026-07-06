@@ -1,1 +1,1 @@
-export { experience, workProjects } from './model/resume.js'
+export { experience } from './model/resume.js'

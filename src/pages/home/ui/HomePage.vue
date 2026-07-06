@@ -1,9 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
 import { useScrollReveal, useTilt } from '@/shared/lib'
-import { projects as allProjects, ProjectCard, WorkProjectCard } from '@/entities/project'
-import { workProjects } from '@/entities/experience'
+import { projects, WorkProjectCard } from '@/entities/project'
 import { HeroSection } from '@/widgets/hero'
 import { TechMarquee } from '@/widgets/tech-marquee'
 import { SectionHeading } from '@/shared/ui/section-heading'
@@ -15,8 +13,6 @@ import { AboutText } from '@/widgets/about-section'
 
 useScrollReveal()
 
-const projects = ref(allProjects.slice(0, 3))
-const resumeWork = workProjects
 const aboutImg = ref(null)
 
 useTilt(aboutImg, 10)
@@ -72,17 +68,17 @@ useTilt(aboutImg, 10)
     </div>
   </section>
 
-  <section id="products" class="page-section py-16 lg:py-24 section-stripe">
+  <section id="projects" class="page-section py-16 lg:py-24 section-stripe">
     <div class="container">
       <SectionHeading
         class="reveal"
-        label="// products"
+        label="// projects"
         :title="$t('home.work-title')"
         :subtitle="$t('home.work-sub')"
       />
       <div class="grid md:grid-cols-3 gap-4 reveal reveal-delay-1">
         <WorkProjectCard
-          v-for="(item, i) in resumeWork"
+          v-for="(item, i) in projects"
           :key="item.id"
           :project="item"
           :index="i"
@@ -124,44 +120,6 @@ useTilt(aboutImg, 10)
         :subtitle="$t('home.process-sub')"
       />
       <ProcessSteps />
-    </div>
-  </section>
-
-  <section v-if="projects.length" id="featured" class="page-section page-section--media py-16 lg:py-24">
-    <div class="container">
-      <SectionHeading
-        class="reveal"
-        label="// work"
-        :title="$t('home.featured-title')"
-        :subtitle="$t('home.featured-sub')"
-      />
-      <div class="grid md:grid-cols-2 gap-6">
-        <div
-          v-for="(project, i) in projects"
-          :key="project.id"
-          class="reveal min-w-0"
-          :class="[i === 0 ? 'md:col-span-2' : '', `reveal-delay-${Math.min(i + 1, 3)}`]"
-        >
-          <ProjectCard
-            :project="project"
-            :featured="i === 0"
-            :index="i"
-          />
-        </div>
-      </div>
-      <div class="text-center mt-10 reveal reveal-delay-2">
-        <RouterLink to="/portfolio" class="btn-ghost">
-          {{ $t('home.featured-more') }}
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M5 12H19M19 12L13 6M19 12L13 18"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </RouterLink>
-      </div>
     </div>
   </section>
 

@@ -16,6 +16,7 @@
       "hero": "Home",
       "about": "About",
       "experience": "Experience",
+      "projects": "Projects",
       "skills": "Stack",
       "contact": "Contact"
     },
@@ -84,8 +85,10 @@
     "skills-primary-label": "// primary stack",
     "experience-title": "Experience",
     "experience-sub": "From freelance to Lead Frontend in product teams",
-    "work-title": "Products",
-    "work-sub": "Projects I worked on in teams",
+    "work-title": "My Projects",
+    "work-sub": "Products I worked on in teams",
+    "view-projects": "My projects",
+    "view-all-projects": "All projects",
     "process-title": "How I Work",
     "process-sub": "From ambiguity to production — with ownership at every stage",
     "process-principles": {
@@ -204,8 +207,8 @@
   "read-more": "↓ read more",
   "collapse": "↑ collapse",
   "ups": "Oops... Refresh the page",
-  "portfolio": "Portfolio",
-  "portfolio-sub": "Freelance and personal projects",
+  "portfolio": "My Projects",
+  "portfolio-sub": "Products I worked on in teams",
   "notfound": {
     "text": "Page not found. It may have moved or never existed.",
     "back": "Back to home"
