@@ -210,7 +210,14 @@ useTilt(aboutImg, 10)
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, var(--brand), transparent 40%, #0c73b8, transparent 80%, var(--brand));
+  background: linear-gradient(
+    135deg,
+    var(--brand),
+    transparent 40%,
+    #0c73b8,
+    transparent 80%,
+    var(--brand)
+  );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);

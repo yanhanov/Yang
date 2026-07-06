@@ -1,71 +1,43 @@
 <script setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { PageHero } from '@/shared/ui/page-hero'
 import { useScrollReveal } from '@/shared/lib'
-import { blogs as blogData } from '@/entities/blog'
-import { useI18n } from 'vue-i18n'
-
-const { locale } = useI18n()
-const blogs = ref([...blogData].reverse())
-const activeBlogIds = ref([])
+import { blogs, BlogCard } from '@/entities/blog'
 
 useScrollReveal()
 
-const toggleBlog = (key) => {
-  if (activeBlogIds.value.includes(key)) {
-    activeBlogIds.value = activeBlogIds.value.filter((id) => id !== key)
-  } else {
-    activeBlogIds.value.push(key)
-  }
-}
-
-const isActive = (key) => activeBlogIds.value.includes(key)
+const articles = computed(() => [...blogs].sort((a, b) => new Date(b.date) - new Date(a.date)))
 </script>
 
 <template>
   <PageHero label="// blog" :title="$t('blogs')" :subtitle="$t('blogs-sub')" />
-  <section class="mb-20">
+  <section class="blogs-page mb-20">
     <div class="container">
-      <article
-        v-for="blog in blogs"
-        :key="blog.key"
-        class="reveal glass-card my-5 overflow-hidden transition-all duration-500 ease-out cursor-pointer hover:border-[var(--brand)]/30"
-        @click="toggleBlog(blog.key)"
-        :class="{
-          'max-h-[10000px]': isActive(blog.key),
-          'md:max-h-[420px] max-h-[400px]': !isActive(blog.key),
-        }"
-      >
-        <div class="relative overflow-hidden">
-          <img
-            :src="blog.img"
-            :alt="locale === 'en' ? blog.titleEn : blog.titleRu"
-            class="w-full h-56 md:h-72 object-cover transition-transform duration-700 hover:scale-105"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] to-transparent" />
-          <time
-            v-if="blog.date"
-            class="absolute top-4 right-4 text-xs base-font px-2 py-1 rounded-md bg-black/50 backdrop-blur-sm color-brand border border-[var(--border-accent)]"
-          >
-            {{ blog.date }}
-          </time>
-        </div>
-        <div class="p-6 md:p-8">
-          <p class="section-label mb-2">article</p>
-          <h2 class="secont-font font-medium text-xl md:text-2xl leading-snug">
-            <span v-if="locale === 'en'">{{ blog.titleEn }}</span>
-            <span v-else>{{ blog.titleRu }}</span>
-          </h2>
-          <p class="mt-4 text-[var(--text-muted)] leading-relaxed">
-            <span v-if="locale === 'en'">{{ blog.textEn }}</span>
-            <span v-else>{{ blog.textRu }}</span>
-          </p>
-          <p class="mt-4 text-sm color-brand base-font">
-            {{ isActive(blog.key) ? $t('collapse') : $t('read-more') }}
-          </p>
-        </div>
-      </article>
+      <p class="blogs-page__count base-font reveal">{{ $t('blog.count', { n: articles.length }) }}</p>
+      <div class="blogs-grid reveal reveal-delay-1">
+        <BlogCard v-for="blog in articles" :key="blog.id" :blog="blog" />
+      </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.blogs-page__count {
+  margin-bottom: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.blogs-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .blogs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+</style>

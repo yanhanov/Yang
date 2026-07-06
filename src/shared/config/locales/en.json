@@ -216,7 +216,17 @@
   },
   "blogs": "Blogs",
   "blogs-sub": "Thoughts on development, tools, and experience",
-  "read-more": "↓ read more",
+  "blog": {
+    "back": "All articles",
+    "reading-time": "{n} min read",
+    "count": "{n} articles",
+    "author": "Yan Hanov",
+    "author-role": "Frontend Engineer",
+    "end": "end of article",
+    "more-label": "// more",
+    "more": "Keep reading"
+  },
+  "read-more": "read more",
   "collapse": "↑ collapse",
   "ups": "Oops... Refresh the page",
   "portfolio": "My Projects",
