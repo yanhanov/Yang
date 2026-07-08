@@ -5,6 +5,10 @@ function isInViewport(el) {
   return rect.top < window.innerHeight && rect.bottom > 0
 }
 
+function revealElement(el) {
+  el.classList.add('revealed')
+}
+
 export function useScrollReveal(watchSource) {
   let observer
 
@@ -13,7 +17,7 @@ export function useScrollReveal(watchSource) {
       requestAnimationFrame(() => {
         document.querySelectorAll('.reveal:not(.revealed)').forEach((el) => {
           if (isInViewport(el)) {
-            el.classList.add('revealed')
+            revealElement(el)
           } else {
             observer?.observe(el)
           }
@@ -26,13 +30,12 @@ export function useScrollReveal(watchSource) {
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed')
-            observer.unobserve(entry.target)
-          }
+          if (!entry.isIntersecting) return
+          revealElement(entry.target)
+          observer.unobserve(entry.target)
         })
       },
-      { threshold: 0.08, rootMargin: '0px 0px -20px 0px' },
+      { threshold: 0.05, rootMargin: '80px 0px -40px 0px' },
     )
 
     observe()

@@ -163,24 +163,23 @@
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
-    filter: blur(80px);
-    opacity: 0.35;
+    opacity: 0.45;
   }
 
   .page-top-gradient__glow--left {
-    width: 32rem;
-    height: 32rem;
-    top: -12rem;
-    left: -10rem;
-    background: radial-gradient(circle, rgba(18, 247, 214, 0.55), transparent 70%);
+    width: 40rem;
+    height: 40rem;
+    top: -14rem;
+    left: -12rem;
+    background: radial-gradient(circle, rgba(18, 247, 214, 0.35) 0%, rgba(18, 247, 214, 0.08) 45%, transparent 72%);
   }
 
   .page-top-gradient__glow--right {
-    width: 26rem;
-    height: 26rem;
-    top: -4rem;
-    right: -6rem;
-    background: radial-gradient(circle, rgba(12, 115, 184, 0.5), transparent 70%);
+    width: 34rem;
+    height: 34rem;
+    top: -6rem;
+    right: -8rem;
+    background: radial-gradient(circle, rgba(12, 115, 184, 0.32) 0%, rgba(12, 115, 184, 0.07) 45%, transparent 72%);
   }
 }
 
@@ -197,6 +196,8 @@ body,
 #app {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .app-shell {
@@ -213,19 +214,6 @@ body,
 
 [id] {
   scroll-margin-top: 5rem;
-}
-
-.page-section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
-
-.page-section--hero {
-  content-visibility: visible;
-}
-
-.page-section--media {
-  content-visibility: visible;
 }
 
 :focus-visible {
@@ -261,7 +249,7 @@ body::after {
   inset: 0;
   opacity: 0.015;
   pointer-events: none;
-  z-index: 9998;
+  z-index: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -286,12 +274,25 @@ body::after {
 
 html.page-hidden .marquee-track,
 html.page-hidden .avatar-ring::before,
+html.is-scrolling .avatar-ring::before,
+html.is-scrolling .gradient-orb,
 html.page-hidden .gradient-orb,
+html.is-scrolling .scroll-hint,
 html.page-hidden .scroll-hint,
+html.is-scrolling .hero-badge__dot,
 html.page-hidden .hero-badge__dot,
+html.is-scrolling .hero-profile__status-dot,
 html.page-hidden .hero-profile__status-dot,
+html.is-scrolling .cursor-blink,
 html.page-hidden .cursor-blink {
   animation-play-state: paused !important;
+}
+
+html.is-scrolling .page-top-gradient__glow,
+html.is-scrolling .page-top-gradient__mesh,
+html.is-scrolling .hero-profile__glow,
+html.is-scrolling .hero-line {
+  opacity: 0;
 }
 
 ::-webkit-scrollbar {
@@ -315,21 +316,20 @@ html.page-hidden .cursor-blink {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translate3d(0, 12px, 0);
   transition:
-    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
-  will-change: auto;
+  transform: translate3d(0, 0, 0);
 }
 
-.reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-1 { transition-delay: 0.04s; }
+.reveal-delay-2 { transition-delay: 0.08s; }
+.reveal-delay-3 { transition-delay: 0.12s; }
 
 .gradient-orb {
   position: absolute;

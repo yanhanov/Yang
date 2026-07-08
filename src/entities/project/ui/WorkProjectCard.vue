@@ -194,13 +194,12 @@ const tagIcons = {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.04em;
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(18, 247, 214, 0.22);
 }
 
 .project-card__index {
   color: var(--brand);
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(26, 30, 35, 0.88);
 }
 
 .project-card__visit {

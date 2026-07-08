@@ -3,6 +3,11 @@ import { onMounted, onUnmounted } from 'vue'
 const callbacks = new Set()
 let ticking = false
 let listening = false
+let scrollClassTimer = null
+
+function setScrollingState(active) {
+  document.documentElement.classList.toggle('is-scrolling', active)
+}
 
 function onScrollFrame() {
   ticking = false
@@ -10,6 +15,10 @@ function onScrollFrame() {
 }
 
 function scheduleScroll() {
+  setScrollingState(true)
+  clearTimeout(scrollClassTimer)
+  scrollClassTimer = setTimeout(() => setScrollingState(false), 120)
+
   if (!ticking) {
     ticking = true
     requestAnimationFrame(onScrollFrame)
@@ -26,6 +35,8 @@ function stopListening() {
   if (!listening) return
   listening = false
   window.removeEventListener('scroll', scheduleScroll)
+  clearTimeout(scrollClassTimer)
+  setScrollingState(false)
 }
 
 export function useScrollFrame(callback) {

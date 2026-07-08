@@ -553,10 +553,9 @@ onMounted(() => {
 
 .hero-profile__glow {
   position: absolute;
-  inset: 10% 5%;
+  inset: 5% 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(18, 247, 214, 0.18) 0%, transparent 70%);
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(18, 247, 214, 0.22) 0%, rgba(18, 247, 214, 0.06) 50%, transparent 72%);
   pointer-events: none;
 }
 
@@ -1076,8 +1075,7 @@ onMounted(() => {
   }
 
   .hero-profile__glow {
-    inset: 5% 0;
-    filter: blur(28px);
+    inset: 2% 0;
   }
 
   .hero-profile__bar {

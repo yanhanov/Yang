@@ -118,9 +118,8 @@ const formattedDate = computed(() => {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6875rem;
   color: var(--brand);
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(26, 30, 35, 0.88);
   border: 1px solid rgba(18, 247, 214, 0.22);
-  backdrop-filter: blur(10px);
 }
 
 .blog-card__body {
