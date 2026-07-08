@@ -288,13 +288,6 @@ html.page-hidden .cursor-blink {
   animation-play-state: paused !important;
 }
 
-html.is-scrolling .page-top-gradient__glow,
-html.is-scrolling .page-top-gradient__mesh,
-html.is-scrolling .hero-profile__glow,
-html.is-scrolling .hero-line {
-  opacity: 0;
-}
-
 ::-webkit-scrollbar {
   width: 6px;
 }

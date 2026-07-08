@@ -5,7 +5,7 @@
 ## Primary site
 
 - [Portfolio & homepage](https://yanhanov.com/): Hero, about, experience timeline, skills bento, product work, process, and contact
-- [Portfolio projects](https://yanhanov.com/portfolio): Freelance and personal projects with case-style descriptions
+- [Portfolio projects](https://yanhanov.com/projects): Freelance and personal projects with case-style descriptions
 - [Blog / writing](https://yanhanov.com/blogs): Articles on frontend development, tools, and career growth
 - [Resume PDF](https://yanhanov.com/yan-hanov.pdf): Downloadable CV
 

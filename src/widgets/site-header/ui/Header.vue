@@ -13,7 +13,7 @@ const isHome = computed(() => route.path === '/')
 
 const pageLinks = [
   { to: '/', labelKey: 'header.nav.home' },
-  { to: '/portfolio', labelKey: 'header.nav.about' },
+  { to: '/projects', labelKey: 'header.nav.projects' },
   { to: '/blogs', labelKey: 'header.nav.awards' },
 ]
 

@@ -86,7 +86,7 @@ useTilt(aboutImg, 10)
         />
       </div>
       <div class="text-center mt-10 reveal reveal-delay-2">
-        <RouterLink to="/portfolio" class="btn-ghost">
+        <RouterLink to="/projects" class="btn-ghost">
           {{ $t('home.view-all-projects') }}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path

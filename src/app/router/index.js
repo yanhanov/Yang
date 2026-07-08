@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { HomePage } from '@/pages/home'
 import { BlogsPage, BlogArticlePage } from '@/pages/blogs'
-import { PortfolioPage } from '@/pages/portfolio'
+import { ProjectsPage } from '@/pages/projects'
 import { NotFoundPage } from '@/pages/not-found'
 
 const router = createRouter({
@@ -29,9 +29,13 @@ const router = createRouter({
       component: BlogArticlePage,
     },
     {
+      path: '/projects',
+      name: 'projects',
+      component: ProjectsPage,
+    },
+    {
       path: '/portfolio',
-      name: 'portfolio',
-      component: PortfolioPage,
+      redirect: '/projects',
     },
     {
       path: '/:pathMatch(.*)*',

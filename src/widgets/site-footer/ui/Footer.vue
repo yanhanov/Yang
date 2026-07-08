@@ -16,8 +16,8 @@
 
         <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm base-font">
           <router-link to="/" class="footer-link">{{ $t('header.nav.home') }}</router-link>
-          <router-link to="/portfolio" class="footer-link">{{
-            $t('header.nav.about')
+          <router-link to="/projects" class="footer-link">{{
+            $t('header.nav.projects')
           }}</router-link>
           <router-link to="/blogs" class="footer-link">{{ $t('header.nav.awards') }}</router-link>
           <a href="/yan-hanov.pdf" download="yan-hanov.pdf" class="footer-link">{{

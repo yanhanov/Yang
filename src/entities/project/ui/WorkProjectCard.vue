@@ -45,6 +45,8 @@ const tagIcons = {
         :src="project.img"
         :alt="t(project.titleKey)"
         class="project-card__img"
+        width="640"
+        height="400"
         loading="lazy"
         decoding="async"
       />
@@ -86,57 +88,39 @@ const tagIcons = {
   height: 100%;
   border-radius: 1.25rem;
   overflow: hidden;
+  contain: paint;
   background: linear-gradient(165deg, rgba(41, 47, 54, 0.96) 0%, rgba(26, 30, 35, 0.98) 100%);
   border: 1px solid rgba(67, 69, 77, 0.9);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 12px 40px -24px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 12px 40px -24px rgba(0, 0, 0, 0.65);
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(18, 247, 214, 0.55),
-    transparent 35%,
-    rgba(12, 115, 184, 0.35) 70%,
-    transparent
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .project-card--linked {
   cursor: pointer;
 }
 
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(18, 247, 214, 0.35);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 24px 60px -28px rgba(18, 247, 214, 0.28);
-}
+@media (hover: hover) {
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(18, 247, 214, 0.35);
+    box-shadow: 0 20px 48px -24px rgba(18, 247, 214, 0.22);
+  }
 
-.project-card:hover::before {
-  opacity: 1;
+  .project-card:hover .project-card__img {
+    transform: scale(1.03);
+  }
+
+  .project-card:hover .project-card__title {
+    color: var(--brand);
+  }
+
+  .project-card:hover .project-card__visit {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-card__media {
@@ -155,11 +139,12 @@ const tagIcons = {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.project-card:hover .project-card__img {
-  transform: scale(1.04);
+@media (hover: hover) {
+  .project-card__img {
+    transition: transform 0.35s ease;
+  }
 }
 
 .project-card__shade {
@@ -213,11 +198,6 @@ const tagIcons = {
     background 0.3s ease;
 }
 
-.project-card:hover .project-card__visit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .project-card__body {
   display: flex;
   flex: 1;
@@ -234,15 +214,10 @@ const tagIcons = {
   line-height: 1.25;
   font-weight: 500;
   color: #fff;
-  transition: color 0.25s ease;
 }
 
 .project-card--featured .project-card__title {
   font-size: clamp(1.35rem, 2vw, 1.65rem);
-}
-
-.project-card:hover .project-card__title {
-  color: var(--brand);
 }
 
 .project-card__desc {

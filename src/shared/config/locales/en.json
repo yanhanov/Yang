@@ -4,6 +4,7 @@
       "home": "Home",
       "awards": "Blogs",
       "about": "Portfolio",
+      "projects": "Projects",
       "telegram": "Telegram",
       "github": "GitHub",
       "linkedin": "LinkedIn",
@@ -236,8 +237,8 @@
   "read-more": "read more",
   "collapse": "↑ collapse",
   "ups": "Oops... Refresh the page",
-  "portfolio": "My Projects",
-  "portfolio-sub": "Products I worked on in teams",
+  "projects": "My Projects",
+  "projects-sub": "Products I worked on in teams",
   "notfound": {
     "text": "Page not found. It may have moved or never existed.",
     "back": "Back to home"

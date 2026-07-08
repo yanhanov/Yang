@@ -106,7 +106,7 @@ onMounted(() => {
                 />
               </svg>
             </a>
-            <RouterLink to="/portfolio" class="btn-ghost">
+            <RouterLink to="/projects" class="btn-ghost">
               {{ $t('home.view-projects') }}
             </RouterLink>
             <a

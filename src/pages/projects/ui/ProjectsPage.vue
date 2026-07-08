@@ -1,16 +1,13 @@
 <script setup>
 import { projects, WorkProjectCard } from '@/entities/project'
 import { PageHero } from '@/shared/ui/page-hero'
-import { useScrollReveal } from '@/shared/lib'
-
-useScrollReveal()
 </script>
 
 <template>
-  <PageHero label="// projects" :title="$t('portfolio')" :subtitle="$t('portfolio-sub')" />
+  <PageHero label="// projects" :title="$t('projects')" :subtitle="$t('projects-sub')" />
   <section class="mb-20">
     <div class="container">
-      <div class="portfolio-grid reveal reveal-delay-1">
+      <div class="projects-grid">
         <WorkProjectCard
           v-for="(project, i) in projects"
           :key="project.id"
@@ -23,14 +20,14 @@ useScrollReveal()
 </template>
 
 <style scoped>
-.portfolio-grid {
+.projects-grid {
   display: grid;
   gap: 1.25rem;
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
-  .portfolio-grid {
+  .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
   }
