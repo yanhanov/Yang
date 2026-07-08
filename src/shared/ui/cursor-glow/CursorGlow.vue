@@ -59,7 +59,7 @@ onUnmounted(() => {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(18, 247, 214, 0.06) 0%, transparent 65%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 50;
   opacity: 0;
   contain: strict;
   transition: opacity 0.4s ease;
