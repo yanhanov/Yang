@@ -30,17 +30,17 @@
   "footer": {
     "copy": "©2026 Yazmyrat Hanov.",
     "all": "All rights reserved",
-    "tagline": "Frontend Engineer · Vue.js · EdTech & SaaS"
+    "tagline": "Software Engineer · Full Stack · Vue · Node · Flutter"
   },
   "home": {
-    "hero-title": "Frontend Engineer",
+    "hero-title": "Middle Software Engineer",
     "hero-badge": "Open to work",
     "hero-surname": "Hanov",
     "hero-terminal-comment": "available for hire",
     "hero-greeting": "Hey, I'm",
     "bio-name": "Yan",
     "bio-fullname": "Yazmyrat Hanov",
-    "bio-prof": "Frontend Engineer · Software Engineer",
+    "bio-prof": "Middle Software Engineer",
     "bio-job": "Ashgabat · Remote",
     "bio-write": "Telegram",
     "bio-cv": "Download Resume",
@@ -48,83 +48,87 @@
     "profile-focus": {
       "label": "focus",
       "frontend": "Frontend",
-      "mobile": "Mobile",
-      "rust": "Rust"
+      "backend": "Backend",
+      "mobile": "Mobile"
     },
-    "hero-text": "I build scalable web applications and educational platforms — from Junior to Lead Frontend, owning architecture, component systems, performance, and production delivery.",
+    "hero-text": "There was a time I used to gaze at websites and wonder, \"Someone out there builds this.\" Now — I am that someone. I design and ship production-grade software across the stack.",
     "hero-talk": "Let's talk",
-    "about-hi": "In short",
+    "about-hi": "My path",
     "about-close-toast": "Good try!",
     "hero-products": "Product projects",
     "hero-tech": "Technologies in stack",
     "hero-years": "Years in development",
     "about-title": "About Me",
     "about": {
-      "p1Before": "Frontend developer with solid production experience — from freelance to ",
-      "p1After": " in EdTech and product teams. I own architecture, design systems, performance, and shipping to production.",
-      "p2Before": "Core stack: ",
-      "p2Sep": ", ",
-      "p2After": " — REST APIs, WebSockets, CI, and code review. React & Next.js when the stack requires it.",
-      "p3Before": "Growing as a ",
-      "p3Mid": " mobile and ",
-      "p3After": " backend developer: pet projects, API integration, and ready to learn fast on a strong team.",
-      "p4": "Russian — native, English — B2. Strong frontend with immediate impact — ready to grow into mobile and backend with the team.",
-      "role": "Lead Frontend Developer",
-      "vue": "Vue 3",
-      "ts": "TypeScript",
-      "nuxt": "Nuxt",
-      "flutter": "Flutter",
-      "rust": "Rust"
+      "p1": "There was a time I used to gaze at websites and wonder, \"Someone out there builds this.\" Now — I am that someone.",
+      "p2Before": "I'm a ",
+      "p2Role": "Middle Software Engineer",
+      "p2After": " with a self-made path: no college, no expensive courses, no titles I didn't earn. One day I opened an HTML file and began.",
+      "p3": "Since then, every line of code has been a line in my own book — written carefully, with meaning, and above all — so it works.",
+      "p4": "I design and ship production-grade software across the stack: from pixel-perfect interfaces to scalable backends, APIs, and cross-platform apps. I don't just write code — I architect systems, choose the right tools, and deliver solutions that last."
     },
-    "skills": "Skills",
-    "skills-sub": "Technologies from my current resume",
+    "skills": "Tech Stack",
+    "skills-sub": "Frontend, backend, and multi-platform tools I work with",
     "skills-groups": {
       "frontend": "// frontend",
-      "api": "// api & realtime",
-      "other": "// also work with"
+      "backend": "// backend",
+      "multiplatform": "// multi-platform"
     },
-    "skills-primary-label": "// primary stack",
+    "skills-primary-label": "// core",
+    "whatido-title": "What I Do",
+    "whatido-sub": "End-to-end software across the stack",
+    "whatido": {
+      "frontend": {
+        "title": "Frontend",
+        "text": "Interfaces that feel fast, polished, and accessible in production.",
+        "tags": ["Responsive UI", "SPA / SSR", "Design systems", "Performance", "A11y"]
+      },
+      "backend": {
+        "title": "Backend",
+        "text": "APIs, data layers, and infrastructure that stay reliable under load.",
+        "tags": ["REST APIs", "Auth", "Databases", "Caching", "Deploy"]
+      },
+      "multiplatform": {
+        "title": "Multi-platform",
+        "text": "Mobile and cross-platform products beyond the browser.",
+        "tags": ["Mobile apps", "Cross-platform", "React Native", "System-level"]
+      },
+      "e2e": {
+        "title": "End-to-end",
+        "text": "From Figma mockup to production deploy — clean code and clear communication.",
+        "tags": ["Product thinking", "Architecture", "Delivery"],
+        "flow": ["Design", "Build", "Ship"]
+      }
+    },
     "experience-title": "Experience",
-    "experience-sub": "From freelance to Lead Frontend in product teams",
+    "experience-sub": "From self-taught beginnings to production teams",
     "work-title": "My Projects",
     "work-sub": "Products I worked on in teams",
     "view-projects": "My projects",
     "view-all-projects": "All projects",
     "process-title": "How I Work",
-    "process-sub": "From ambiguity to production — with ownership at every stage",
+    "process-sub": "From your idea to a working product",
     "process-principles": {
-      "ownership": "End-to-end ownership",
-      "quality": "Quality by default",
-      "clarity": "Clear async communication"
+      "ownership": "Production-grade delivery",
+      "quality": "Clean, lasting code",
+      "clarity": "Clear communication"
     },
     "process": {
-      "align": {
-        "title": "Align",
-        "text": "Understand the problem before touching code.",
-        "bullet1": "Clarify goals, constraints, and success metrics with product & design",
-        "bullet2": "Surface trade-offs early — scope, timeline, technical debt",
-        "bullet3": "Agree on deliverables and definition of done upfront"
+      "reference": {
+        "title": "Reference",
+        "text": "You send a layout or reference."
       },
-      "architect": {
-        "title": "Architect",
-        "text": "Design systems that scale beyond the first release.",
-        "bullet1": "Component boundaries, state management, and API contracts",
-        "bullet2": "Break work into shippable increments with clear milestones",
-        "bullet3": "Document key decisions for the team"
+      "usage": {
+        "title": "Context",
+        "text": "You tell me how the product will be used."
       },
-      "deliver": {
-        "title": "Deliver",
-        "text": "Ship iteratively without cutting corners.",
-        "bullet1": "Readable code, reviews, and automated checks in CI",
-        "bullet2": "Performance budgets, accessibility, and responsive UX",
-        "bullet3": "Unblock teammates and raise the bar through mentoring"
+      "plan": {
+        "title": "Plan",
+        "text": "I propose architecture, stack, timeline, and delivery plan."
       },
-      "own": {
-        "title": "Own",
-        "text": "Responsibility doesn't end at merge.",
-        "bullet1": "Deploy safely, monitor metrics, and catch regressions fast",
-        "bullet2": "Iterate based on user feedback and real data",
-        "bullet3": "Leave the codebase better than I found it"
+      "ship": {
+        "title": "Delivery",
+        "text": "I build in stages, keep you updated, and ship something that works."
       }
     },
     "featured-title": "More Projects",
@@ -132,7 +136,7 @@
     "featured-more": "All projects",
     "view-project": "View project",
     "cta-title": "Got an idea?",
-    "cta-text": "Email yanhanow{'@'}gmail.ru or message on Telegram — I'll reply quickly.",
+    "cta-text": "Email yanhanov{'@'}gmail.com or message on Telegram — I'll reply quickly.",
     "cta-btn": "Message on Telegram",
     "ups": "Oops... Refresh the page",
     "languages-title": "Languages",
@@ -222,7 +226,7 @@
     "reading-time": "{n} min read",
     "count": "{n} articles",
     "author": "Yan Hanov",
-    "author-role": "Frontend Engineer",
+    "author-role": "Software Engineer",
     "end": "end of article",
     "more-label": "// more",
     "more": "Keep reading",

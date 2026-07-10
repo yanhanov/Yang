@@ -30,17 +30,17 @@
   "footer": {
     "copy": "©2026 Yazmyrat Hanov.",
     "all": "Все права защищены",
-    "tagline": "Frontend Engineer · Vue.js · EdTech & SaaS"
+    "tagline": "Software Engineer · Full Stack · Vue · Node · Flutter"
   },
   "home": {
-    "hero-title": "Frontend Engineer",
+    "hero-title": "Middle Software Engineer",
     "hero-badge": "Открыт к предложениям",
     "hero-surname": "Ханов",
     "hero-terminal-comment": "открыт к работе",
     "hero-greeting": "Привет, я",
     "bio-name": "Ян",
     "bio-fullname": "Язмырат Ханов",
-    "bio-prof": "Frontend Engineer · Software Engineer",
+    "bio-prof": "Middle Software Engineer",
     "bio-job": "Ашхабад · Удалённо",
     "bio-write": "Telegram",
     "bio-cv": "Скачать резюме",
@@ -48,83 +48,87 @@
     "profile-focus": {
       "label": "фокус",
       "frontend": "Frontend",
-      "mobile": "Mobile",
-      "rust": "Rust"
+      "backend": "Backend",
+      "mobile": "Mobile"
     },
-    "hero-text": "Строю масштабируемые веб-приложения и образовательные платформы. От Junior до Lead Frontend — архитектура, компонентные системы, перформанс и продакшен.",
+    "hero-text": "Когда-то я смотрел на сайты и думал: «Кто-то же это делает». Теперь — делаю я. Проектирую и выпускаю production-grade софт на весь стек.",
     "hero-talk": "Обсудить проект",
-    "about-hi": "Кратко обо мне",
+    "about-hi": "Мой путь",
     "about-close-toast": "Хорошая попытка!",
     "hero-products": "Проектов",
     "hero-tech": "Технологий в стеке",
     "hero-years": "Лет в разработке",
     "about-title": "Обо мне",
     "about": {
-      "p1Before": "Frontend-разработчик с сильным продакшен-опытом — от фриланса до ",
-      "p1After": " в EdTech и продуктовых командах. Архитектура, дизайн-системы, перформанс и стабильные релизы.",
-      "p2Before": "Основной стек: ",
-      "p2Sep": ", ",
-      "p2After": " — REST API, WebSockets, CI и code review. React и Next.js — когда этого требует проект.",
-      "p3Before": "Осваиваю ",
-      "p3Mid": " для mobile и ",
-      "p3After": " для backend — pet-проекты, интеграция API и быстрый рост в сильной команде.",
-      "p4": "Русский — родной, английский — B2. Сильный frontend с быстрым impact — и готов расти в mobile и backend вместе с командой.",
-      "role": "Lead Frontend Developer",
-      "vue": "Vue 3",
-      "ts": "TypeScript",
-      "nuxt": "Nuxt",
-      "flutter": "Flutter",
-      "rust": "Rust"
+      "p1": "Когда-то я смотрел на сайты и думал: «Кто-то же это делает». Теперь — делаю я.",
+      "p2Before": "Я — ",
+      "p2Role": "Middle Software Engineer",
+      "p2After": " с путём, который построил сам: без вуза, без дорогих курсов, без званий, которые не заработал. Однажды открыл HTML-файл — и начал.",
+      "p3": "С тех пор каждая строка кода — строка в моей собственной книге: написана вдумчиво, со смыслом и, главное, чтобы работала.",
+      "p4": "Проектирую и выпускаю production-grade софт на весь стек: от pixel-perfect интерфейсов до масштабируемых бэкендов, API и кроссплатформенных приложений. Не просто пишу код — проектирую системы, выбираю инструменты и делаю решения, которые живут долго."
     },
-    "skills": "Навыки",
-    "skills-sub": "Технологии из актуального резюме",
+    "skills": "Технологии",
+    "skills-sub": "Frontend, backend и multi-platform инструменты, с которыми работаю",
     "skills-groups": {
       "frontend": "// frontend",
-      "api": "// api & realtime",
-      "other": "// также работаю с"
+      "backend": "// backend",
+      "multiplatform": "// multi-platform"
     },
-    "skills-primary-label": "// основной стек",
+    "skills-primary-label": "// core",
+    "whatido-title": "Чем занимаюсь",
+    "whatido-sub": "Софт end-to-end на весь стек",
+    "whatido": {
+      "frontend": {
+        "title": "Frontend",
+        "text": "Интерфейсы, которые быстро работают, выглядят аккуратно и доступны в продакшене.",
+        "tags": ["Адаптивный UI", "SPA / SSR", "Дизайн-системы", "Перформанс", "A11y"]
+      },
+      "backend": {
+        "title": "Backend",
+        "text": "API, слой данных и инфраструктура, которые держат нагрузку.",
+        "tags": ["REST API", "Авторизация", "Базы данных", "Кэш", "Деплой"]
+      },
+      "multiplatform": {
+        "title": "Multi-platform",
+        "text": "Мобильные и кроссплатформенные продукты за пределами браузера.",
+        "tags": ["Mobile apps", "Cross-platform", "React Native", "System-level"]
+      },
+      "e2e": {
+        "title": "End-to-end",
+        "text": "От макета в Figma до продакшена — чистый код и понятная коммуникация.",
+        "tags": ["Продуктовое мышление", "Архитектура", "Доставка"],
+        "flow": ["Дизайн", "Разработка", "Релиз"]
+      }
+    },
     "experience-title": "Опыт работы",
-    "experience-sub": "От фриланса до Lead Frontend в продуктовых командах",
+    "experience-sub": "От самообучения до продуктовых команд",
     "work-title": "Мои проекты",
     "work-sub": "Продукты, над которыми работал в командах",
     "view-projects": "Мои проекты",
     "view-all-projects": "Все проекты",
     "process-title": "Как я работаю",
-    "process-sub": "От неопределённости до продакшена — с ответственностью на каждом этапе",
+    "process-sub": "От идеи до работающего продукта",
     "process-principles": {
-      "ownership": "Полная ответственность",
-      "quality": "Качество по умолчанию",
-      "clarity": "Чёткая async-коммуникация"
+      "ownership": "Production-grade доставка",
+      "quality": "Чистый, долгоживущий код",
+      "clarity": "Понятная коммуникация"
     },
     "process": {
-      "align": {
-        "title": "Согласование",
-        "text": "Сначала понимаю задачу — потом пишу код.",
-        "bullet1": "Уточняю цели, ограничения и метрики с продуктом и дизайном",
-        "bullet2": "Обсуждаю trade-offs заранее — scope, сроки, техдолг",
-        "bullet3": "Фиксирую deliverables и definition of done до старта"
+      "reference": {
+        "title": "Референс",
+        "text": "Вы присылаете макет или референс."
       },
-      "architect": {
-        "title": "Архитектура",
-        "text": "Проектирую системы, которые масштабируются.",
-        "bullet1": "Границы компонентов, стейт и API-контракты",
-        "bullet2": "Декомпозиция на инкременты с понятными milestone'ами",
-        "bullet3": "Документирую ключевые решения для команды"
+      "usage": {
+        "title": "Контекст",
+        "text": "Рассказываете, как продукт будет использоваться."
       },
-      "deliver": {
-        "title": "Доставка",
-        "text": "Релизю итеративно, без компромиссов по качеству.",
-        "bullet1": "Читаемый код, ревью и автоматические проверки в CI",
-        "bullet2": "Performance budgets, a11y и адаптивный UX",
-        "bullet3": "Разблокирую команду и поднимаю планку через менторство"
+      "plan": {
+        "title": "План",
+        "text": "Я предлагаю архитектуру, стек, сроки и план поставки."
       },
-      "own": {
-        "title": "Владение",
-        "text": "Ответственность не заканчивается на merge.",
-        "bullet1": "Безопасный деплой, мониторинг и быстрый откат регрессий",
-        "bullet2": "Итерации на основе фидбека и реальных данных",
-        "bullet3": "Оставляю кодовую базу лучше, чем нашёл"
+      "ship": {
+        "title": "Результат",
+        "text": "Собираю поэтапно, держу в курсе и отдаю то, что работает."
       }
     },
     "featured-title": "Другие проекты",
@@ -132,7 +136,7 @@
     "featured-more": "Все проекты",
     "view-project": "Смотреть проект",
     "cta-title": "Есть идея?",
-    "cta-text": "Напишите на yanhanow{'@'}gmail.ru или в Telegram — отвечу быстро.",
+    "cta-text": "Напишите на yanhanov{'@'}gmail.com или в Telegram — отвечу быстро.",
     "cta-btn": "Написать в Telegram",
     "ups": "Упс... Обновите страницу",
     "languages-title": "Языки",
@@ -222,7 +226,7 @@
     "reading-time": "{n} мин чтения",
     "count": "{n} статей",
     "author": "Ян Ханов",
-    "author-role": "Frontend Engineer",
+    "author-role": "Software Engineer",
     "end": "конец статьи",
     "more-label": "// ещё",
     "more": "Читать дальше",

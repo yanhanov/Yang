@@ -5,8 +5,8 @@ export const principles = [
 ]
 
 export const processSteps = [
-  { key: 'align', bullets: 3 },
-  { key: 'architect', bullets: 3 },
-  { key: 'deliver', bullets: 3 },
-  { key: 'own', bullets: 3 },
+  { key: 'reference', bullets: 0 },
+  { key: 'usage', bullets: 0 },
+  { key: 'plan', bullets: 0 },
+  { key: 'ship', bullets: 0 },
 ]

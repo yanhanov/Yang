@@ -9,9 +9,12 @@ const techs = [
   { icon: 'nextjs', label: 'Next.js' },
   { icon: 'javascript', label: 'JavaScript' },
   { icon: 'tailwind', label: 'Tailwind' },
+  { icon: 'node', label: 'Node.js' },
   { icon: 'api', label: 'REST API' },
-  { icon: 'websocket', label: 'WebSockets' },
+  { icon: 'postgres', label: 'PostgreSQL' },
+  { icon: 'docker', label: 'Docker' },
   { icon: 'flutter', label: 'Flutter' },
+  { icon: 'reactnative', label: 'React Native' },
   { icon: 'rust', label: 'Rust' },
   { icon: 'git', label: 'Git' },
 ]

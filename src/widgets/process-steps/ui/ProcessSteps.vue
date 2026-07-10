@@ -32,13 +32,15 @@ const { t } = useI18n()
           </div>
         </header>
 
-        <hr class="process-card__rule" aria-hidden="true" />
+        <template v-if="step.bullets > 0">
+          <hr class="process-card__rule" aria-hidden="true" />
 
-        <ul class="process-card__bullets">
-          <li v-for="n in step.bullets" :key="n">
-            {{ t(`home.process.${step.key}.bullet${n}`) }}
-          </li>
-        </ul>
+          <ul class="process-card__bullets">
+            <li v-for="n in step.bullets" :key="n">
+              {{ t(`home.process.${step.key}.bullet${n}`) }}
+            </li>
+          </ul>
+        </template>
       </article>
     </div>
   </div>

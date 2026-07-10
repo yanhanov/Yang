@@ -11,6 +11,7 @@ import { ExperienceTimeline } from '@/widgets/experience-timeline'
 import { ProcessSteps } from '@/widgets/process-steps'
 import { LanguagesSection } from '@/widgets/languages-section'
 import { AboutText } from '@/widgets/about-section'
+import { WhatIDo } from '@/widgets/what-i-do'
 
 useScrollReveal()
 
@@ -113,6 +114,18 @@ useTilt(aboutImg, 10)
     </div>
   </section>
 
+  <section id="what-i-do" class="page-section py-16 lg:py-24 section-stripe">
+    <div class="container">
+      <SectionHeading
+        class="reveal"
+        label="// services"
+        :title="$t('home.whatido-title')"
+        :subtitle="$t('home.whatido-sub')"
+      />
+      <WhatIDo />
+    </div>
+  </section>
+
   <section id="languages" class="page-section py-16 lg:py-24">
     <div class="container">
       <SectionHeading
@@ -156,7 +169,7 @@ useTilt(aboutImg, 10)
           <a href="https://t.me/yanhanov" target="_blank" class="btn-primary text-base">
             {{ $t('home.cta-btn') }}
           </a>
-          <a href="mailto:yanhanow@gmail.ru" class="btn-ghost text-base"> yanhanow@gmail.ru </a>
+          <a href="mailto:yanhanov@gmail.com" class="btn-ghost text-base"> yanhanov@gmail.com </a>
         </div>
       </div>
     </div>

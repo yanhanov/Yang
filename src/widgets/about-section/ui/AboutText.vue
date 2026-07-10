@@ -25,11 +25,7 @@ const lines = computed(() => [
   {
     type: 'content',
     indent: 3,
-    parts: [
-      { text: t('home.about.p1Before') },
-      { text: t('home.about.role'), highlight: true },
-      { text: t('home.about.p1After') },
-    ],
+    parts: [{ text: t('home.about.p1') }],
   },
   { type: 'tag-close', name: 'p', indent: 2 },
   { type: 'tag-open', name: 'p', indent: 2 },
@@ -38,11 +34,7 @@ const lines = computed(() => [
     indent: 3,
     parts: [
       { text: t('home.about.p2Before') },
-      { text: t('home.about.vue'), highlight: true },
-      { text: t('home.about.p2Sep') },
-      { text: t('home.about.ts'), highlight: true },
-      { text: t('home.about.p2Sep') },
-      { text: t('home.about.nuxt'), highlight: true },
+      { text: t('home.about.p2Role'), highlight: true },
       { text: t('home.about.p2After') },
     ],
   },
@@ -51,13 +43,7 @@ const lines = computed(() => [
   {
     type: 'content',
     indent: 3,
-    parts: [
-      { text: t('home.about.p3Before') },
-      { text: t('home.about.flutter'), highlight: true },
-      { text: t('home.about.p3Mid') },
-      { text: t('home.about.rust'), highlight: true },
-      { text: t('home.about.p3After') },
-    ],
+    parts: [{ text: t('home.about.p3') }],
   },
   { type: 'tag-close', name: 'p', indent: 2 },
   { type: 'tag-open', name: 'p', indent: 2 },

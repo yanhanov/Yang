@@ -12,14 +12,14 @@ let suspended = false
 const roles = computed(() =>
   locale.value === 'ru'
     ? [
-        'Frontend-инженер',
+        'Middle Software Engineer',
         'Software-инженер',
         'Fullstack-инженер',
         'Мобильный разработчик',
         'Backend-разработчик',
       ]
     : [
-        'Frontend Engineer',
+        'Middle Software Engineer',
         'Software Engineer',
         'Full Stack Engineer',
         'Mobile Developer',
