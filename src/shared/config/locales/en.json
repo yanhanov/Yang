@@ -226,7 +226,7 @@
     "reading-time": "{n} min read",
     "count": "{n} articles",
     "author": "Yan Hanov",
-    "author-role": "Software Engineer",
+    "author-role": "Frontend & Full-Stack Developer",
     "end": "end of article",
     "more-label": "// more",
     "more": "Keep reading",
@@ -243,6 +243,11 @@
   "ups": "Oops... Refresh the page",
   "projects": "My Projects",
   "projects-sub": "Products I worked on in teams",
+  "seo": {
+    "title": "Yan Hanov — Frontend & Full-Stack Developer | Vue, React, Node.js",
+    "description": "Middle Frontend & Full-Stack Developer. Vue 3, React, TypeScript, Node.js, Flutter. Production apps from UI to backend. Open to remote hire — portfolio of Yan (Yazmyrat) Hanov.",
+    "keywords": "frontend developer, full-stack developer, Vue.js developer, React developer, Node.js, TypeScript, Middle Frontend, hire frontend developer, remote developer, Yan Hanov, Yazmyrat Hanov"
+  },
   "notfound": {
     "text": "Page not found. It may have moved or never existed.",
     "back": "Back to home"

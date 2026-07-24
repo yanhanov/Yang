@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useScrollReveal, useTilt } from '@/shared/lib'
+import { useI18n } from 'vue-i18n'
+import { useScrollReveal, useTilt, usePageSeo } from '@/shared/lib'
+import { SITE_NAME, SITE_URL, SITE_DEFAULT_IMAGE, absoluteUrl } from '@/shared/config/site'
 import { featuredProjects, WorkProjectCard } from '@/entities/project'
 import { HeroSection } from '@/widgets/hero'
 import { TechMarquee } from '@/widgets/tech-marquee'
@@ -15,9 +17,60 @@ import { WhatIDo } from '@/widgets/what-i-do'
 
 useScrollReveal()
 
+const { t, locale } = useI18n()
 const aboutImg = ref(null)
 
 useTilt(aboutImg, 10)
+
+usePageSeo(() => {
+  const title = t('seo.title')
+  const description = t('seo.description')
+
+  return {
+    title,
+    description,
+    keywords: t('seo.keywords'),
+    path: '/',
+    image: SITE_DEFAULT_IMAGE,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Yazmyrat Hanov',
+      alternateName: ['Yan Hanov', 'Ян Ханов', 'Язмырат Ханов'],
+      jobTitle: ['Frontend Developer', 'Full-Stack Developer', 'Middle Software Engineer'],
+      description,
+      url: SITE_URL + '/',
+      email: 'yanhanov@gmail.com',
+      image: absoluteUrl(SITE_DEFAULT_IMAGE),
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Ashgabat',
+        addressCountry: 'TM',
+      },
+      sameAs: [
+        'https://github.com/yanhanov',
+        'https://linkedin.com/in/yanhanov',
+        'https://t.me/yanhanov',
+        'https://www.instagram.com/yanhanow/',
+      ],
+      knowsAbout: [
+        'Frontend Development',
+        'Full Stack Development',
+        'Vue.js',
+        'React',
+        'TypeScript',
+        'Node.js',
+        'Flutter',
+        'React Native',
+      ],
+      knowsLanguage: locale.value === 'ru' ? ['Русский', 'English'] : ['Russian', 'English'],
+      worksFor: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+      },
+    },
+  }
+})
 </script>
 
 <template>

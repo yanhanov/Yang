@@ -143,6 +143,7 @@ export function usePageSeo(getOptions) {
       const {
         title,
         description,
+        keywords,
         path = route.path,
         image = SITE_DEFAULT_IMAGE,
         type = 'website',
@@ -155,11 +156,13 @@ export function usePageSeo(getOptions) {
       const canonical = absoluteUrl(path)
       const imageUrl = absoluteUrl(image)
       const ogLocale = OG_LOCALES[locale.value] ?? OG_LOCALES.en
+      const altLocale = locale.value === 'ru' ? OG_LOCALES.en : OG_LOCALES.ru
 
       document.title = title
       document.documentElement.lang = locale.value
 
       upsertMeta('name', 'description', description)
+      upsertMeta('name', 'keywords', keywords)
       upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large')
       upsertMeta('name', 'twitter:card', 'summary_large_image')
       upsertMeta('name', 'twitter:site', SITE_TWITTER)
@@ -174,6 +177,7 @@ export function usePageSeo(getOptions) {
       upsertMeta('property', 'og:url', canonical)
       upsertMeta('property', 'og:image', imageUrl)
       upsertMeta('property', 'og:locale', ogLocale)
+      upsertMeta('property', 'og:locale:alternate', altLocale)
 
       if (type === 'article') {
         upsertMeta('property', 'article:author', SITE_NAME)

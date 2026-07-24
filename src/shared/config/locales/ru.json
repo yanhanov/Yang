@@ -226,7 +226,7 @@
     "reading-time": "{n} мин чтения",
     "count": "{n} статей",
     "author": "Ян Ханов",
-    "author-role": "Software Engineer",
+    "author-role": "Frontend и Full-Stack разработчик",
     "end": "конец статьи",
     "more-label": "// ещё",
     "more": "Читать дальше",
@@ -242,6 +242,11 @@
   "collapse": "↑ свернуть",
   "projects": "Мои проекты",
   "projects-sub": "Продукты, над которыми работал в командах",
+  "seo": {
+    "title": "Ян Ханов — Frontend и Full-Stack разработчик | Vue, React, Node.js",
+    "description": "Middle Frontend и Full-Stack разработчик. Vue 3, React, TypeScript, Node.js, Flutter. Продакшен-приложения от UI до бэкенда. Открыт к удалённой работе — портфолио Яна (Язмырата) Ханова.",
+    "keywords": "frontend разработчик, full-stack разработчик, Vue.js разработчик, React разработчик, Node.js, TypeScript, Middle Frontend, удаленный разработчик, нанять фронтенд разработчика, Ян Ханов, Язмырат Ханов"
+  },
   "notfound": {
     "text": "Страница не найдена. Возможно, она переехала или никогда не существовала.",
     "back": "На главную"
