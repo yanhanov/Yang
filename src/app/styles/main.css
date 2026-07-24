@@ -19,8 +19,9 @@
   .container {
     margin-inline: auto;
     width: 100%;
-    max-width: clamp(300px, 90%, 1140px);
-    padding: 0 20px;
+    max-width: 1140px;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
     z-index: 10;
   }
 
@@ -429,7 +430,7 @@ a {
 
 @media (max-width: 769px) {
   .container {
-    max-width: 768px;
+    max-width: 100%;
   }
 }
 
