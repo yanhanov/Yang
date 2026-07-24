@@ -26,7 +26,7 @@
         </nav>
 
         <div class="flex items-center gap-4">
-          <a href="mailto:yanhanov@gmail.com" class="social-btn" aria-label="Email">
+          <a href="mailto:yanhanow@gmail.com" class="social-btn" aria-label="Email">
             <svg
               width="18"
               height="18"

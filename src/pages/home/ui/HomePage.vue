@@ -40,7 +40,7 @@ usePageSeo(() => {
       jobTitle: ['Frontend Developer', 'Full-Stack Developer', 'Middle Software Engineer'],
       description,
       url: SITE_URL + '/',
-      email: 'yanhanov@gmail.com',
+      email: 'yanhanow@gmail.com',
       image: absoluteUrl(SITE_DEFAULT_IMAGE),
       address: {
         '@type': 'PostalAddress',
@@ -222,7 +222,7 @@ usePageSeo(() => {
           <a href="https://t.me/yanhanov" target="_blank" class="btn-primary text-base">
             {{ $t('home.cta-btn') }}
           </a>
-          <a href="mailto:yanhanov@gmail.com" class="btn-ghost text-base"> yanhanov@gmail.com </a>
+          <a href="mailto:yanhanow@gmail.com" class="btn-ghost text-base"> yanhanow@gmail.com </a>
         </div>
       </div>
     </div>

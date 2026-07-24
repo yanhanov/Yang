@@ -19,7 +19,7 @@ const focusStack = [
 
 const socials = [
   {
-    href: 'mailto:yanhanov@gmail.com',
+    href: 'mailto:yanhanow@gmail.com',
     label: 'Email',
     icon: 'email',
   },
@@ -220,7 +220,7 @@ onMounted(() => {
                     aria-label="Profile data"
                   ><code><span class="tok-comment">// yanhanov.com</span>
 <span class="tok-keyword">export const</span> <span class="tok-prop">profile</span> <span class="tok-punct">= {</span>
-  <span class="tok-prop">email</span><span class="tok-punct">:</span> <a href="mailto:yanhanov@gmail.com" class="tok-string hero-profile__link">'yanhanov@gmail.com'</a><span class="tok-punct">,</span>
+  <span class="tok-prop">email</span><span class="tok-punct">:</span> <a href="mailto:yanhanow@gmail.com" class="tok-string hero-profile__link">'yanhanow@gmail.com'</a><span class="tok-punct">,</span>
   <span class="tok-prop">location</span><span class="tok-punct">:</span> <span class="tok-string">'{{ $t('home.bio-con') }}'</span><span class="tok-punct">,</span>
   <span class="tok-prop">remote</span><span class="tok-punct">:</span> <span class="tok-bool">true</span><span class="tok-punct">,</span>
   <span class="tok-prop">focus</span><span class="tok-punct">:</span> <span class="tok-punct">[</span><span class="tok-string">'{{ $t('home.profile-focus.frontend') }}'</span><span class="tok-punct">,</span> <span class="tok-string">'{{ $t('home.profile-focus.mobile') }}'</span><span class="tok-punct">,</span> <span class="tok-string">'{{ $t('home.profile-focus.rust') }}'</span><span class="tok-punct">],</span>
