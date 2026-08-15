@@ -118,10 +118,10 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="what-i-do" class="zone zone--skeuo">
+  <section id="what-i-do" class="zone zone--para">
     <div class="zone__inner">
-      <header class="zone__head zone__head--skeuo reveal">
-        <p class="zone__kicker">2011 · Skeuo</p>
+      <header class="zone__head zone__head--para reveal">
+        <p class="zone__kicker">2011 · Parallax</p>
         <h2 class="zone__title">{{ $t('home.whatido-title') }}</h2>
         <p class="zone__sub">{{ $t('home.whatido-sub') }}</p>
       </header>
@@ -178,13 +178,21 @@ usePageSeo(() => {
 <style scoped>
 .zone {
   position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .zone__inner {
   width: 100%;
   max-width: 1140px;
   margin-inline: auto;
-  padding: clamp(3.5rem, 8vw, 6.5rem) 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 5.5rem 1.25rem 3rem;
   box-sizing: border-box;
 }
 
@@ -266,6 +274,7 @@ usePageSeo(() => {
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  color: var(--y2k-ink);
 }
 
 .zone__head--y2k .zone__sub {
@@ -327,25 +336,58 @@ usePageSeo(() => {
   color: var(--web2-muted);
 }
 
-/* 2011 — skeuomorphism */
-.zone--skeuo {
+/* 2011 — parallax */
+.zone--para {
+  overflow: hidden;
   background:
-    repeating-linear-gradient(0deg, rgba(90, 70, 40, 0.05) 0 2px, transparent 2px 4px),
-    var(--skeuo-bg);
-  color: var(--skeuo-ink);
-  font-family: var(--skeuo-font);
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 107, 26, 0.16), transparent 52%),
+    linear-gradient(180deg, #0e1218 0%, var(--para-bg) 40%, #0b0e14 100%);
+  color: var(--para-ink);
+  font-family: var(--para-font);
 }
 
-.zone__head--skeuo .zone__kicker {
-  color: var(--skeuo-leather);
+.zone--para::before,
+.zone--para::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.zone__head--skeuo .zone__title {
-  font-weight: 600;
+.zone--para::before {
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 48px,
+      rgba(244, 239, 230, 0.03) 48px,
+      rgba(244, 239, 230, 0.03) 49px
+    );
+  background-attachment: fixed;
 }
 
-.zone__head--skeuo .zone__sub {
-  color: var(--skeuo-muted);
+.zone--para::after {
+  background: radial-gradient(circle at 80% 70%, rgba(62, 207, 207, 0.12), transparent 42%);
+  background-attachment: fixed;
+}
+
+.zone__head--para {
+  position: relative;
+  z-index: 1;
+}
+
+.zone__head--para .zone__kicker {
+  color: var(--para-accent);
+}
+
+.zone__head--para .zone__title {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.zone__head--para .zone__sub {
+  color: var(--para-muted);
 }
 
 /* 2013 — flat / Metro */

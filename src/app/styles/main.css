@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import './fonts.css';
 
+@property --hdr-radius {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 26px;
+}
+
 :root {
   --bg: #1a1e23;
   --bg-elevated: #22262d;
@@ -61,13 +67,12 @@
   --web2-shine: #7ec8f8;
   --web2-font: 'Onest', 'Lucida Grande', Arial, sans-serif;
 
-  /* What I Do — 2011 skeuomorphism */
-  --skeuo-bg: #cbbba6;
-  --skeuo-ink: #2a2118;
-  --skeuo-muted: #5a4c3e;
-  --skeuo-leather: #6b3e2e;
-  --skeuo-paper: #f3e6d0;
-  --skeuo-font: 'Literata', Georgia, serif;
+  /* What I Do — 2011 parallax / one-page */
+  --para-bg: #141820;
+  --para-ink: #f4efe6;
+  --para-muted: #b7b1a6;
+  --para-accent: #ff6b1a;
+  --para-font: 'Onest', 'Arial Narrow', Arial, sans-serif;
 
   /* Languages — 2013 flat / Metro */
   --flat-bg: #f4f4f4;

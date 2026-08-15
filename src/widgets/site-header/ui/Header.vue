@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router'
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useScrollFrame } from '@/shared/lib'
+import { useScrollFrame, useZoneTheme } from '@/shared/lib'
 import { LangChange } from '@/features/locale-switch'
 
 const { t } = useI18n()
@@ -10,6 +10,8 @@ const route = useRoute()
 const menuIsActive = ref(false)
 const scrolled = ref(false)
 const isHome = computed(() => route.path === '/')
+const zone = useZoneTheme()
+const clear = computed(() => isHome.value && zone.value === 'opening' && !scrolled.value && !menuIsActive.value)
 
 const pageLinks = [
   { to: '/', labelKey: 'header.nav.home' },
@@ -53,9 +55,10 @@ useScrollFrame(() => {
 <template>
   <header
     class="site-header"
+    :data-zone="zone"
     :class="{
-      'site-header--clear': isHome && !scrolled && !menuIsActive,
-      'site-header--solid': scrolled || !isHome || menuIsActive,
+      'site-header--clear': clear,
+      'site-header--solid': !clear,
       'site-header--menu-open': menuIsActive,
     }"
   >
@@ -84,7 +87,7 @@ useScrollFrame(() => {
       </nav>
 
       <div class="site-header__actions">
-        <LangChange opening inline class="hidden md:flex" />
+        <LangChange inline class="hidden md:flex" />
         <a
           href="/yan-hanov.pdf"
           download="yan-hanov.pdf"
@@ -174,13 +177,144 @@ useScrollFrame(() => {
 
 <style scoped>
 .site-header {
+  --hdr-ink: var(--opening-text);
+  --hdr-muted: var(--opening-muted);
+  --hdr-bar: rgba(14, 12, 10, 0.72);
+  --hdr-border: rgba(244, 240, 234, 0.12);
+  --hdr-cta: var(--opening-text);
+  --hdr-cta-ink: var(--opening-bg);
+  --hdr-radius: 26px;
+  --hdr-font: var(--opening-font);
+  --hdr-shadow: 0 12px 40px -24px rgba(0, 0, 0, 0.7);
+  --hdr-blur: 16px;
+  --hdr-drawer: var(--opening-bg);
+
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
   padding: 0.75rem 1.25rem 0;
-  font-family: var(--opening-font);
-  color: var(--opening-text);
+  font-family: var(--hdr-font);
+  color: var(--hdr-ink);
   pointer-events: none;
+  transition:
+    color 0.35s ease,
+    --hdr-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header[data-zone='about'] {
+  --hdr-ink: #111111;
+  --hdr-muted: #444444;
+  --hdr-bar: #ffffff;
+  --hdr-border: #808080;
+  --hdr-cta: #0000ee;
+  --hdr-cta-ink: #ffffff;
+  --hdr-radius: 0px;
+  --hdr-font: var(--about-font-body);
+  --hdr-shadow: none;
+  --hdr-blur: 0px;
+  --hdr-drawer: #dcdcdc;
+}
+
+.site-header[data-zone='exp'] {
+  --hdr-ink: #000000;
+  --hdr-muted: #222222;
+  --hdr-bar: #c0c0c0;
+  --hdr-border: transparent;
+  --hdr-cta: #c0c0c0;
+  --hdr-cta-ink: #000000;
+  --hdr-radius: 0px;
+  --hdr-font: var(--exp-font);
+  --hdr-shadow:
+    inset -1px -1px #0a0a0a,
+    inset 1px 1px #fff,
+    inset -2px -2px #808080,
+    inset 2px 2px #dfdfdf;
+  --hdr-blur: 0px;
+  --hdr-drawer: #008080;
+}
+
+.site-header[data-zone='y2k'] {
+  --hdr-ink: var(--y2k-ink);
+  --hdr-muted: var(--y2k-muted);
+  --hdr-bar: rgba(8, 8, 20, 0.82);
+  --hdr-border: rgba(57, 243, 255, 0.35);
+  --hdr-cta: var(--y2k-cyan);
+  --hdr-cta-ink: #050510;
+  --hdr-radius: 4px;
+  --hdr-font: var(--y2k-font);
+  --hdr-shadow: 0 0 24px rgba(255, 43, 214, 0.18);
+  --hdr-drawer: var(--y2k-bg);
+}
+
+.site-header[data-zone='web2'] {
+  --hdr-ink: var(--web2-ink);
+  --hdr-muted: var(--web2-muted);
+  --hdr-bar: linear-gradient(#ffffff, #d7e8f5);
+  --hdr-border: rgba(255, 255, 255, 0.8);
+  --hdr-cta: var(--web2-accent);
+  --hdr-cta-ink: #ffffff;
+  --hdr-radius: 26px;
+  --hdr-font: var(--web2-font);
+  --hdr-shadow:
+    inset 0 1px 0 #fff,
+    0 2px 6px rgba(43, 90, 130, 0.18);
+  --hdr-blur: 0px;
+  --hdr-drawer: var(--web2-bg);
+}
+
+.site-header[data-zone='para'] {
+  --hdr-ink: var(--para-ink);
+  --hdr-muted: var(--para-muted);
+  --hdr-bar: rgba(20, 24, 32, 0.72);
+  --hdr-border: rgba(244, 239, 230, 0.12);
+  --hdr-cta: var(--para-accent);
+  --hdr-cta-ink: #141820;
+  --hdr-radius: 0px;
+  --hdr-font: var(--para-font);
+  --hdr-shadow: none;
+  --hdr-blur: 0px;
+  --hdr-drawer: var(--para-bg);
+}
+
+.site-header[data-zone='flat'] {
+  --hdr-ink: #ffffff;
+  --hdr-muted: rgba(255, 255, 255, 0.78);
+  --hdr-bar: #00a4ef;
+  --hdr-border: transparent;
+  --hdr-cta: #ffffff;
+  --hdr-cta-ink: #00a4ef;
+  --hdr-radius: 0px;
+  --hdr-font: var(--flat-font);
+  --hdr-shadow: none;
+  --hdr-blur: 0px;
+  --hdr-drawer: #00a4ef;
+}
+
+.site-header[data-zone='glass'] {
+  --hdr-ink: var(--glass-ink);
+  --hdr-muted: var(--glass-muted);
+  --hdr-bar: rgba(255, 255, 255, 0.1);
+  --hdr-border: rgba(255, 255, 255, 0.16);
+  --hdr-cta: var(--glass-ink);
+  --hdr-cta-ink: var(--glass-bg);
+  --hdr-radius: 20px;
+  --hdr-font: var(--glass-font);
+  --hdr-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  --hdr-blur: 18px;
+  --hdr-drawer: var(--glass-bg);
+}
+
+.site-header[data-zone='now'] {
+  --hdr-ink: var(--now-ink);
+  --hdr-muted: var(--now-muted);
+  --hdr-bar: rgba(9, 9, 11, 0.72);
+  --hdr-border: rgba(250, 250, 250, 0.12);
+  --hdr-cta: var(--now-ink);
+  --hdr-cta-ink: var(--now-bg);
+  --hdr-radius: 26px;
+  --hdr-font: var(--now-font);
+  --hdr-shadow: 0 12px 40px -24px rgba(0, 0, 0, 0.7);
+  --hdr-drawer: var(--now-bg);
 }
 
 .site-header::before {
@@ -190,12 +324,12 @@ useScrollFrame(() => {
   height: 7rem;
   background: linear-gradient(180deg, rgba(14, 12, 10, 0.55), transparent);
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0;
   transition: opacity 0.25s ease;
 }
 
-.site-header--solid::before {
-  opacity: 0;
+.site-header[data-zone='opening']:not(.site-header--solid)::before {
+  opacity: 0.85;
 }
 
 .site-header__bar,
@@ -219,19 +353,20 @@ useScrollFrame(() => {
   min-height: 3.25rem;
   padding: 0 0.85rem 0 1.1rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--hdr-radius);
   transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    border-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header--solid .site-header__bar {
-  background: rgba(14, 12, 10, 0.72);
-  border-color: rgba(244, 240, 234, 0.1);
-  box-shadow: 0 12px 40px -24px rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--hdr-bar);
+  border-color: var(--hdr-border);
+  box-shadow: var(--hdr-shadow);
+  backdrop-filter: blur(var(--hdr-blur));
+  -webkit-backdrop-filter: blur(var(--hdr-blur));
 }
 
 .site-header__logo {
@@ -239,7 +374,7 @@ useScrollFrame(() => {
   font-size: 1.02rem;
   font-weight: 600;
   letter-spacing: -0.045em;
-  color: var(--opening-text);
+  color: var(--hdr-ink);
 }
 
 .site-header__nav {
@@ -255,7 +390,7 @@ useScrollFrame(() => {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: var(--opening-muted);
+  color: var(--hdr-muted);
   transition: color 0.15s ease;
 }
 
@@ -266,7 +401,7 @@ useScrollFrame(() => {
   right: 0.85rem;
   bottom: 0.2rem;
   height: 1px;
-  background: var(--opening-text);
+  background: var(--hdr-ink);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.2s ease;
@@ -274,7 +409,7 @@ useScrollFrame(() => {
 
 .site-header__link:hover,
 .site-header__link.is-active {
-  color: var(--opening-text);
+  color: var(--hdr-ink);
 }
 
 .site-header__link.is-active::after {
@@ -288,20 +423,50 @@ useScrollFrame(() => {
   gap: 0.85rem;
 }
 
+.site-header__actions :deep(.lang__inline),
+.site-header__actions :deep(.lang__slash) {
+  font-family: inherit;
+  color: var(--hdr-muted);
+}
+
+.site-header__actions :deep(.lang__inline:hover),
+.site-header__actions :deep(.lang__inline--active) {
+  color: var(--hdr-ink);
+}
+
 .site-header__resume {
   align-items: center;
   padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  background: var(--opening-text);
-  color: var(--opening-bg);
+  border-radius: var(--hdr-radius);
+  background: var(--hdr-cta);
+  color: var(--hdr-cta-ink);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  transition: opacity 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    border-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s ease,
+    color 0.35s ease;
 }
 
 .site-header__resume:hover {
   opacity: 0.88;
+}
+
+.site-header[data-zone='exp'] .site-header__resume {
+  box-shadow:
+    inset -1px -1px #0a0a0a,
+    inset 1px 1px #fff,
+    inset -2px -2px #808080,
+    inset 2px 2px #dfdfdf;
+}
+
+.site-header[data-zone='web2'] .site-header__resume {
+  background: linear-gradient(#7ec8f8, var(--web2-accent) 48%, #2176b8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 2px 0 #1a5f96;
 }
 
 .site-header__backdrop {
@@ -317,7 +482,8 @@ useScrollFrame(() => {
   z-index: 101;
   display: flex;
   flex-direction: column;
-  background: var(--opening-bg);
+  background: var(--hdr-drawer);
+  color: var(--hdr-ink);
   opacity: 0;
   visibility: hidden;
   transition:
@@ -336,7 +502,7 @@ useScrollFrame(() => {
   justify-content: space-between;
   min-height: 3.5rem;
   padding: 0 1.25rem;
-  border-bottom: 1px solid var(--opening-border);
+  border-bottom: 1px solid var(--hdr-border);
 }
 
 .site-header__drawer-label {
@@ -345,7 +511,7 @@ useScrollFrame(() => {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--opening-muted);
+  color: var(--hdr-muted);
 }
 
 .site-header__drawer-close {
@@ -354,10 +520,10 @@ useScrollFrame(() => {
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: var(--opening-radius);
-  border: 1px solid var(--opening-border);
+  border-radius: var(--hdr-radius);
+  border: 1px solid var(--hdr-border);
   background: transparent;
-  color: var(--opening-muted);
+  color: var(--hdr-muted);
   cursor: pointer;
 }
 
@@ -370,20 +536,20 @@ useScrollFrame(() => {
 .site-header__drawer-item {
   display: block;
   padding: 1.1rem 0;
-  border-bottom: 1px solid var(--opening-border);
+  border-bottom: 1px solid var(--hdr-border);
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.04em;
-  color: var(--opening-text);
+  color: var(--hdr-ink);
 }
 
 .site-header__drawer-item--active {
-  color: #fff;
+  color: var(--hdr-ink);
 }
 
 .site-header__drawer-foot {
   padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--opening-border);
+  border-top: 1px solid var(--hdr-border);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -406,10 +572,11 @@ useScrollFrame(() => {
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 999px;
-  border: 1px solid var(--opening-border);
+  border-radius: var(--hdr-radius);
+  border: 1px solid var(--hdr-border);
   background: transparent;
   cursor: pointer;
+  transition: border-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header__burger-box {
@@ -423,7 +590,7 @@ useScrollFrame(() => {
   left: 0;
   width: 100%;
   height: 1.5px;
-  background: var(--opening-text);
+  background: var(--hdr-ink);
   transition:
     top 0.2s ease,
     transform 0.2s ease;

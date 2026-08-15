@@ -49,6 +49,9 @@ const lead = computed(() => t('home.about.p1'))
 
 <style scoped>
 .about {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: var(--about-bg);
   color: var(--about-ink);
   font-family: var(--about-font-body);
@@ -58,7 +61,12 @@ const lead = computed(() => t('home.about.p1'))
   width: 100%;
   max-width: 46rem;
   margin-inline: auto;
-  padding: clamp(3.5rem, 8vw, 6.5rem) 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 5.5rem 1.25rem 3rem;
   box-sizing: border-box;
   background: var(--about-paper);
   border-left: 1px solid var(--about-rule);
