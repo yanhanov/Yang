@@ -6,134 +6,121 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div class="langs reveal">
+  <div class="metro reveal">
     <article
       v-for="(lang, i) in languages"
       :key="lang.key"
-      class="lang-spec"
-      :class="{
-        'lang-spec--primary': lang.primary,
-        [`reveal-delay-${Math.min(i + 1, 3)}`]: true,
-      }"
+      class="tile"
+      :class="[`tile--${lang.key}`, `reveal-delay-${Math.min(i + 1, 3)}`]"
     >
-      <p class="lang-spec__glyph" aria-hidden="true">{{ lang.specimen }}</p>
-      <div class="lang-spec__body">
-        <div class="lang-spec__head">
-          <h3 class="lang-spec__name">{{ t(`home.languages.${lang.key}.name`) }}</h3>
-          <span class="lang-spec__level">{{ t(`home.languages.${lang.key}.level`) }}</span>
+      <p class="tile__glyph" aria-hidden="true">{{ lang.specimen }}</p>
+      <div class="tile__body">
+        <div class="tile__head">
+          <h3 class="tile__name">{{ t(`home.languages.${lang.key}.name`) }}</h3>
+          <span class="tile__level">{{ t(`home.languages.${lang.key}.level`) }}</span>
         </div>
-        <p class="lang-spec__usage">{{ t(`home.languages.${lang.key}.usage`) }}</p>
-        <div class="lang-spec__meter" :aria-label="`${lang.level}%`">
-          <span class="lang-spec__meter-fill" :style="{ width: lang.level + '%' }" />
+        <p class="tile__usage">{{ t(`home.languages.${lang.key}.usage`) }}</p>
+        <div class="tile__meter" :aria-label="`${lang.level}%`">
+          <span class="tile__meter-fill" :style="{ width: lang.level + '%' }" />
         </div>
-        <p class="lang-spec__sample">
-          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
-          abcdefghijklmnopqrstuvwxyz<br />
-          0123456789
-        </p>
       </div>
     </article>
   </div>
 </template>
 
 <style scoped>
-.langs {
+.metro {
   display: grid;
-  gap: 1.5rem;
-  font-family: var(--type-font-meta);
-  color: var(--type-ink);
+  gap: 0.5rem;
+  font-family: var(--flat-font);
+  color: var(--flat-ink);
 }
 
 @media (min-width: 48rem) {
-  .langs {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 2rem;
+  .metro {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0.5rem;
   }
 }
 
-.lang-spec {
+.tile {
   display: grid;
   gap: 1rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--type-rule);
+  min-height: 16rem;
+  padding: 1.5rem 1.35rem 1.35rem;
+}
+
+.tile--ru {
+  background: #00a4ef;
+}
+
+.tile--en {
+  background: #7fba00;
 }
 
 @media (min-width: 40rem) {
-  .lang-spec {
+  .tile {
     grid-template-columns: auto 1fr;
-    gap: 1.5rem;
-    align-items: start;
+    align-items: end;
   }
 }
 
-.lang-spec__glyph {
+.tile__glyph {
   margin: 0;
-  font-family: var(--type-font-display);
-  font-size: clamp(4.5rem, 12vw, 7rem);
-  font-weight: 600;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  color: var(--type-ink);
+  font-size: clamp(4.5rem, 12vw, 7.5rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
 }
 
-.lang-spec__name {
+.tile__name {
   margin: 0;
-  font-family: var(--type-font-display);
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: 1.85rem;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
-.lang-spec__head {
+.tile__head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.65rem 1rem;
+  gap: 0.55rem 0.9rem;
 }
 
-.lang-spec__level {
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+.tile__level {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--type-muted);
+  color: var(--flat-muted);
 }
 
-.lang-spec__usage {
-  margin: 0.65rem 0 0;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--type-muted);
+.tile__usage {
+  margin: 0.55rem 0 0;
+  max-width: 22rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--flat-muted);
 }
 
-.lang-spec__meter {
-  margin-top: 1rem;
-  height: 2px;
-  background: var(--type-rule);
+.tile__meter {
+  margin-top: 1.1rem;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.28);
 }
 
-.lang-spec__meter-fill {
+.tile__meter-fill {
   display: block;
   height: 100%;
-  background: var(--type-ink);
+  background: #fff;
   transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lang-spec__sample {
-  margin: 1rem 0 0;
-  font-family: var(--type-font-display);
-  font-size: 0.75rem;
-  line-height: 1.7;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--type-muted) 70%, transparent);
-}
-
-.reveal:not(.revealed) .lang-spec__meter-fill {
+.reveal:not(.revealed) .tile__meter-fill {
   width: 0 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lang-spec__meter-fill {
+  .tile__meter-fill {
     transition: none;
   }
 }

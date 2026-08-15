@@ -16,7 +16,7 @@ usePageSeo(() => ({
   <section class="projects-page">
     <div class="projects-page__inner">
       <header class="projects-page__head">
-        <p class="projects-page__kicker">WORK / INDEX</p>
+        <p class="projects-page__kicker">2000 · Y2K</p>
         <h1 class="projects-page__title">{{ $t('projects') }}</h1>
         <p class="projects-page__sub">{{ $t('projects-sub') }}</p>
       </header>
@@ -36,9 +36,9 @@ usePageSeo(() => ({
 <style scoped>
 .projects-page {
   min-height: calc(100dvh - 3.5rem);
-  background: var(--swiss-bg);
-  color: var(--swiss-ink);
-  font-family: var(--swiss-font);
+  background: var(--y2k-bg);
+  color: var(--y2k-ink);
+  font-family: var(--y2k-font);
 }
 
 .projects-page__inner {
@@ -52,15 +52,15 @@ usePageSeo(() => ({
 .projects-page__head {
   margin-bottom: 2rem;
   padding-bottom: 1.25rem;
-  border-bottom: 2px solid var(--swiss-rule);
+  border-bottom: 1px solid rgba(57, 243, 255, 0.28);
 }
 
 .projects-page__kicker {
   margin: 0 0 0.65rem;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--swiss-accent);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--y2k-cyan);
 }
 
 .projects-page__title {
@@ -68,19 +68,19 @@ usePageSeo(() => ({
   font-size: clamp(2.5rem, 7vw, 4.5rem);
   font-weight: 700;
   line-height: 0.95;
-  letter-spacing: -0.045em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .projects-page__sub {
   margin: 0.85rem 0 0;
   max-width: 30rem;
-  color: var(--swiss-muted);
+  color: var(--y2k-muted);
 }
 
 .projects-page__grid {
   display: grid;
-  gap: 0;
-  border: 1px solid var(--swiss-rule);
+  gap: 0.75rem;
 }
 
 @media (min-width: 48rem) {

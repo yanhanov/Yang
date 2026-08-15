@@ -62,8 +62,8 @@
     "hero-tech": "Technologies in stack",
     "hero-years": "Years in development",
     "about-title": "About Me",
-    "about-kicker": "Chapter 01",
-    "about-figcaption": "Desk notes — where the work begins",
+    "about-kicker": "1993 · Mosaic",
+    "about-figcaption": "Image 1. Desk notes — where the work begins",
     "about": {
       "p1": "There was a time I used to gaze at websites and wonder, \"Someone out there builds this.\" Now — I am that someone.",
       "p2Before": "I'm a ",
@@ -73,7 +73,7 @@
       "p4": "I design and ship production-grade software across the stack: from pixel-perfect interfaces to scalable backends, APIs, and cross-platform apps. I don't just write code — I architect systems, choose the right tools, and deliver solutions that last."
     },
     "skills": "Tech Stack",
-    "skills-sub": "A cabinet of tools — stacked, framed, and used in production",
+    "skills-sub": "Tools I ship with — tagged, glossy, production-ready",
     "skills-groups": {
       "frontend": "Frontend",
       "backend": "Backend",

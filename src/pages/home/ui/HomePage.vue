@@ -76,23 +76,18 @@ usePageSeo(() => {
   <section id="experience" class="zone zone--exp">
     <div class="zone__inner">
       <header class="zone__head zone__head--exp reveal">
-        <p class="zone__kicker">02 / Drawing</p>
-        <div class="exp-titleblock">
-          <h2 class="zone__title">{{ $t('home.experience-title') }}</h2>
-          <p class="exp-titleblock__meta">
-            PROJECT: CAREER · SCALE: 1:1 · DRAWN: YAN HANOV
-          </p>
-        </div>
+        <p class="zone__kicker">1996 · Tables</p>
+        <h2 class="zone__title">{{ $t('home.experience-title') }}</h2>
         <p class="zone__sub">{{ $t('home.experience-sub') }}</p>
       </header>
       <ExperienceTimeline />
     </div>
   </section>
 
-  <section id="projects" class="zone zone--swiss">
+  <section id="projects" class="zone zone--y2k">
     <div class="zone__inner">
-      <header class="zone__head zone__head--swiss reveal">
-        <p class="zone__kicker">03 / WORK</p>
+      <header class="zone__head zone__head--y2k reveal">
+        <p class="zone__kicker">2000 · Y2K</p>
         <h2 class="zone__title">{{ $t('home.work-title') }}</h2>
         <p class="zone__sub">{{ $t('home.work-sub') }}</p>
       </header>
@@ -105,32 +100,28 @@ usePageSeo(() => {
         />
       </div>
       <div class="zone__action reveal reveal-delay-2">
-        <RouterLink to="/projects" class="swiss-link">
+        <RouterLink to="/projects" class="y2k-link">
           {{ $t('home.view-all-projects') }} →
         </RouterLink>
       </div>
     </div>
   </section>
 
-  <section id="skills" class="zone zone--maxi">
+  <section id="skills" class="zone zone--web2">
     <div class="zone__inner">
-      <header class="zone__head zone__head--maxi reveal">
-        <p class="zone__kicker">04 / More is more</p>
-        <div class="maxi-mast">
-          <span class="maxi-mast__ghost" aria-hidden="true">STACK</span>
-          <h2 class="zone__title">{{ $t('home.skills') }}</h2>
-        </div>
-        <p class="maxi-ornament" aria-hidden="true">✦ · ❦ · ✦</p>
+      <header class="zone__head zone__head--web2 reveal">
+        <p class="zone__kicker">2005 · Web 2.0</p>
+        <h2 class="zone__title">{{ $t('home.skills') }}</h2>
         <p class="zone__sub">{{ $t('home.skills-sub') }}</p>
       </header>
       <SkillsBento />
     </div>
   </section>
 
-  <section id="what-i-do" class="zone zone--bauhaus">
+  <section id="what-i-do" class="zone zone--skeuo">
     <div class="zone__inner">
-      <header class="zone__head zone__head--bauhaus reveal">
-        <p class="zone__kicker">05 / SERVICES</p>
+      <header class="zone__head zone__head--skeuo reveal">
+        <p class="zone__kicker">2011 · Skeuo</p>
         <h2 class="zone__title">{{ $t('home.whatido-title') }}</h2>
         <p class="zone__sub">{{ $t('home.whatido-sub') }}</p>
       </header>
@@ -138,10 +129,10 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="languages" class="zone zone--type">
+  <section id="languages" class="zone zone--flat">
     <div class="zone__inner">
-      <header class="zone__head zone__head--type reveal">
-        <p class="zone__kicker">06 / TYPE</p>
+      <header class="zone__head zone__head--flat reveal">
+        <p class="zone__kicker">2013 · Flat</p>
         <h2 class="zone__title">{{ $t('home.languages-title') }}</h2>
         <p class="zone__sub">{{ $t('home.languages-sub') }}</p>
       </header>
@@ -149,10 +140,10 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="process" class="zone zone--brutal">
+  <section id="process" class="zone zone--glass">
     <div class="zone__inner">
-      <header class="zone__head zone__head--brutal reveal">
-        <p class="zone__kicker">07 / PROCESS</p>
+      <header class="zone__head zone__head--glass reveal">
+        <p class="zone__kicker">2020 · Glass</p>
         <h2 class="zone__title">{{ $t('home.process-title') }}</h2>
         <p class="zone__sub">{{ $t('home.process-sub') }}</p>
       </header>
@@ -160,39 +151,24 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="contact" class="zone zone--term">
+  <section id="contact" class="zone zone--now">
     <div class="zone__inner">
-      <div class="term reveal">
-        <div class="term__bar">
-          <span class="term__dots" aria-hidden="true">
-            <i /><i /><i />
-          </span>
-          <span class="term__path">~/contact.sh</span>
-        </div>
-        <div class="term__body">
-          <p class="term__line">
-            <span class="term__prompt">yan@hanov</span>
-            <span class="term__sep">:</span>
-            <span class="term__cwd">~</span>
-            <span class="term__cash">$</span>
-            ./hello
-          </p>
-          <h2 class="term__title">{{ $t('home.cta-title') }}</h2>
-          <p class="term__text">{{ $t('home.cta-text') }}</p>
-          <div class="term__actions">
-            <a
-              href="https://t.me/yanhanov"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="term__btn"
-            >
-              > {{ $t('home.cta-btn') }}
-            </a>
-            <a href="mailto:yanhanow@gmail.com" class="term__btn term__btn--ghost">
-              > yanhanow@gmail.com
-            </a>
-          </div>
-          <p class="term__cursor" aria-hidden="true">█</p>
+      <div class="now reveal">
+        <p class="zone__kicker">2026 · Now</p>
+        <h2 class="now__title">{{ $t('home.cta-title') }}</h2>
+        <p class="now__text">{{ $t('home.cta-text') }}</p>
+        <div class="now__actions">
+          <a
+            href="https://t.me/yanhanov"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="now__btn"
+          >
+            {{ $t('home.cta-btn') }}
+          </a>
+          <a href="mailto:yanhanow@gmail.com" class="now__btn now__btn--ghost">
+            yanhanow@gmail.com
+          </a>
         </div>
       </div>
     </div>
@@ -243,30 +219,21 @@ usePageSeo(() => {
   margin-top: 2rem;
 }
 
-/* Experience — cyanotype */
+/* 1996 — Win98 / tables */
 .zone--exp {
-  background-color: var(--exp-bg);
-  background-image:
-    linear-gradient(var(--exp-rule) 1px, transparent 1px),
-    linear-gradient(90deg, var(--exp-rule) 1px, transparent 1px),
-    linear-gradient(color-mix(in srgb, var(--exp-ink) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--exp-ink) 8%, transparent) 1px, transparent 1px);
-  background-size:
-    96px 96px,
-    96px 96px,
-    24px 24px,
-    24px 24px;
+  background: var(--exp-bg);
   color: var(--exp-ink);
   font-family: var(--exp-font);
 }
 
 .zone__head--exp {
-  display: grid;
-  gap: 0.55rem;
-  margin-bottom: 2rem;
-  padding: 1rem 1rem 1.1rem;
-  border: 1px solid var(--exp-rule);
-  background: color-mix(in srgb, var(--exp-bg) 82%, #000);
+  padding: 0.8rem 0.9rem 1rem;
+  background: var(--exp-surface);
+  box-shadow:
+    inset -1px -1px #0a0a0a,
+    inset 1px 1px #fff,
+    inset -2px -2px #808080,
+    inset 2px 2px #dfdfdf;
 }
 
 .zone__head--exp .zone__kicker {
@@ -274,412 +241,215 @@ usePageSeo(() => {
 }
 
 .zone__head--exp .zone__title {
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .zone__head--exp .zone__sub {
   color: var(--exp-muted);
-  max-width: 28rem;
 }
 
-.exp-titleblock {
-  display: grid;
-  gap: 0.35rem;
+/* 2000 — Y2K */
+.zone--y2k {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 43, 214, 0.18), transparent 34%),
+    radial-gradient(circle at 92% 78%, rgba(57, 243, 255, 0.12), transparent 32%),
+    var(--y2k-bg);
+  color: var(--y2k-ink);
+  font-family: var(--y2k-font);
 }
 
-.exp-titleblock__meta {
-  margin: 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--exp-muted);
+.zone__head--y2k .zone__kicker {
+  color: var(--y2k-cyan);
 }
 
-/* Swiss projects */
-.zone--swiss {
-  background: var(--swiss-bg);
-  color: var(--swiss-ink);
-  font-family: var(--swiss-font);
-}
-
-.zone__head--swiss {
-  display: grid;
-  gap: 0.35rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 2px solid var(--swiss-rule);
-}
-
-.zone__head--swiss .zone__kicker {
-  color: var(--swiss-accent);
-}
-
-.zone__head--swiss .zone__title {
+.zone__head--y2k .zone__title {
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.zone__head--swiss .zone__sub {
-  color: var(--swiss-muted);
+.zone__head--y2k .zone__sub {
+  color: var(--y2k-muted);
 }
 
 .projects-showcase {
   display: grid;
-  gap: 0;
-  border: 1px solid var(--swiss-rule);
+  gap: 0.75rem;
 }
 
 @media (min-width: 48rem) {
   .projects-showcase {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
-  .projects-showcase :deep(.project-card) {
-    border-right: none;
-  }
-
-  .projects-showcase :deep(.project-card:last-child) {
-    border-right: 1px solid var(--swiss-rule);
-  }
 }
 
-.swiss-link {
+.y2k-link {
   display: inline-flex;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--swiss-ink);
-  border-bottom: 2px solid var(--swiss-accent);
-  padding-bottom: 0.15rem;
-}
-
-.swiss-link:hover {
-  color: var(--swiss-accent);
-}
-
-/* Maximalist cabinet */
-.zone--maxi {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--maxi-bg);
-  background-image:
-    radial-gradient(circle at 18% 12%, rgba(224, 176, 74, 0.16), transparent 28%),
-    radial-gradient(circle at 88% 8%, rgba(199, 62, 102, 0.18), transparent 26%),
-    radial-gradient(circle at 70% 92%, rgba(42, 157, 143, 0.12), transparent 30%),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 18px,
-      rgba(224, 176, 74, 0.045) 18px,
-      rgba(224, 176, 74, 0.045) 19px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 18px,
-      rgba(199, 62, 102, 0.04) 18px,
-      rgba(199, 62, 102, 0.04) 19px
-    );
-  color: var(--maxi-ink);
-  font-family: var(--maxi-font);
-}
-
-.zone--maxi::before,
-.zone--maxi::after {
-  position: absolute;
-  font-family: var(--maxi-font-display);
-  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--y2k-cyan);
+  font-size: 0.8rem;
+  font-weight: 700;
   letter-spacing: 0.12em;
-  white-space: nowrap;
-  color: rgba(224, 176, 74, 0.07);
-  pointer-events: none;
+  text-transform: uppercase;
+  color: var(--y2k-cyan);
 }
 
-.zone--maxi::before {
-  content: 'MORE IS MORE  ·  MORE IS MORE  ·  MORE IS MORE  ·  MORE IS MORE';
-  top: 6%;
-  left: -8%;
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
-  transform: rotate(-11deg);
+.y2k-link:hover {
+  background: var(--y2k-cyan);
+  color: var(--y2k-bg);
 }
 
-.zone--maxi::after {
-  content: 'HORROR VACUI  ·  HORROR VACUI  ·  HORROR VACUI';
-  bottom: 8%;
-  right: -10%;
-  font-size: clamp(2rem, 6vw, 4.2rem);
-  transform: rotate(8deg);
+/* 2005 — Web 2.0 */
+.zone--web2 {
+  background: linear-gradient(#fff, var(--web2-bg));
+  color: var(--web2-ink);
+  font-family: var(--web2-font);
 }
 
-.zone--maxi .zone__inner {
-  position: relative;
-  z-index: 1;
-}
-
-.zone__head--maxi {
-  position: relative;
-  margin-bottom: 2.5rem;
+.zone__head--web2 {
   text-align: center;
 }
 
-.zone__head--maxi .zone__kicker {
-  color: var(--maxi-gold);
+.zone__head--web2 .zone__kicker {
+  color: var(--web2-accent);
 }
 
-.zone__head--maxi .zone__title {
-  position: relative;
-  z-index: 1;
-  font-family: var(--maxi-font-display);
-  font-size: clamp(2.6rem, 8vw, 5.2rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 0.92;
-  color: var(--maxi-cream);
-  text-shadow: 0 2px 0 var(--maxi-rose);
-}
-
-.zone__head--maxi .zone__sub {
-  margin-inline: auto;
-  color: var(--maxi-muted);
-}
-
-.maxi-mast {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: clamp(5rem, 14vw, 8rem);
-  margin: 0.4rem 0 0.2rem;
-}
-
-.maxi-mast__ghost {
-  position: absolute;
-  left: 50%;
-  top: 48%;
-  transform: translate(-50%, -50%);
-  font-family: var(--maxi-font-display);
-  font-size: clamp(4.5rem, 16vw, 9rem);
-  font-weight: 600;
-  letter-spacing: -0.06em;
-  line-height: 0.8;
+.zone__head--web2 .zone__title {
+  font-weight: 700;
+  background: linear-gradient(#4aa3e0, #1f6fad);
+  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--maxi-gold) 38%, transparent);
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
 }
 
-.maxi-ornament {
-  margin: 0.15rem 0 0.55rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.45em;
-  color: var(--maxi-gold);
+.zone__head--web2 .zone__sub {
+  margin-inline: auto;
+  color: var(--web2-muted);
 }
 
-/* Bauhaus */
-.zone--bauhaus {
-  background: var(--bauhaus-bg);
-  color: var(--bauhaus-ink);
-  font-family: var(--bauhaus-font);
+/* 2011 — skeuomorphism */
+.zone--skeuo {
+  background:
+    repeating-linear-gradient(0deg, rgba(90, 70, 40, 0.05) 0 2px, transparent 2px 4px),
+    var(--skeuo-bg);
+  color: var(--skeuo-ink);
+  font-family: var(--skeuo-font);
 }
 
-.zone__head--bauhaus .zone__kicker {
-  color: var(--bauhaus-red);
+.zone__head--skeuo .zone__kicker {
+  color: var(--skeuo-leather);
 }
 
-.zone__head--bauhaus .zone__title {
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.04em;
-}
-
-.zone__head--bauhaus .zone__sub {
-  color: var(--bauhaus-muted);
-}
-
-/* Type specimen */
-.zone--type {
-  background: var(--type-bg);
-  color: var(--type-ink);
-}
-
-.zone__head--type .zone__kicker {
-  font-family: var(--type-font-meta);
-  color: var(--type-muted);
-}
-
-.zone__head--type .zone__title {
-  font-family: var(--type-font-display);
+.zone__head--skeuo .zone__title {
   font-weight: 600;
 }
 
-.zone__head--type .zone__sub {
-  font-family: var(--type-font-meta);
-  color: var(--type-muted);
+.zone__head--skeuo .zone__sub {
+  color: var(--skeuo-muted);
 }
 
-/* Neo-brutal process */
-.zone--brutal {
-  background: var(--brutal-bg);
-  color: var(--brutal-ink);
-  font-family: var(--brutal-font);
+/* 2013 — flat / Metro */
+.zone--flat {
+  background: var(--flat-bg);
+  color: #212121;
+  font-family: var(--flat-font);
 }
 
-.zone__head--brutal .zone__kicker {
-  color: var(--brutal-accent);
+.zone__head--flat .zone__kicker {
+  color: #00a4ef;
 }
 
-.zone__head--brutal .zone__title {
-  font-weight: 800;
-  text-transform: uppercase;
+.zone__head--flat .zone__title {
+  font-weight: 700;
+  letter-spacing: -0.04em;
 }
 
-.zone__head--brutal .zone__sub {
-  color: var(--brutal-muted);
+.zone__head--flat .zone__sub {
+  color: #616161;
 }
 
-/* Terminal contact */
-.zone--term {
-  background: var(--term-bg);
-  color: var(--term-ink);
-  font-family: var(--term-font);
+/* 2020 — glass */
+.zone--glass {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(138, 180, 255, 0.28), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(196, 181, 253, 0.22), transparent 28%),
+    radial-gradient(circle at 70% 90%, rgba(56, 189, 248, 0.16), transparent 34%),
+    var(--glass-bg);
+  color: var(--glass-ink);
+  font-family: var(--glass-font);
 }
 
-.term {
-  max-width: 46rem;
-  margin-inline: auto;
-  border: 1px solid var(--term-border);
-  background: var(--term-surface);
-  overflow: hidden;
+.zone__head--glass .zone__kicker {
+  color: var(--glass-accent);
 }
 
-.term__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.65rem 0.9rem;
-  border-bottom: 1px solid var(--term-border);
-  background: #0e1210;
+.zone__head--glass .zone__sub {
+  color: var(--glass-muted);
 }
 
-.term__dots {
-  display: inline-flex;
-  gap: 0.35rem;
+/* 2026 — now */
+.zone--now {
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 0%, rgba(196, 181, 253, 0.18), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(56, 189, 248, 0.1), transparent 46%),
+    var(--now-bg);
+  color: var(--now-ink);
+  font-family: var(--now-font);
 }
 
-.term__dots i {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: #2a3a30;
-  display: block;
+.now {
+  max-width: 42rem;
 }
 
-.term__dots i:first-child {
-  background: #ff5f56;
+.zone--now .zone__kicker {
+  color: var(--now-accent);
 }
 
-.term__dots i:nth-child(2) {
-  background: #ffbd2e;
-}
-
-.term__dots i:nth-child(3) {
-  background: #27c93f;
-}
-
-.term__path {
-  font-size: 0.7rem;
-  color: var(--term-muted);
-}
-
-.term__body {
-  padding: 1.5rem 1.25rem 1.75rem;
-}
-
-.term__line {
-  margin: 0 0 1.25rem;
-  font-size: 0.8125rem;
-  color: var(--term-muted);
-}
-
-.term__prompt {
-  color: var(--term-accent);
-}
-
-.term__sep,
-.term__cash {
-  color: var(--term-muted);
-}
-
-.term__cwd {
-  color: #7ec8ff;
-}
-
-.term__title {
+.now__title {
   margin: 0;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--term-ink);
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
 }
 
-.term__text {
-  margin: 0.85rem 0 0;
-  max-width: 34rem;
-  font-size: 0.9rem;
+.now__text {
+  margin: 1rem 0 0;
+  max-width: 32rem;
+  font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--term-muted);
+  color: var(--now-muted);
 }
 
-.term__actions {
+.now__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1.5rem;
+  gap: 0.7rem;
+  margin-top: 1.75rem;
 }
 
-.term__btn {
+.now__btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--term-accent);
-  background: color-mix(in srgb, var(--term-accent) 12%, transparent);
-  color: var(--term-accent);
-  font-size: 0.8125rem;
-  transition: background 0.15s ease;
+  padding: 0.8rem 1.15rem;
+  border-radius: 999px;
+  background: var(--now-ink);
+  color: var(--now-bg);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.term__btn:hover {
-  background: color-mix(in srgb, var(--term-accent) 22%, transparent);
+.now__btn:hover {
+  opacity: 0.88;
 }
 
-.term__btn--ghost {
-  border-color: var(--term-border);
+.now__btn--ghost {
   background: transparent;
-  color: var(--term-ink);
+  color: var(--now-ink);
+  border: 1px solid rgba(250, 250, 250, 0.16);
 }
 
-.term__btn--ghost:hover {
-  border-color: var(--term-muted);
-}
-
-.term__cursor {
-  margin: 1.25rem 0 0;
-  color: var(--term-accent);
-  animation: blink 1.1s steps(1) infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .term__cursor {
-    animation: none;
-  }
+.now__btn--ghost:hover {
+  border-color: rgba(250, 250, 250, 0.42);
 }
 </style>

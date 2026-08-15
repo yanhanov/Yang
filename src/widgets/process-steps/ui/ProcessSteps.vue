@@ -17,14 +17,14 @@ const { t } = useI18n()
       <article
         v-for="(step, i) in processSteps"
         :key="step.key"
-        class="process-card"
+        class="pane"
         :class="`reveal-delay-${Math.min(i + 1, 4)}`"
       >
-        <span class="process-card__index">{{ String(i + 1).padStart(2, '0') }}</span>
-        <h3 class="process-card__title">{{ t(`home.process.${step.key}.title`) }}</h3>
-        <p class="process-card__text">{{ t(`home.process.${step.key}.text`) }}</p>
+        <span class="pane__index">{{ String(i + 1).padStart(2, '0') }}</span>
+        <h3 class="pane__title">{{ t(`home.process.${step.key}.title`) }}</h3>
+        <p class="pane__text">{{ t(`home.process.${step.key}.text`) }}</p>
 
-        <ul v-if="step.bullets > 0" class="process-card__bullets">
+        <ul v-if="step.bullets > 0" class="pane__bullets">
           <li v-for="n in step.bullets" :key="n">
             {{ t(`home.process.${step.key}.bullet${n}`) }}
           </li>
@@ -36,33 +36,39 @@ const { t } = useI18n()
 
 <style scoped>
 .process {
-  font-family: var(--brutal-font);
-  color: var(--brutal-ink);
+  font-family: var(--glass-font);
+  color: var(--glass-ink);
 }
 
 .process__principles {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin: 0 0 1.5rem;
+  gap: 0.55rem;
+  margin: 0 0 1.35rem;
   padding: 0;
   list-style: none;
 }
 
+.process__principle,
+.pane {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
 .process__principle {
   padding: 0.45rem 0.75rem;
-  border: 2px solid var(--brutal-border);
-  background: #fff;
-  box-shadow: 3px 3px 0 var(--brutal-border);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .process__grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 @media (min-width: 40rem) {
@@ -77,79 +83,48 @@ const { t } = useI18n()
   }
 }
 
-.process-card {
+.pane {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  padding: 1.15rem;
-  background: #fff;
-  border: 2.5px solid var(--brutal-border);
-  box-shadow: 5px 5px 0 var(--brutal-border);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  gap: 0.55rem;
+  min-height: 100%;
+  padding: 1.2rem 1.1rem 1.15rem;
+  border-radius: 1.25rem;
 }
 
-.process-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 var(--brutal-border);
+.pane__index {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--glass-accent);
 }
 
-.process-card:nth-child(2) {
-  background: var(--brutal-block);
-}
-
-.process-card:nth-child(3) {
-  background: color-mix(in srgb, var(--brutal-accent) 18%, white);
-}
-
-.process-card__index {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.process-card__title {
+.pane__title {
   margin: 0;
-  font-size: 1.15rem;
-  font-weight: 800;
-  line-height: 1.15;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
-.process-card__text {
+.pane__text {
   margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--brutal-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--glass-muted);
 }
 
-.process-card__bullets {
-  margin: 0.35rem 0 0;
-  padding: 0.75rem 0 0;
-  border-top: 2px solid var(--brutal-border);
+.pane__bullets {
+  margin: 0.2rem 0 0;
+  padding: 0.7rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
-.process-card__bullets li {
-  position: relative;
-  padding-left: 0.95rem;
+.pane__bullets li {
   font-size: 0.8rem;
   line-height: 1.45;
-  font-weight: 600;
-}
-
-.process-card__bullets li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.45em;
-  width: 0.45rem;
-  height: 0.45rem;
-  background: var(--brutal-accent);
-  border: 1.5px solid var(--brutal-border);
+  color: var(--glass-muted);
 }
 </style>

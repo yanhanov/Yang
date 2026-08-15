@@ -17,20 +17,16 @@ function tagsFor(key) {
       <article
         v-for="(item, i) in services"
         :key="item.key"
-        class="whatido-card"
-        :class="[`whatido-card--${item.key}`, `reveal-delay-${Math.min(i + 1, 4)}`]"
-        :style="{ '--card-color': item.color }"
+        class="leather"
+        :class="`reveal-delay-${Math.min(i + 1, 4)}`"
       >
-        <div class="whatido-card__shape" aria-hidden="true" />
-        <header class="whatido-card__head">
-          <p class="whatido-card__label">{{ String(i + 1).padStart(2, '0') }}</p>
-          <h3 class="whatido-card__title">{{ t(`home.whatido.${item.key}.title`) }}</h3>
-        </header>
-        <p class="whatido-card__text">{{ t(`home.whatido.${item.key}.text`) }}</p>
-        <ul class="whatido-card__tags">
+        <p class="leather__no">{{ String(i + 1).padStart(2, '0') }}</p>
+        <h3 class="leather__title">{{ t(`home.whatido.${item.key}.title`) }}</h3>
+        <p class="leather__text">{{ t(`home.whatido.${item.key}.text`) }}</p>
+        <ul class="leather__tags">
           <li v-for="tag in tagsFor(item.key)" :key="tag">{{ tag }}</li>
         </ul>
-        <ul class="whatido-card__tech">
+        <ul class="leather__tech">
           <li v-for="tech in item.tech" :key="tech">
             <TechIcon :name="tech" :size="14" />
             <span>{{ techLabels[tech] }}</span>
@@ -43,14 +39,13 @@ function tagsFor(key) {
 
 <style scoped>
 .whatido {
-  font-family: var(--bauhaus-font);
-  color: var(--bauhaus-ink);
+  font-family: var(--skeuo-font);
+  color: var(--skeuo-ink);
 }
 
 .whatido__grid {
   display: grid;
-  gap: 0;
-  border: 2px solid var(--bauhaus-ink);
+  gap: 1.15rem;
 }
 
 @media (min-width: 48rem) {
@@ -59,124 +54,66 @@ function tagsFor(key) {
   }
 }
 
-@media (min-width: 64rem) {
-  .whatido__grid {
-    grid-template-columns: repeat(12, 1fr);
-  }
-
-  .whatido-card--frontend {
-    grid-column: span 6;
-  }
-
-  .whatido-card--backend {
-    grid-column: span 6;
-  }
-
-  .whatido-card--multiplatform {
-    grid-column: span 5;
-  }
-
-  .whatido-card--e2e {
-    grid-column: span 7;
-  }
-}
-
-.whatido-card {
+.leather {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  min-height: 14rem;
-  padding: 1.35rem 1.25rem 1.15rem;
-  background: #fff;
-  border-bottom: 2px solid var(--bauhaus-ink);
-  overflow: hidden;
+  gap: 0.7rem;
+  min-height: 16rem;
+  padding: 1.35rem 1.25rem 1.2rem;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.35), transparent 46%),
+    linear-gradient(180deg, #f7ead4 0%, var(--skeuo-paper) 55%, #e2d0b4 100%);
+  border-radius: 0.7rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 0 rgba(90, 60, 30, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.35),
+    0 10px 18px rgba(60, 40, 20, 0.28);
 }
 
-@media (min-width: 48rem) {
-  .whatido-card {
-    border-right: 2px solid var(--bauhaus-ink);
-  }
-
-  .whatido-card:nth-child(2n) {
-    border-right: none;
-  }
-}
-
-@media (min-width: 64rem) {
-  .whatido-card {
-    border-right: 2px solid var(--bauhaus-ink);
-  }
-
-  .whatido-card--backend,
-  .whatido-card--e2e {
-    border-right: none;
-  }
-
-  .whatido-card--multiplatform,
-  .whatido-card--e2e {
-    border-bottom: none;
-  }
-}
-
-.whatido-card__shape {
+.leather::before {
+  content: '';
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  background: var(--card-color);
+  inset: 0.55rem;
+  border: 1.5px dashed color-mix(in srgb, var(--skeuo-leather) 45%, transparent);
+  border-radius: 0.45rem;
+  pointer-events: none;
 }
 
-.whatido-card--frontend .whatido-card__shape {
-  border-radius: 50%;
+.leather__no,
+.leather__title,
+.leather__text,
+.leather__tags,
+.leather__tech {
+  position: relative;
 }
 
-.whatido-card--backend .whatido-card__shape {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.whatido-card--multiplatform .whatido-card__shape {
-  transform: rotate(45deg) scale(0.85);
-}
-
-.whatido-card--e2e .whatido-card__shape {
-  width: 2.4rem;
-  height: 2.4rem;
-}
-
-.whatido-card__label {
+.leather__no {
   margin: 0;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-family: var(--skeuo-font);
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
-  color: var(--card-color);
+  color: var(--skeuo-leather);
 }
 
-.whatido-card--backend .whatido-card__label {
-  color: var(--bauhaus-ink);
-}
-
-.whatido-card__title {
-  margin: 0.35rem 0 0;
-  max-width: 12rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-}
-
-.whatido-card__text {
+.leather__title {
   margin: 0;
-  max-width: 28rem;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--bauhaus-muted);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.15;
 }
 
-.whatido-card__tags,
-.whatido-card__tech {
+.leather__text {
+  margin: 0;
+  font-family: 'Onest', system-ui, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--skeuo-muted);
+}
+
+.leather__tags,
+.leather__tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -185,25 +122,24 @@ function tagsFor(key) {
   list-style: none;
 }
 
-.whatido-card__tags li,
-.whatido-card__tech li {
+.leather__tags li,
+.leather__tech li {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.25rem 0.45rem;
-  border: 1.5px solid var(--bauhaus-ink);
+  padding: 0.28rem 0.5rem;
+  border-radius: 0.35rem;
+  background: linear-gradient(#fff6e8, #ead7b8);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(80, 50, 20, 0.2);
+  font-family: 'Onest', system-ui, sans-serif;
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
-.whatido-card__tech {
+.leather__tech {
   margin-top: auto;
-  padding-top: 0.5rem;
-}
-
-.whatido-card__tech li {
-  background: var(--bauhaus-bg);
+  padding-top: 0.35rem;
 }
 </style>
