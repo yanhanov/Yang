@@ -76,8 +76,14 @@ usePageSeo(() => {
   <section id="experience" class="zone zone--exp">
     <div class="zone__inner">
       <header class="zone__head zone__head--exp reveal">
-        <p class="zone__kicker">02 / EXP</p>
-        <h2 class="zone__title">{{ $t('home.experience-title') }}</h2>
+        <p class="zone__kicker">02 / Formula</p>
+        <h2 class="bb-title" :aria-label="$t('home.experience-title')">
+          <span class="bb-title__box">
+            <span class="bb-title__n">99</span>
+            Ex
+          </span>
+          <span class="bb-title__rest">perience</span>
+        </h2>
         <p class="zone__sub">{{ $t('home.experience-sub') }}</p>
       </header>
       <ExperienceTimeline />
@@ -107,11 +113,22 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="skills" class="zone zone--soft">
+  <section id="skills" class="zone zone--lab">
     <div class="zone__inner">
-      <header class="zone__head zone__head--soft reveal">
-        <p class="zone__kicker">04 / STACK</p>
-        <h2 class="zone__title">{{ $t('home.skills') }}</h2>
+      <header class="zone__head zone__head--lab reveal">
+        <p class="zone__kicker">04 / Periodic</p>
+        <h2 class="bb-title" :aria-label="$t('home.skills')">
+          <span class="bb-title__box">
+            <span class="bb-title__n">52</span>
+            Te
+          </span>
+          <span class="bb-title__rest">ch</span>
+          <span class="bb-title__box">
+            <span class="bb-title__n">16</span>
+            St
+          </span>
+          <span class="bb-title__rest">ack</span>
+        </h2>
         <p class="zone__sub">{{ $t('home.skills-sub') }}</p>
       </header>
       <SkillsBento />
@@ -236,7 +253,9 @@ usePageSeo(() => {
 
 /* Experience */
 .zone--exp {
-  background: var(--exp-bg);
+  background:
+    radial-gradient(ellipse 90% 55% at 80% 0%, rgba(241, 196, 15, 0.1), transparent 55%),
+    linear-gradient(180deg, #161c10 0%, var(--exp-bg) 32%, #0c1008 100%);
   color: var(--exp-ink);
   font-family: var(--exp-font);
 }
@@ -245,14 +264,18 @@ usePageSeo(() => {
   color: var(--exp-accent);
 }
 
-.zone__head--exp .zone__title {
-  font-family: var(--exp-font);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-}
-
 .zone__head--exp .zone__sub {
   color: var(--exp-muted);
+  max-width: 32rem;
+}
+
+.zone__head--exp .bb-title {
+  color: var(--exp-green);
+}
+
+.zone__head--exp .bb-title__box {
+  background: var(--exp-accent);
+  color: #111;
 }
 
 /* Swiss projects */
@@ -317,19 +340,64 @@ usePageSeo(() => {
   color: var(--swiss-accent);
 }
 
-/* Soft skills */
-.zone--soft {
-  background: var(--soft-bg);
-  color: var(--soft-ink);
-  font-family: var(--soft-font);
+/* Lab table */
+.zone--lab {
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(241, 196, 15, 0.08), transparent 50%),
+    linear-gradient(180deg, #14190e 0%, var(--lab-bg) 28%, #0c1008 100%);
+  color: var(--lab-ink);
+  font-family: var(--lab-font);
 }
 
-.zone__head--soft .zone__kicker {
-  color: var(--soft-accent);
+.zone__head--lab .zone__kicker {
+  color: var(--lab-accent);
 }
 
-.zone__head--soft .zone__sub {
-  color: var(--soft-muted);
+.zone__head--lab .zone__sub {
+  color: var(--lab-muted);
+  max-width: 28rem;
+}
+
+.bb-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.35rem 0.2rem;
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 4.25rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--lab-green);
+}
+
+.bb-title__box {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 1.15em;
+  padding: 0.42em 0.12em 0.08em;
+  margin-right: 0.08em;
+  background: var(--lab-accent);
+  color: #111;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.bb-title__n {
+  position: absolute;
+  top: 0.18em;
+  left: 0.22em;
+  font-size: 0.22em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.bb-title__rest {
+  padding-bottom: 0.04em;
 }
 
 /* Bauhaus */

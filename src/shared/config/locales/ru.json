@@ -30,7 +30,10 @@
   "footer": {
     "copy": "©2026 Yazmyrat Hanov.",
     "all": "Все права защищены",
-    "tagline": "Software Engineer · Full Stack · Vue · Node · Flutter"
+    "tagline": "Software Engineer · Full Stack · Vue · Node · Flutter",
+    "edition": "Том 01 · Ашхабад",
+    "contents": "Содержание",
+    "correspondence": "Корреспонденция"
   },
   "home": {
     "hero-title": "Middle Software Engineer",

@@ -13,31 +13,39 @@ const { t } = useI18n()
       class="timeline__item reveal"
       :class="[`reveal-delay-${Math.min(i + 1, 3)}`, { 'timeline__item--current': job.current }]"
     >
-      <div class="timeline__rail">
-        <span class="timeline__index">{{ String(i + 1).padStart(2, '0') }}</span>
-        <time class="timeline__date">{{ t(job.periodKey) }}</time>
+      <div class="timeline__element" aria-hidden="true">
+        <span class="timeline__n">{{ job.atomic }}</span>
+        <span class="timeline__symbol">{{ job.symbol }}</span>
       </div>
 
-      <div class="timeline__block">
-        <header class="timeline__head">
-          <div>
-            <component
-              :is="job.url ? 'a' : 'h3'"
-              :href="job.url || undefined"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="timeline__company"
-              :class="{ 'timeline__company--link': job.url }"
-            >
-              {{ job.company }}
-            </component>
-            <p class="timeline__role">{{ t(job.roleKey) }}</p>
-          </div>
-          <div class="timeline__labels">
-            <span class="timeline__type">{{ t(job.typeKey) }}</span>
-            <span v-if="job.current" class="timeline__now">{{ t('experience.current') }}</span>
-          </div>
-        </header>
+      <div class="timeline__body">
+        <p class="timeline__ep">
+          S{{ String(i + 1).padStart(2, '0') }}
+          <span aria-hidden="true">·</span>
+          {{ job.year }}
+          <span aria-hidden="true">·</span>
+          {{ t(job.typeKey) }}
+          <span v-if="job.current">· {{ t('experience.current') }}</span>
+        </p>
+
+        <h3 class="timeline__title">
+          <component
+            :is="job.url ? 'a' : 'span'"
+            :href="job.url || undefined"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="timeline__lockup"
+          >
+            <span class="timeline__box">
+              <span class="timeline__box-n">{{ job.atomic }}</span>
+              {{ job.symbol }}
+            </span>
+            <span class="timeline__rest">{{ job.rest }}</span>
+          </component>
+        </h3>
+
+        <p class="timeline__role">{{ t(job.roleKey) }}</p>
+        <p class="timeline__period">{{ t(job.periodKey) }}</p>
 
         <ul class="timeline__bullets">
           <li v-for="n in job.bullets" :key="n">
@@ -53,146 +61,155 @@ const { t } = useI18n()
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  border-top: 2px solid var(--exp-accent);
+  gap: 1.25rem;
+  font-family: var(--exp-font);
 }
 
 .timeline__item {
   display: grid;
   grid-template-columns: 1fr;
-  border-bottom: 2px solid var(--exp-border);
+  gap: 1rem;
+  padding: 1.35rem 0 1.6rem;
+  border-top: 1px solid color-mix(in srgb, var(--exp-green) 70%, transparent);
+}
+
+.timeline__item:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--exp-green) 70%, transparent);
 }
 
 @media (min-width: 48rem) {
   .timeline__item {
-    grid-template-columns: 11rem 1fr;
+    grid-template-columns: 5.75rem minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: start;
+    padding: 1.75rem 0 2rem;
   }
 }
 
-.timeline__rail {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.25rem 1.25rem 0;
-  font-family: var(--exp-font);
+.timeline__element {
+  display: none;
 }
 
 @media (min-width: 48rem) {
-  .timeline__rail {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.75rem;
-    padding: 1.5rem 1.25rem;
-    border-right: 2px solid var(--exp-border);
+  .timeline__element {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 5.75rem;
+    height: 5.75rem;
+    background: var(--exp-accent);
+    color: #111;
+  }
+
+  .timeline__item:not(.timeline__item--current) .timeline__element {
+    background: var(--exp-green);
+    color: #dce6d4;
   }
 }
 
-.timeline__index {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+.timeline__n,
+.timeline__box-n {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.timeline__symbol {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  padding-bottom: 0.35rem;
+}
+
+.timeline__ep {
+  margin: 0 0 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--exp-accent);
 }
 
-.timeline__date {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: var(--exp-muted);
-}
-
-.timeline__block {
-  padding: 1.25rem;
-}
-
-@media (min-width: 48rem) {
-  .timeline__block {
-    padding: 1.5rem 1.75rem;
-  }
-}
-
-.timeline__item--current .timeline__block {
-  background: color-mix(in srgb, var(--exp-accent) 6%, transparent);
-}
-
-.timeline__head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-}
-
-.timeline__company {
+.timeline__title {
   margin: 0;
-  font-family: var(--exp-font);
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: var(--exp-ink);
+}
+
+.timeline__lockup {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.15rem;
+  color: var(--exp-green);
+  font-size: clamp(1.85rem, 5vw, 3.1rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 
-.timeline__company--link {
-  color: var(--exp-accent);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+.timeline__box {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 1.15em;
+  padding: 0.42em 0.12em 0.06em;
+  margin-right: 0.06em;
+  background: var(--exp-accent);
+  color: #111;
+  letter-spacing: -0.04em;
+}
+
+.timeline__rest {
+  padding-bottom: 0.05em;
+}
+
+.timeline__item--current .timeline__lockup {
+  color: #c5d4b8;
 }
 
 .timeline__role {
-  margin: 0.4rem 0 0;
-  font-family: var(--exp-font);
-  font-size: 0.8125rem;
+  margin: 0.7rem 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--exp-ink);
+}
+
+.timeline__period {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
   color: var(--exp-muted);
-}
-
-.timeline__labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.timeline__type,
-.timeline__now {
-  font-family: var(--exp-font);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.45rem;
-  border: 1px solid var(--exp-border);
-  color: var(--exp-muted);
-}
-
-.timeline__now {
-  border-color: var(--exp-accent);
-  color: var(--exp-bg);
-  background: var(--exp-accent);
 }
 
 .timeline__bullets {
-  margin: 1.1rem 0 0;
-  padding: 1.1rem 0 0;
-  border-top: 1px solid var(--exp-border);
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  list-style: none;
+  gap: 0.45rem;
+  max-width: 38rem;
 }
 
 .timeline__bullets li {
   position: relative;
   padding-left: 1.1rem;
-  font-family: var(--exp-font);
-  font-size: 0.8125rem;
-  line-height: 1.65;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: var(--exp-muted);
 }
 
 .timeline__bullets li::before {
-  content: '>';
+  content: '▸';
   position: absolute;
   left: 0;
   color: var(--exp-accent);
+  font-size: 0.7rem;
+  top: 0.2em;
 }
 </style>
