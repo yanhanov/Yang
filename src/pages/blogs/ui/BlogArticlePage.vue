@@ -11,6 +11,7 @@ import {
   getBlogExcerpt,
   getBlogSlug,
   BlogCard,
+  getBlogCategory,
 } from '@/entities/blog'
 import {
   SITE_AUTHOR,
@@ -28,6 +29,7 @@ useScrollReveal()
 const blog = computed(() => getBlogBySlug(route.params.article))
 
 const title = computed(() => (blog.value ? getBlogTitle(blog.value, locale.value) : ''))
+const category = computed(() => (blog.value ? getBlogCategory(blog.value, locale.value) : ''))
 
 const paragraphs = computed(() =>
   blog.value ? getBlogParagraphs(blog.value, locale.value) : [],
@@ -168,7 +170,7 @@ watch(
           </RouterLink>
 
           <header class="article__head reveal">
-            <p class="article__kicker">{{ $t('blog.seo.breadcrumb-blog') }}</p>
+            <p class="article__kicker">{{ category }}</p>
             <h1 class="article__title" itemprop="headline">{{ title }}</h1>
             <div class="article__meta">
               <time :datetime="blog.date" itemprop="datePublished">{{ formattedDate }}</time>

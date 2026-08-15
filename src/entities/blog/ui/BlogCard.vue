@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { getBlogTitle, getBlogExcerpt } from '@/entities/blog'
+import { getBlogTitle, getBlogExcerpt, getBlogCategory } from '@/entities/blog'
 
 const props = defineProps({
   blog: { type: Object, required: true },
@@ -17,6 +17,7 @@ const { locale, t } = useI18n()
 
 const title = computed(() => getBlogTitle(props.blog, locale.value))
 const excerpt = computed(() => getBlogExcerpt(props.blog, locale.value))
+const category = computed(() => getBlogCategory(props.blog, locale.value))
 
 const formattedDate = computed(() => {
   if (!props.blog.date) return ''
@@ -47,6 +48,7 @@ const formattedDate = computed(() => {
 
     <div class="blog-card__body">
       <div class="blog-card__meta">
+        <span class="blog-card__category">{{ category }}</span>
         <time v-if="blog.date" class="blog-card__date" :datetime="blog.date">{{ formattedDate }}</time>
         <span v-if="layout === 'feature'" class="blog-card__badge">{{ t('blog.latest') }}</span>
       </div>
@@ -104,6 +106,14 @@ const formattedDate = computed(() => {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--now-muted);
+}
+
+.blog-card__category {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--now-accent);
 }
 
 .blog-card__badge {

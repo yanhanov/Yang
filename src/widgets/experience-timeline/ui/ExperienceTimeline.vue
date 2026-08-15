@@ -36,24 +36,36 @@ const { t } = useI18n()
         <table class="win__table">
           <tbody>
             <tr>
-              <th>{{ t(job.roleKey) }}</th>
+              <th>Role</th>
+              <td>{{ t(job.roleKey) }}</td>
+            </tr>
+            <tr>
+              <th>Period</th>
               <td>{{ t(job.periodKey) }}</td>
             </tr>
             <tr>
-              <th>{{ t(job.typeKey) }}</th>
+              <th>Type</th>
               <td>
-                <b v-if="job.current">{{ t('experience.current') }}</b>
-                <span v-else>{{ job.year }}</span>
+                {{ t(job.typeKey) }}
+                <template v-if="job.current"> · <b>{{ t('experience.current') }}</b></template>
+                <template v-else> · {{ job.year }}</template>
               </td>
             </tr>
           </tbody>
         </table>
 
-        <ul class="win__notes">
-          <li v-for="n in job.bullets" :key="n">
-            {{ t(`experience.${job.id}.bullet${n}`) }}
-          </li>
-        </ul>
+        <div class="win__notes">
+          <p class="win__notes-label">Notes</p>
+          <div class="win__notes-box">
+            <p
+              v-for="n in job.bullets"
+              :key="n"
+              class="win__note"
+            >
+              › {{ t(`experience.${job.id}.bullet${n}`) }}
+            </p>
+          </div>
+        </div>
       </div>
 
       <footer class="win__status">
@@ -158,14 +170,17 @@ const { t } = useI18n()
 .win__body {
   flex: 1;
   min-height: 0;
-  padding: 0.4rem 0.5rem 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.45rem 0.5rem 0.4rem;
 }
 
 .win__table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 0.4rem;
   font-size: 0.72rem;
+  flex: none;
 }
 
 .win__table th,
@@ -177,20 +192,52 @@ const { t } = useI18n()
 }
 
 .win__table th {
-  width: 46%;
+  width: 4.5rem;
   background: #dfdfdf;
   font-weight: 700;
+  color: #222;
 }
 
 .win__notes {
-  margin: 0;
-  padding-left: 0.95rem;
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.12rem;
-  font-size: 0.7rem;
-  line-height: 1.3;
-  color: var(--exp-muted);
+}
+
+.win__notes-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000080;
+}
+
+.win__notes-box {
+  flex: 1;
+  min-height: 0;
+  padding: 0.35rem 0.45rem;
+  background: #fff;
+  color: #111;
+  box-shadow:
+    inset 1px 1px #808080,
+    inset -1px -1px #fff,
+    inset 2px 2px #404040,
+    inset -2px -2px #dfdfdf;
+}
+
+.win__note {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: #222;
+}
+
+.win__note + .win__note {
+  margin-top: 0.28rem;
+  padding-top: 0.28rem;
+  border-top: 1px dotted #b0b0b0;
 }
 
 .win__status {
