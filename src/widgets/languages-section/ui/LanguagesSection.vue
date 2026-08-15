@@ -10,28 +10,27 @@ const { t } = useI18n()
     <article
       v-for="(lang, i) in languages"
       :key="lang.key"
-      class="lang-card glass-card"
+      class="lang-spec"
       :class="{
-        'lang-card--primary': lang.primary,
+        'lang-spec--primary': lang.primary,
         [`reveal-delay-${Math.min(i + 1, 3)}`]: true,
       }"
-      :style="{ '--lang-color': lang.color }"
     >
-      <div class="lang-card__badge base-font">{{ lang.key }}</div>
-
-      <div class="lang-card__body">
-        <div class="lang-card__head">
-          <h3 class="lang-card__name secont-font">{{ t(`home.languages.${lang.key}.name`) }}</h3>
-          <span class="lang-card__level base-font">{{ t(`home.languages.${lang.key}.level`) }}</span>
+      <p class="lang-spec__glyph" aria-hidden="true">{{ lang.specimen }}</p>
+      <div class="lang-spec__body">
+        <div class="lang-spec__head">
+          <h3 class="lang-spec__name">{{ t(`home.languages.${lang.key}.name`) }}</h3>
+          <span class="lang-spec__level">{{ t(`home.languages.${lang.key}.level`) }}</span>
         </div>
-
-        <p class="lang-card__usage">{{ t(`home.languages.${lang.key}.usage`) }}</p>
-
-        <div class="lang-card__track">
-          <div class="lang-card__fill" :style="{ width: lang.level + '%' }" />
+        <p class="lang-spec__usage">{{ t(`home.languages.${lang.key}.usage`) }}</p>
+        <div class="lang-spec__meter" :aria-label="`${lang.level}%`">
+          <span class="lang-spec__meter-fill" :style="{ width: lang.level + '%' }" />
         </div>
-
-        <span class="lang-card__percent base-font">{{ lang.level }}%</span>
+        <p class="lang-spec__sample">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
+          abcdefghijklmnopqrstuvwxyz<br />
+          0123456789
+        </p>
       </div>
     </article>
   </div>
@@ -40,157 +39,101 @@ const { t } = useI18n()
 <style scoped>
 .langs {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  font-family: var(--type-font-meta);
+  color: var(--type-ink);
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
   .langs {
-    grid-template-columns: 1.15fr 1fr;
-    gap: 1.25rem;
-    align-items: stretch;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
   }
 }
 
-.lang-card {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  gap: 1.25rem;
-  padding: 1.5rem 1.5rem 1.375rem;
-  transition:
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.lang-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, color-mix(in srgb, var(--lang-color) 12%, transparent), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.25s;
-  pointer-events: none;
-}
-
-.lang-card:hover {
-  border-color: color-mix(in srgb, var(--lang-color) 40%, transparent);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px -20px color-mix(in srgb, var(--lang-color) 28%, transparent);
-}
-
-.lang-card:hover::before {
-  opacity: 1;
-}
-
-.lang-card--primary {
-  border-color: color-mix(in srgb, var(--lang-color) 30%, transparent);
+.lang-spec {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--type-rule);
 }
 
 @media (min-width: 40rem) {
-  .lang-card--primary {
-    padding: 1.75rem 1.75rem 1.5rem;
+  .lang-spec {
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
   }
 }
 
-.lang-card__badge {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 0.875rem;
-  font-size: 0.875rem;
+.lang-spec__glyph {
+  margin: 0;
+  font-family: var(--type-font-display);
+  font-size: clamp(4.5rem, 12vw, 7rem);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--lang-color);
-  background: color-mix(in srgb, var(--lang-color) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--lang-color) 24%, transparent);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--type-ink);
 }
 
-.lang-card--primary .lang-card__badge {
-  width: 3.75rem;
-  height: 3.75rem;
-  font-size: 0.9375rem;
-  border-radius: 1rem;
+.lang-spec__name {
+  margin: 0;
+  font-family: var(--type-font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
-.lang-card__body {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  min-width: 0;
-}
-
-.lang-card__head {
+.lang-spec__head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.5rem 0.75rem;
-  margin-bottom: 0.375rem;
+  gap: 0.65rem 1rem;
 }
 
-.lang-card__name {
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.3;
+.lang-spec__level {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--type-muted);
 }
 
-.lang-card--primary .lang-card__name {
-  font-size: 1.25rem;
+.lang-spec__usage {
+  margin: 0.65rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--type-muted);
 }
 
-.lang-card__level {
-  font-size: 0.6875rem;
-  letter-spacing: 0.04em;
-  color: var(--lang-color);
+.lang-spec__meter {
+  margin-top: 1rem;
+  height: 2px;
+  background: var(--type-rule);
 }
 
-.lang-card__usage {
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-}
-
-.lang-card__track {
-  height: 4px;
-  border-radius: 999px;
-  background: var(--border);
-  overflow: hidden;
-}
-
-.lang-card--primary .lang-card__track {
-  height: 5px;
-}
-
-.lang-card__fill {
+.lang-spec__meter-fill {
+  display: block;
   height: 100%;
-  border-radius: inherit;
-  background: var(--lang-color);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--lang-color) 45%, transparent);
+  background: var(--type-ink);
   transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lang-card__percent {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 0.6875rem;
-  letter-spacing: 0.04em;
-  color: var(--lang-color);
-  opacity: 0.8;
+.lang-spec__sample {
+  margin: 1rem 0 0;
+  font-family: var(--type-font-display);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--type-muted) 70%, transparent);
 }
 
-.reveal:not(.revealed) .lang-card__fill {
+.reveal:not(.revealed) .lang-spec__meter-fill {
   width: 0 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lang-card__fill {
+  .lang-spec__meter-fill {
     transition: none;
   }
 }

@@ -13,17 +13,12 @@ const { t } = useI18n()
       class="timeline__item reveal"
       :class="[`reveal-delay-${Math.min(i + 1, 3)}`, { 'timeline__item--current': job.current }]"
     >
-      <div class="timeline__meta">
-        <span class="timeline__index base-font">{{ String(i + 1).padStart(2, '0') }}</span>
-        <time class="timeline__date base-font">{{ t(job.periodKey) }}</time>
+      <div class="timeline__rail">
+        <span class="timeline__index">{{ String(i + 1).padStart(2, '0') }}</span>
+        <time class="timeline__date">{{ t(job.periodKey) }}</time>
       </div>
 
-      <div class="timeline__spine" aria-hidden="true">
-        <span class="timeline__dot" />
-        <span v-if="i < experience.length - 1" class="timeline__stem" />
-      </div>
-
-      <div class="timeline__card glass-card">
+      <div class="timeline__block">
         <header class="timeline__head">
           <div>
             <component
@@ -31,20 +26,16 @@ const { t } = useI18n()
               :href="job.url || undefined"
               target="_blank"
               rel="noopener noreferrer"
-              class="timeline__company secont-font"
+              class="timeline__company"
               :class="{ 'timeline__company--link': job.url }"
             >
               {{ job.company }}
             </component>
             <p class="timeline__role">{{ t(job.roleKey) }}</p>
           </div>
-
           <div class="timeline__labels">
-            <time class="timeline__date-mobile base-font">{{ t(job.periodKey) }}</time>
-            <span class="timeline__type base-font">{{ t(job.typeKey) }}</span>
-            <span v-if="job.current" class="timeline__current base-font">
-              {{ t('experience.current') }}
-            </span>
+            <span class="timeline__type">{{ t(job.typeKey) }}</span>
+            <span v-if="job.current" class="timeline__now">{{ t('experience.current') }}</span>
           </div>
         </header>
 
@@ -62,207 +53,146 @@ const { t } = useI18n()
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
+  border-top: 2px solid var(--exp-accent);
 }
 
 .timeline__item {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
+  border-bottom: 2px solid var(--exp-border);
 }
 
-.timeline__meta,
-.timeline__spine {
-  display: none;
+@media (min-width: 48rem) {
+  .timeline__item {
+    grid-template-columns: 11rem 1fr;
+  }
+}
+
+.timeline__rail {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 0;
+  font-family: var(--exp-font);
+}
+
+@media (min-width: 48rem) {
+  .timeline__rail {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 1.5rem 1.25rem;
+    border-right: 2px solid var(--exp-border);
+  }
+}
+
+.timeline__index {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--exp-accent);
+}
+
+.timeline__date {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--exp-muted);
+}
+
+.timeline__block {
+  padding: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  .timeline__block {
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+.timeline__item--current .timeline__block {
+  background: color-mix(in srgb, var(--exp-accent) 6%, transparent);
 }
 
 .timeline__head {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
   gap: 0.75rem 1.5rem;
 }
 
-.timeline__date-mobile {
-  font-size: 0.75rem;
-  color: var(--brand);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
 .timeline__company {
+  margin: 0;
+  font-family: var(--exp-font);
   font-size: 1.125rem;
   font-weight: 500;
-  color: var(--text);
   line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--exp-ink);
+  text-transform: uppercase;
 }
 
 .timeline__company--link {
-  color: var(--brand);
-  transition: opacity 0.2s;
-}
-
-.timeline__company--link:hover {
-  opacity: 0.85;
+  color: var(--exp-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .timeline__role {
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
-  color: var(--text-muted);
+  margin: 0.4rem 0 0;
+  font-family: var(--exp-font);
+  font-size: 0.8125rem;
+  color: var(--exp-muted);
 }
 
 .timeline__labels {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.375rem;
+  gap: 0.4rem;
 }
 
-.timeline__type {
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+.timeline__type,
+.timeline__now {
+  font-family: var(--exp-font);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 0.2rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--exp-border);
+  color: var(--exp-muted);
 }
 
-.timeline__current {
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--brand);
-  padding: 0.2rem 0.5rem;
-  border: 1px solid var(--border-accent);
-  border-radius: 999px;
-  background: var(--brand-dim);
-}
-
-.timeline__card {
-  padding: 1.25rem 1.5rem;
-  transition: border-color 0.2s ease;
-}
-
-.timeline__item--current .timeline__card {
-  border-color: rgba(18, 247, 214, 0.35);
-}
-
-.timeline__card:hover {
-  border-color: rgba(18, 247, 214, 0.25);
+.timeline__now {
+  border-color: var(--exp-accent);
+  color: var(--exp-bg);
+  background: var(--exp-accent);
 }
 
 .timeline__bullets {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
+  margin: 1.1rem 0 0;
+  padding: 1.1rem 0 0;
+  border-top: 1px solid var(--exp-border);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  list-style: none;
 }
 
 .timeline__bullets li {
   position: relative;
-  padding-left: 1rem;
-  font-size: 0.875rem;
+  padding-left: 1.1rem;
+  font-family: var(--exp-font);
+  font-size: 0.8125rem;
   line-height: 1.65;
-  color: var(--text-muted);
+  color: var(--exp-muted);
 }
 
 .timeline__bullets li::before {
-  content: '—';
+  content: '>';
   position: absolute;
   left: 0;
-  color: var(--brand);
-  opacity: 0.7;
-}
-
-@media (min-width: 48rem) {
-  .timeline {
-    --timeline-gap: 2rem;
-    gap: var(--timeline-gap);
-  }
-
-  .timeline__item {
-    grid-template-columns: 8.75rem 2rem 1fr;
-    gap: 0 1.5rem;
-    align-items: stretch;
-  }
-
-  .timeline__meta,
-  .timeline__spine {
-    display: flex;
-  }
-
-  .timeline__meta {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding-top: 1.375rem;
-    text-align: right;
-    gap: 0.375rem;
-  }
-
-  .timeline__index {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    opacity: 0.45;
-    letter-spacing: 0.08em;
-    line-height: 1;
-  }
-
-  .timeline__date {
-    font-size: 0.8125rem;
-    color: var(--brand);
-    letter-spacing: 0.01em;
-    line-height: 1.45;
-    max-width: 8.75rem;
-  }
-
-  .timeline__spine {
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1.5rem;
-    align-self: stretch;
-  }
-
-  .timeline__dot {
-    width: 0.625rem;
-    height: 0.625rem;
-    border-radius: 50%;
-    border: 2px solid var(--brand);
-    background: var(--surface);
-    flex-shrink: 0;
-    z-index: 1;
-  }
-
-  .timeline__item--current .timeline__dot {
-    background: var(--brand);
-    box-shadow: 0 0 10px rgba(18, 247, 214, 0.45);
-  }
-
-  .timeline__stem {
-    position: absolute;
-    top: calc(1.5rem + 0.625rem + 4px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: calc(100% - 1.5rem - 0.625rem - 4px + var(--timeline-gap) + 1.5rem + 0.3125rem);
-    background: var(--border);
-  }
-
-  .timeline__date-mobile {
-    display: none;
-  }
-
-  .timeline__labels {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-end;
-  }
+  color: var(--exp-accent);
 }
 </style>

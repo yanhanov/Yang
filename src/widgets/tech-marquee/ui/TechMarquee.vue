@@ -21,15 +21,15 @@ const techs = [
 </script>
 
 <template>
-  <div class="marquee-wrap">
+  <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
       <div
         v-for="(tech, i) in [...techs, ...techs]"
         :key="`${tech.icon}-${i}`"
-        class="marquee-pill"
+        class="marquee-item"
       >
-        <TechIcon :name="tech.icon" :size="20" />
-        <span class="marquee-pill__label">{{ tech.label }}</span>
+        <TechIcon :name="tech.icon" :size="16" />
+        <span>{{ tech.label }}</span>
       </div>
     </div>
   </div>
@@ -38,48 +38,33 @@ const techs = [
 <style scoped>
 .marquee-wrap {
   overflow: hidden;
-  padding-block: 1.25rem;
-  border-block: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
-  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  padding-block: 0.85rem;
+  border-block: 1px solid rgba(244, 240, 234, 0.12);
+  background: #0e0c0a;
+  color: #f4f0ea;
+  font-family: var(--opening-font);
   contain: paint;
-  isolation: isolate;
 }
 
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.75rem;
   width: max-content;
-  will-change: transform;
-  animation: marquee 32s linear infinite;
+  animation: marquee 34s linear infinite;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.marquee-pill {
-  display: flex;
+.marquee-item {
+  display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   flex-shrink: 0;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
-  background: var(--bg-elevated);
-  transition:
-    border-color 0.2s,
-    background 0.2s;
-}
-
-.marquee-pill__label {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-
-.marquee-pill:hover {
-  border-color: var(--brand);
-  background: var(--brand-dim);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a39e96;
+  white-space: nowrap;
 }
 
 @keyframes marquee {
@@ -97,7 +82,7 @@ const techs = [
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    gap: 0.75rem;
+    gap: 0.85rem 1.25rem;
     padding-inline: 1rem;
   }
 }

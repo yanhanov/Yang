@@ -19,22 +19,22 @@ export const techLabels = {
 export const services = [
   {
     key: 'frontend',
-    color: '#42b883',
+    color: '#d62828',
     tech: ['vue', 'react', 'tailwind', 'typescript'],
   },
   {
     key: 'backend',
-    color: '#339933',
+    color: '#f0c419',
     tech: ['node', 'postgres', 'redis', 'docker'],
   },
   {
     key: 'multiplatform',
-    color: '#3fb6d3',
+    color: '#1d4e89',
     tech: ['flutter', 'reactnative', 'dart', 'rust'],
   },
   {
     key: 'e2e',
-    color: '#12f7d6',
+    color: '#111111',
     tech: ['figma', 'git', 'api'],
   },
 ]

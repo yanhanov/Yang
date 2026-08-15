@@ -4,6 +4,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 defineProps({
   segmented: { type: Boolean, default: false },
+  opening: { type: Boolean, default: false },
+  inline: { type: Boolean, default: false },
 })
 
 const { locale } = useI18n()
@@ -28,8 +30,34 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
 
 <template>
   <div
-    v-if="segmented"
+    v-if="inline"
+    class="lang lang--inline"
+    role="group"
+    :aria-label="$t('header.lang-label')"
+  >
+    <button
+      type="button"
+      class="lang__inline"
+      :class="{ 'lang__inline--active': locale === 'en' }"
+      @click="changeLanguage('en')"
+    >
+      EN
+    </button>
+    <span class="lang__slash" aria-hidden="true">/</span>
+    <button
+      type="button"
+      class="lang__inline"
+      :class="{ 'lang__inline--active': locale === 'ru' }"
+      @click="changeLanguage('ru')"
+    >
+      RU
+    </button>
+  </div>
+
+  <div
+    v-else-if="segmented"
     class="lang lang--segmented base-font"
+    :class="{ 'lang--opening': opening }"
     role="group"
     :aria-label="$t('header.lang-label')"
   >
@@ -51,7 +79,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
     </button>
   </div>
 
-  <div v-else ref="root" class="lang">
+  <div v-else ref="root" class="lang" :class="{ 'lang--opening': opening }">
     <button
       type="button"
       class="lang__trigger base-font"
@@ -98,6 +126,39 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
   position: relative;
 }
 
+.lang--inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.lang__inline {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--opening-font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--opening-muted);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.lang__inline:hover {
+  color: var(--opening-text);
+}
+
+.lang__inline--active {
+  color: var(--opening-text);
+}
+
+.lang__slash {
+  font-size: 0.75rem;
+  color: var(--opening-muted);
+  opacity: 0.45;
+}
+
 .lang__trigger {
   display: inline-flex;
   align-items: center;
@@ -118,6 +179,19 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
 .lang__trigger:hover {
   color: var(--text);
   border-color: rgba(18, 247, 214, 0.35);
+}
+
+.lang--opening .lang__trigger {
+  border-radius: var(--opening-radius);
+  color: var(--opening-muted);
+  background: transparent;
+  border-color: var(--opening-border);
+}
+
+.lang--opening .lang__trigger:hover {
+  color: var(--opening-text);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: var(--opening-accent-soft);
 }
 
 .lang__chevron {
@@ -146,6 +220,13 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
     transform 0.2s ease,
     visibility 0.2s;
   z-index: 60;
+}
+
+.lang--opening .lang__menu {
+  border-radius: var(--opening-radius);
+  background: var(--opening-bg-elevated);
+  border-color: var(--opening-border);
+  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.85);
 }
 
 .lang__menu--open {
@@ -181,6 +262,22 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
   background: var(--brand-dim);
 }
 
+.lang--opening .lang__option {
+  font-family: var(--opening-font);
+  color: var(--opening-muted);
+  border-radius: calc(var(--opening-radius) - 2px);
+}
+
+.lang--opening .lang__option:hover {
+  color: var(--opening-text);
+  background: var(--opening-accent-soft);
+}
+
+.lang--opening .lang__option--active {
+  color: var(--opening-text);
+  background: var(--opening-accent-soft);
+}
+
 .lang--segmented {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -189,6 +286,12 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
   border-radius: 0.75rem;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--border);
+}
+
+.lang--opening.lang--segmented {
+  border-radius: var(--opening-radius);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--opening-border);
 }
 
 .lang__segment {
@@ -210,5 +313,18 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
   color: var(--brand);
   background: var(--brand-dim);
   box-shadow: inset 0 0 0 1px var(--border-accent);
+}
+
+.lang--opening .lang__segment {
+  font-family: var(--opening-font);
+  letter-spacing: -0.01em;
+  border-radius: calc(var(--opening-radius) - 2px);
+  color: var(--opening-muted);
+}
+
+.lang--opening .lang__segment--active {
+  color: var(--opening-text);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px var(--opening-border);
 }
 </style>

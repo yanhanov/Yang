@@ -1,351 +1,214 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Toast } from '@/shared/ui/toast'
 
 const { t } = useI18n()
-const showToast = ref(false)
 
-function onCloseClick() {
-  showToast.value = true
-}
-
-const lines = computed(() => [
-  { type: 'comment', text: ' about me ' },
-  { type: 'tag-open', name: 'html', indent: 0 },
-  { type: 'tag-open', name: 'body', indent: 1 },
-  { type: 'tag-open', name: 'h2', indent: 2 },
-  {
-    type: 'content',
-    indent: 3,
-    parts: [{ text: t('home.about-hi'), highlight: true, heading: true }],
-  },
-  { type: 'tag-close', name: 'h2', indent: 2 },
-  { type: 'tag-open', name: 'p', indent: 2 },
-  {
-    type: 'content',
-    indent: 3,
-    parts: [{ text: t('home.about.p1') }],
-  },
-  { type: 'tag-close', name: 'p', indent: 2 },
-  { type: 'tag-open', name: 'p', indent: 2 },
-  {
-    type: 'content',
-    indent: 3,
-    parts: [
-      { text: t('home.about.p2Before') },
-      { text: t('home.about.p2Role'), highlight: true },
-      { text: t('home.about.p2After') },
-    ],
-  },
-  { type: 'tag-close', name: 'p', indent: 2 },
-  { type: 'tag-open', name: 'p', indent: 2 },
-  {
-    type: 'content',
-    indent: 3,
-    parts: [{ text: t('home.about.p3') }],
-  },
-  { type: 'tag-close', name: 'p', indent: 2 },
-  { type: 'tag-open', name: 'p', indent: 2 },
-  {
-    type: 'content',
-    indent: 3,
-    parts: [{ text: t('home.about.p4') }],
-  },
-  { type: 'tag-close', name: 'p', indent: 2 },
-  { type: 'tag-close', name: 'body', indent: 1 },
-  { type: 'tag-close', name: 'html', indent: 0 },
-])
-
-const lineCount = computed(() => lines.value.length)
+const lead = computed(() => t('home.about.p1'))
+const drop = computed(() => lead.value.trim().charAt(0))
+const leadRest = computed(() => lead.value.trim().slice(1))
 </script>
 
 <template>
-  <div class="about-ide">
-    <div class="about-ide__chrome">
-      <div class="about-ide__titlebar">
-        <div class="about-ide__tabs">
-          <div class="about-ide__tab is-active base-font">
-            <span class="about-ide__tab-icon" aria-hidden="true">&lt;/&gt;</span>
-            <span class="about-ide__tab-label">about.html</span>
-            <button
-              type="button"
-              class="about-ide__tab-close"
-              aria-label="Close about.html"
-              @click="onCloseClick"
-            >
-              ×
-            </button>
-          </div>
-          <div class="about-ide__tab is-muted base-font">styles.css</div>
-        </div>
-        <p class="about-ide__path base-font">src › pages › about.html</p>
-      </div>
+  <section id="about" class="about page-section">
+    <div class="about__sheet">
+      <header class="about__masthead reveal">
+        <p class="about__kicker">{{ $t('home.about-kicker') }}</p>
+        <div class="about__rule" aria-hidden="true" />
+        <h2 class="about__title">{{ $t('home.about-title') }}</h2>
+      </header>
 
-      <div class="about-ide__editor">
-        <div class="about-code base-font">
-          <div
-            v-for="(line, index) in lines"
-            :key="index"
-            class="about-code__row"
-            :style="{ '--indent': line.indent ?? 0 }"
-          >
-            <span class="about-code__ln">{{ index + 1 }}</span>
-            <div class="about-code__line">
-              <template v-if="line.type === 'comment'">
-                <span class="tok-comment">&lt;!--{{ line.text }}--&gt;</span>
-              </template>
+      <div class="about__layout">
+        <article class="about__article reveal reveal-delay-1">
+          <p class="about__lead">
+            <span class="about__drop" aria-hidden="true">{{ drop }}</span>
+            <span class="about__lead-text">{{ leadRest }}</span>
+          </p>
 
-              <template v-else-if="line.type === 'tag-open'">
-                <span class="tok-bracket">&lt;</span><span class="tok-tag">{{ line.name }}</span
-                ><span class="tok-bracket">&gt;</span>
-              </template>
+          <p class="about__p">
+            {{ $t('home.about.p2Before') }}<em class="about__em">{{ $t('home.about.p2Role') }}</em
+            >{{ $t('home.about.p2After') }}
+          </p>
 
-              <template v-else-if="line.type === 'tag-close'">
-                <span class="tok-bracket">&lt;/</span><span class="tok-tag">{{ line.name }}</span
-                ><span class="tok-bracket">&gt;</span>
-              </template>
+          <blockquote class="about__quote">
+            <p>{{ $t('home.about.p3') }}</p>
+          </blockquote>
 
-              <template v-else-if="line.type === 'content'">
-                <span
-                  v-for="(part, partIndex) in line.parts"
-                  :key="partIndex"
-                  :class="[
-                    part.heading ? 'about-code__heading' : '',
-                    part.highlight ? 'tok-highlight' : 'tok-text',
-                  ]"
-                  >{{ part.text }}</span
-                >
-              </template>
-            </div>
-          </div>
-        </div>
-      </div>
+          <p class="about__p">{{ $t('home.about.p4') }}</p>
+        </article>
 
-      <div class="about-ide__status base-font">
-        <div class="about-ide__status-group">
-          <span class="about-ide__status-item is-accent">HTML</span>
-          <span class="about-ide__status-item">UTF-8</span>
-          <span class="about-ide__status-item">Spaces: 2</span>
-        </div>
-        <div class="about-ide__status-group">
-          <span class="about-ide__status-item">Ln {{ lineCount }}, Col 1</span>
-        </div>
+        <figure class="about__figure reveal reveal-delay-2">
+          <picture>
+            <source srcset="/Image-400.webp 400w" sizes="(min-width: 64rem) 360px, 100vw" type="image/webp" />
+            <img
+              src="/Image-400.webp"
+              alt=""
+              class="about__photo"
+              width="400"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+          <figcaption class="about__caption">{{ $t('home.about-figcaption') }}</figcaption>
+        </figure>
       </div>
     </div>
-
-    <Toast v-model="showToast" :message="t('home.about-close-toast')" />
-  </div>
+  </section>
 </template>
 
 <style scoped>
-.about-ide {
-  margin-top: 2rem;
-}
-
-.about-ide__chrome {
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(67, 69, 77, 0.85);
-  background: #161a1f;
-  overflow: hidden;
-  box-shadow:
-    0 0 0 1px rgba(18, 247, 214, 0.06),
-    0 28px 72px -36px rgba(0, 0, 0, 0.95),
-    0 0 48px -24px rgba(18, 247, 214, 0.12);
-}
-
-.about-ide__titlebar {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.625rem 0.875rem 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.15));
-  border-bottom: 1px solid var(--border);
-}
-
-.about-ide__tabs {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.25rem;
-  min-width: 0;
-  padding-bottom: 0;
-}
-
-.about-ide__tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  max-width: 11rem;
-  padding: 0.4375rem 0.5rem 0.4375rem 0.875rem;
-  font-size: 0.6875rem;
-  border: 1px solid transparent;
-  border-radius: 0.5rem 0.5rem 0 0;
-  white-space: nowrap;
-}
-
-.about-ide__tab-label {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.about-ide__tab-close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.125rem;
-  height: 1.125rem;
-  margin-left: 0.125rem;
-  padding: 0;
-  border: none;
-  border-radius: 0.25rem;
-  background: transparent;
-  color: #6a737d;
-  font-size: 0.875rem;
-  line-height: 1;
-  cursor: pointer;
-  opacity: 1;
-  transition: background 0.15s, color 0.15s;
-}
-
-.about-ide__tab-close:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text);
-}
-
-.about-ide__tab-close:focus-visible {
-  outline: 1px solid var(--brand);
-  outline-offset: 1px;
-}
-
-.about-ide__tab.is-active {
-  color: var(--text);
-  background: #1a1e23;
-  border-color: var(--border);
-  border-bottom-color: #1a1e23;
+.about {
+  --about-pad: clamp(3.5rem, 8vw, 7rem);
   position: relative;
-  top: 1px;
+  background: var(--about-bg);
+  color: var(--about-ink);
+  font-family: var(--about-font-body);
 }
 
-.about-ide__tab.is-muted {
-  color: #6a737d;
+.about__sheet {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: var(--about-pad) 1.25rem;
+  box-sizing: border-box;
 }
 
-.about-ide__tab-icon {
-  color: var(--brand);
-  font-size: 0.625rem;
+.about__masthead {
+  max-width: 40rem;
 }
 
-.about-ide__path {
+.about__kicker {
   margin: 0;
-  padding-bottom: 0.625rem;
-  font-size: 0.625rem;
-  color: #6a737d;
-  white-space: nowrap;
+  font-family: var(--about-font-meta);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--about-accent);
 }
 
-.about-ide__editor {
-  background: #1a1e23;
-  overflow-x: auto;
+.about__rule {
+  width: 3.5rem;
+  height: 1px;
+  margin: 1rem 0 1.25rem;
+  background: var(--about-rule);
 }
 
-.about-code {
-  --indent-unit: 2ch;
-  --gutter: 3rem;
-  min-width: min(100%, 36rem);
+.about__title {
+  margin: 0;
+  font-family: var(--about-font-display);
+  font-size: clamp(2.75rem, 7vw, 4.75rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--about-ink);
 }
 
-.about-code__row {
+.about__layout {
   display: grid;
-  grid-template-columns: var(--gutter) 1fr;
-  min-height: 1.625rem;
-  font-size: 0.8125rem;
-  line-height: 1.625;
+  gap: 3rem;
+  margin-top: 3rem;
+  align-items: start;
 }
 
-.about-code__row:hover {
-  background: rgba(255, 255, 255, 0.025);
+@media (min-width: 64rem) {
+  .about__layout {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.75fr);
+    gap: 4.5rem;
+    margin-top: 4rem;
+  }
 }
 
-.about-code__ln {
-  padding-right: 0.875rem;
-  text-align: right;
-  color: #4b5263;
-  border-right: 1px solid rgba(67, 69, 77, 0.45);
-  user-select: none;
+.about__article {
+  max-width: 38rem;
 }
 
-.about-code__line {
-  padding-left: calc(0.875rem + var(--indent) * var(--indent-unit));
-  padding-right: 1rem;
-  white-space: pre-wrap;
-  word-break: break-word;
+.about__lead {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--about-ink);
 }
 
-.tok-comment {
-  color: #6a9955;
+.about__drop {
+  float: left;
+  margin: 0.1rem 0.55rem 0 0;
+  font-family: var(--about-font-display);
+  font-size: 4.75rem;
+  font-weight: 600;
+  line-height: 0.8;
+  color: var(--about-accent);
+}
+
+.about__lead-text {
+  display: inline;
+}
+
+.about__p {
+  margin: 1.5rem 0 0;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--about-muted);
+}
+
+.about__em {
   font-style: italic;
+  font-weight: 600;
+  color: var(--about-ink);
 }
 
-.tok-bracket {
-  color: #808080;
+.about__quote {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 2px solid var(--about-accent);
 }
 
-.tok-tag {
-  color: #569cd6;
+.about__quote p {
+  margin: 0;
+  font-family: var(--about-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--about-ink);
 }
 
-.tok-text {
-  color: var(--text-muted);
+.about__figure {
+  margin: 0;
+  padding: 0.85rem;
+  background: var(--about-paper);
+  border: 1px solid var(--about-rule);
 }
 
-.tok-highlight {
-  color: var(--brand);
+.about__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(0.15) contrast(1.04);
 }
 
-.about-code__heading {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.5;
+.about__caption {
+  margin: 0.75rem 0 0;
+  font-family: var(--about-font-meta);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--about-muted);
 }
 
-.about-ide__status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.3125rem 0.875rem;
-  border-top: 1px solid var(--border);
-  background: #12151a;
-  font-size: 0.625rem;
-  color: #6a737d;
-  letter-spacing: 0.03em;
-}
-
-.about-ide__status-group {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-}
-
-.about-ide__status-item.is-accent {
-  color: var(--brand);
-}
-
-@media (max-width: 640px) {
-  .about-ide__titlebar {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+@media (max-width: 63.99rem) {
+  .about__figure {
+    max-width: 22rem;
   }
 
-  .about-ide__path {
-    grid-column: 1 / -1;
-    padding-bottom: 0.5rem;
-  }
-
-  .about-ide__tab.is-muted {
-    display: none;
+  .about__drop {
+    font-size: 3.75rem;
   }
 }
 </style>

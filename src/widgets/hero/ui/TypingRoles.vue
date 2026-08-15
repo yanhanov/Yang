@@ -3,9 +3,8 @@ import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
-const display = ref('')
 const roleIndex = ref(0)
-const isDeleting = ref(false)
+const visible = ref(true)
 let timer
 let suspended = false
 
@@ -13,50 +12,26 @@ const roles = computed(() =>
   locale.value === 'ru'
     ? [
         'Middle Software Engineer',
-        'Software-инженер',
         'Fullstack-инженер',
         'Мобильный разработчик',
-        'Backend-разработчик',
       ]
     : [
         'Middle Software Engineer',
-        'Software Engineer',
         'Full Stack Engineer',
         'Mobile Developer',
-        'Backend Developer',
       ],
 )
 
-const tick = () => {
+const current = computed(() => roles.value[roleIndex.value % roles.value.length])
+
+const advance = () => {
   if (suspended) return
-
-  const current = roles.value[roleIndex.value % roles.value.length]
-  const full = current
-
-  if (!isDeleting.value) {
-    display.value = full.slice(0, display.value.length + 1)
-    if (display.value === full) {
-      isDeleting.value = true
-      timer = setTimeout(tick, 2200)
-      return
-    }
-    timer = setTimeout(tick, 80)
-  } else {
-    display.value = full.slice(0, display.value.length - 1)
-    if (display.value === '') {
-      isDeleting.value = false
-      roleIndex.value++
-      timer = setTimeout(tick, 400)
-      return
-    }
-    timer = setTimeout(tick, 40)
-  }
-}
-
-const resume = () => {
-  if (!suspended) return
-  suspended = false
-  timer = setTimeout(tick, 200)
+  visible.value = false
+  timer = setTimeout(() => {
+    roleIndex.value++
+    visible.value = true
+    timer = setTimeout(advance, 3200)
+  }, 320)
 }
 
 const onVisibility = () => {
@@ -65,11 +40,12 @@ const onVisibility = () => {
     clearTimeout(timer)
     return
   }
-  resume()
+  suspended = false
+  timer = setTimeout(advance, 2400)
 }
 
 onMounted(() => {
-  timer = setTimeout(tick, 600)
+  timer = setTimeout(advance, 2800)
   document.addEventListener('visibilitychange', onVisibility)
 })
 
@@ -80,26 +56,38 @@ onUnmounted(() => {
 
 watch(locale, () => {
   clearTimeout(timer)
-  display.value = ''
   roleIndex.value = 0
-  isDeleting.value = false
-  if (!suspended) timer = setTimeout(tick, 300)
+  visible.value = true
+  if (!suspended) timer = setTimeout(advance, 2800)
 })
 </script>
 
 <template>
-  <span class="color-brand"> {{ display }}<span class="cursor-blink">|</span> </span>
+  <span class="roles" :class="{ 'roles--hidden': !visible }">{{ current }}</span>
 </template>
 
 <style scoped>
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-  font-weight: 300;
+.roles {
+  display: inline-block;
+  color: var(--opening-text);
+  transition:
+    opacity 0.32s ease,
+    transform 0.32s ease;
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
+.roles--hidden {
+  opacity: 0;
+  transform: translateY(0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roles {
+    transition: none;
+  }
+
+  .roles--hidden {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>

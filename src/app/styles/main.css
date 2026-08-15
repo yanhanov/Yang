@@ -13,6 +13,89 @@
   --text-muted: #8b919a;
   --radius: 1rem;
   --radius-lg: 1.5rem;
+
+  /* Opening zone — cinematic portrait */
+  --opening-bg: #0e0c0a;
+  --opening-bg-elevated: #1a1714;
+  --opening-text: #f4f0ea;
+  --opening-muted: #a39e96;
+  --opening-accent: #f4f0ea;
+  --opening-accent-soft: rgba(244, 240, 234, 0.06);
+  --opening-border: rgba(244, 240, 234, 0.14);
+  --opening-radius: 0.375rem;
+  --opening-font: 'Onest', 'Ubuntu', system-ui, sans-serif;
+
+  /* About zone — editorial magazine */
+  --about-bg: #eef1f4;
+  --about-ink: #141820;
+  --about-muted: #5a6572;
+  --about-rule: #c3cad3;
+  --about-accent: #1f4f6d;
+  --about-paper: #f7f8fa;
+  --about-font-display: 'Literata', Georgia, 'Times New Roman', serif;
+  --about-font-body: 'Literata', Georgia, 'Times New Roman', serif;
+  --about-font-meta: 'Onest', 'Ubuntu', system-ui, sans-serif;
+
+  /* Experience — brutalist mono */
+  --exp-bg: #0f0f0f;
+  --exp-ink: #f2f0e9;
+  --exp-muted: #8c8a82;
+  --exp-accent: #e8ff47;
+  --exp-border: #2a2a2a;
+  --exp-font: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Projects — Swiss grid */
+  --swiss-bg: #f2f2f0;
+  --swiss-ink: #111111;
+  --swiss-muted: #5c5c5c;
+  --swiss-accent: #e10600;
+  --swiss-rule: #111111;
+  --swiss-font: 'Onest', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Skills — soft UI */
+  --soft-bg: #dfe5ee;
+  --soft-surface: #e8edf4;
+  --soft-ink: #2a3340;
+  --soft-muted: #6b7788;
+  --soft-accent: #5b7cfa;
+  --soft-shadow: #c5cedb;
+  --soft-highlight: #f4f7fb;
+  --soft-font: 'Onest', 'Ubuntu', system-ui, sans-serif;
+
+  /* What I Do — Bauhaus */
+  --bauhaus-bg: #f7f4ef;
+  --bauhaus-ink: #111111;
+  --bauhaus-muted: #4a4a4a;
+  --bauhaus-red: #d62828;
+  --bauhaus-yellow: #f0c419;
+  --bauhaus-blue: #1d4e89;
+  --bauhaus-font: 'Onest', 'Ubuntu', system-ui, sans-serif;
+
+  /* Languages — type specimen */
+  --type-bg: #faf9f6;
+  --type-ink: #121212;
+  --type-muted: #6e6a63;
+  --type-rule: #d6d2c8;
+  --type-font-display: 'Literata', Georgia, serif;
+  --type-font-meta: 'Onest', system-ui, sans-serif;
+
+  /* Process — neo-brutal */
+  --brutal-bg: #fff7e8;
+  --brutal-ink: #111111;
+  --brutal-muted: #3d3d3d;
+  --brutal-accent: #ff5c35;
+  --brutal-block: #ffe566;
+  --brutal-border: #111111;
+  --brutal-font: 'Onest', system-ui, sans-serif;
+
+  /* Contact — terminal */
+  --term-bg: #0b0d0c;
+  --term-surface: #121614;
+  --term-ink: #d7ffe3;
+  --term-muted: #6f9a7c;
+  --term-accent: #3dff8a;
+  --term-border: #1f2a22;
+  --term-font: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 @layer components {
@@ -66,6 +149,53 @@
   .btn-ghost:hover {
     background: var(--brand);
     color: var(--surface);
+  }
+
+  .btn-opening {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.15rem;
+    border-radius: var(--opening-radius);
+    background: var(--opening-text);
+    color: var(--opening-bg);
+    font-family: var(--opening-font);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: -0.015em;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-opening:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  .btn-opening-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--opening-radius);
+    border: 1px solid var(--opening-border);
+    color: var(--opening-text);
+    font-family: var(--opening-font);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: -0.015em;
+    background: rgba(244, 240, 234, 0.04);
+    backdrop-filter: blur(8px);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .btn-opening-ghost:hover {
+    border-color: rgba(244, 240, 234, 0.3);
+    background: rgba(244, 240, 234, 0.08);
+  }
+
+  .display-font {
+    font-family: var(--opening-font);
+    font-weight: 500;
   }
 
   .section-label {

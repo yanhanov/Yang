@@ -51,7 +51,7 @@
       "backend": "Backend",
       "mobile": "Mobile"
     },
-    "hero-text": "There was a time I used to gaze at websites and wonder, \"Someone out there builds this.\" Now — I am that someone. I design and ship production-grade software across the stack.",
+    "hero-text": "I design and ship production software across the stack — from interface to API.",
     "hero-talk": "Let's talk",
     "about-hi": "My path",
     "about-close-toast": "Good try!",
@@ -59,6 +59,8 @@
     "hero-tech": "Technologies in stack",
     "hero-years": "Years in development",
     "about-title": "About Me",
+    "about-kicker": "Chapter 01",
+    "about-figcaption": "Desk notes — where the work begins",
     "about": {
       "p1": "There was a time I used to gaze at websites and wonder, \"Someone out there builds this.\" Now — I am that someone.",
       "p2Before": "I'm a ",

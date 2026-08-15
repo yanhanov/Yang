@@ -17,14 +17,6 @@ const pageLinks = [
   { to: '/blogs', labelKey: 'header.nav.awards' },
 ]
 
-const sectionLinks = [
-  { href: '#about', labelKey: 'header.sections.about' },
-  { href: '#experience', labelKey: 'header.sections.experience' },
-  { href: '#projects', labelKey: 'header.sections.projects' },
-  { href: '#skills', labelKey: 'header.sections.skills' },
-  { href: '#contact', labelKey: 'header.sections.contact' },
-]
-
 watch(menuIsActive, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
 })
@@ -62,7 +54,8 @@ useScrollFrame(() => {
   <header
     class="site-header"
     :class="{
-      'site-header--scrolled': scrolled,
+      'site-header--clear': isHome && !scrolled && !menuIsActive,
+      'site-header--solid': scrolled || !isHome || menuIsActive,
       'site-header--menu-open': menuIsActive,
     }"
   >
@@ -73,56 +66,32 @@ useScrollFrame(() => {
       aria-hidden="true"
     />
 
-    <div class="container site-header__inner">
-      <router-link to="/" class="site-header__logo base-font" @click="closeMenu">
-        <span class="site-header__logo-mark" aria-hidden="true">&lt;/&gt;</span>
-        <span class="site-header__logo-name">yan hanov</span>
+    <div class="site-header__bar">
+      <router-link to="/" class="site-header__logo" @click="closeMenu">
+        Yan Hanov
       </router-link>
 
       <nav class="site-header__nav hidden md:flex" aria-label="Main">
-        <div class="site-header__pill">
-          <router-link
-            v-for="link in pageLinks"
-            :key="link.to"
-            :to="link.to"
-            class="site-header__link nav-link"
-            :class="{ 'is-active': isActive(link.to) }"
-          >
-            {{ t(link.labelKey) }}
-          </router-link>
-
-          <template v-if="isHome">
-            <span class="site-header__divider" aria-hidden="true" />
-            <a
-              v-for="link in sectionLinks"
-              :key="link.href"
-              :href="link.href"
-              class="site-header__link site-header__link--section nav-link"
-            >
-              {{ t(link.labelKey) }}
-            </a>
-          </template>
-        </div>
+        <router-link
+          v-for="link in pageLinks"
+          :key="link.to"
+          :to="link.to"
+          class="site-header__link"
+          :class="{ 'is-active': isActive(link.to) }"
+        >
+          {{ t(link.labelKey) }}
+        </router-link>
       </nav>
 
       <div class="site-header__actions">
+        <LangChange opening inline class="hidden md:flex" />
         <a
           href="/yan-hanov.pdf"
           download="yan-hanov.pdf"
-          class="site-header__resume btn-ghost hidden sm:inline-flex"
+          class="site-header__resume hidden sm:inline-flex"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M12 3V15M12 15L8 11M12 15L16 11M5 21H19"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
           {{ t('header.nav.resume') }}
         </a>
-        <LangChange class="hidden md:block" />
         <button
           type="button"
           class="site-header__burger md:hidden"
@@ -132,7 +101,6 @@ useScrollFrame(() => {
           @click="menuIsActive = !menuIsActive"
         >
           <span class="site-header__burger-box">
-            <span class="site-header__burger-line" />
             <span class="site-header__burger-line" />
             <span class="site-header__burger-line" />
           </span>
@@ -147,7 +115,7 @@ useScrollFrame(() => {
       :aria-hidden="!menuIsActive"
     >
       <div class="site-header__drawer-head">
-        <p class="site-header__drawer-label section-label">{{ t('header.menu-label') }}</p>
+        <p class="site-header__drawer-label">{{ t('header.menu-label') }}</p>
         <button
           type="button"
           class="site-header__drawer-close"
@@ -158,7 +126,7 @@ useScrollFrame(() => {
             <path
               d="M6 6L18 18M18 6L6 18"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1.75"
               stroke-linecap="round"
             />
           </svg>
@@ -166,80 +134,34 @@ useScrollFrame(() => {
       </div>
 
       <div class="site-header__drawer-body">
-        <div class="site-header__drawer-group">
-          <router-link
-            v-for="(link, i) in pageLinks"
-            :key="link.to"
-            :to="link.to"
-            class="site-header__drawer-item"
-            :class="{ 'site-header__drawer-item--active': isActive(link.to) }"
-            :style="{ '--i': i }"
-            @click="closeMenu"
-          >
-            <span class="site-header__drawer-index base-font">{{
-              String(i + 1).padStart(2, '0')
-            }}</span>
-            <span class="site-header__drawer-title secont-font">{{ t(link.labelKey) }}</span>
-            <svg
-              class="site-header__drawer-arrow"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M5 12H19M19 12L13 6M19 12L13 18"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-              />
-            </svg>
-          </router-link>
-        </div>
-
-        <template v-if="isHome">
-          <p class="site-header__drawer-label section-label">{{ t('header.sections-label') }}</p>
-          <div class="site-header__drawer-sections">
-            <a
-              v-for="(link, i) in sectionLinks"
-              :key="link.href"
-              :href="link.href"
-              class="site-header__drawer-chip base-font"
-              :style="{ '--i': i + pageLinks.length }"
-              @click="closeMenu"
-            >
-              {{ t(link.labelKey) }}
-            </a>
-          </div>
-        </template>
+        <router-link
+          v-for="link in pageLinks"
+          :key="link.to"
+          :to="link.to"
+          class="site-header__drawer-item"
+          :class="{ 'site-header__drawer-item--active': isActive(link.to) }"
+          @click="closeMenu"
+        >
+          {{ t(link.labelKey) }}
+        </router-link>
       </div>
 
       <div class="site-header__drawer-foot">
-        <LangChange segmented />
+        <LangChange opening segmented />
         <div class="site-header__drawer-actions">
           <a
             href="/yan-hanov.pdf"
             download="yan-hanov.pdf"
-            class="site-header__drawer-resume btn-primary"
+            class="btn-opening"
             @click="closeMenu"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M12 3V15M12 15L8 11M12 15L16 11M5 21H19"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
             {{ t('header.nav.resume') }}
           </a>
           <a
             href="https://t.me/yanhanov"
             target="_blank"
             rel="noopener noreferrer"
-            class="site-header__drawer-telegram btn-ghost"
+            class="btn-opening-ghost"
             @click="closeMenu"
           >
             {{ t('header.nav.telegram') }}
@@ -255,134 +177,138 @@ useScrollFrame(() => {
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  border-bottom: 1px solid transparent;
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  padding: 0.75rem 1.25rem 0;
+  font-family: var(--opening-font);
+  color: var(--opening-text);
+  pointer-events: none;
 }
 
-.site-header--scrolled,
-.site-header--menu-open {
-  background-color: rgba(26, 30, 35, 0.96);
-  border-color: var(--border);
-  box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.55);
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7rem;
+  background: linear-gradient(180deg, rgba(14, 12, 10, 0.55), transparent);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
 }
 
-.site-header__inner {
+.site-header--solid::before {
+  opacity: 0;
+}
+
+.site-header__bar,
+.site-header__burger,
+.site-header__logo,
+.site-header__nav,
+.site-header__actions,
+.site-header__drawer,
+.site-header__backdrop {
+  pointer-events: auto;
+}
+
+.site-header__bar {
   position: relative;
-  display: flex;
+  z-index: 102;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 3.75rem;
+  max-width: 1140px;
+  margin-inline: auto;
+  min-height: 3.25rem;
+  padding: 0 0.85rem 0 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.site-header--solid .site-header__bar {
+  background: rgba(14, 12, 10, 0.72);
+  border-color: rgba(244, 240, 234, 0.1);
+  box-shadow: 0 12px 40px -24px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .site-header__logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  flex-shrink: 0;
-  z-index: 102;
-}
-
-.site-header__logo-mark {
-  font-size: 1.125rem;
-  color: var(--brand);
-  transition: opacity 0.2s;
-}
-
-.site-header__logo-name {
-  font-size: 1.0625rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
-}
-
-.site-header__logo:hover .site-header__logo-mark {
-  opacity: 0.75;
+  justify-self: start;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  color: var(--opening-text);
 }
 
 .site-header__nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.site-header__pill {
   display: flex;
   align-items: center;
-  gap: 0.125rem;
-  padding: 0.25rem;
-  border-radius: 999px;
-  background: rgba(34, 38, 45, 0.72);
-  border: 1px solid var(--border-accent);
+  justify-self: center;
+  gap: 0.15rem;
 }
 
 .site-header__link {
-  padding: 0.4375rem 0.875rem;
-  border-radius: 999px;
+  position: relative;
+  padding: 0.45rem 0.85rem;
   font-size: 0.8125rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  transition:
-    color 0.2s,
-    background 0.2s;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--opening-muted);
+  transition: color 0.15s ease;
 }
 
 .site-header__link::after {
-  display: none;
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.2rem;
+  height: 1px;
+  background: var(--opening-text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
 }
 
-.site-header__link:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
-}
-
+.site-header__link:hover,
 .site-header__link.is-active {
-  color: var(--brand);
-  background: var(--brand-dim);
+  color: var(--opening-text);
 }
 
-.site-header__link--section {
-  display: none;
-  font-size: 0.75rem;
-}
-
-@media (min-width: 64rem) {
-  .site-header__link--section {
-    display: inline-flex;
-  }
-}
-
-.site-header__divider {
-  width: 1px;
-  height: 1.125rem;
-  margin: 0 0.25rem;
-  background: var(--border);
-  flex-shrink: 0;
+.site-header__link.is-active::after {
+  transform: scaleX(1);
 }
 
 .site-header__actions {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  z-index: 102;
+  justify-self: end;
+  gap: 0.85rem;
 }
 
 .site-header__resume {
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--opening-text);
+  color: var(--opening-bg);
   font-size: 0.75rem;
-  padding: 0.5rem 0.875rem;
-  gap: 0.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: opacity 0.15s ease;
+}
+
+.site-header__resume:hover {
+  opacity: 0.88;
 }
 
 .site-header__backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
   z-index: 100;
-  animation: header-fade-in 0.25s ease;
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .site-header__drawer {
@@ -391,13 +317,12 @@ useScrollFrame(() => {
   z-index: 101;
   display: flex;
   flex-direction: column;
-  background: rgba(18, 21, 25, 0.98);
+  background: var(--opening-bg);
   opacity: 0;
   visibility: hidden;
   transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
-  overflow: hidden;
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 }
 
 .site-header__drawer--open {
@@ -409,269 +334,133 @@ useScrollFrame(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-shrink: 0;
-  min-height: 3.75rem;
+  min-height: 3.5rem;
   padding: 0 1.25rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--opening-border);
 }
 
 .site-header__drawer-label {
   margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--opening-muted);
 }
 
 .site-header__drawer-close {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.75rem;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--opening-radius);
+  border: 1px solid var(--opening-border);
+  background: transparent;
+  color: var(--opening-muted);
   cursor: pointer;
-  transition:
-    color 0.2s,
-    border-color 0.2s,
-    background 0.2s;
-}
-
-.site-header__drawer-close:hover {
-  color: var(--brand);
-  border-color: var(--border-accent);
 }
 
 .site-header__drawer-body {
   flex: 1;
   overflow-y: auto;
-  padding: 1.25rem 1.25rem 1rem;
-  -webkit-overflow-scrolling: touch;
-}
-
-.site-header__drawer-body > .site-header__drawer-label {
-  margin-top: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.site-header__drawer-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  padding: 0.5rem 1.25rem 1.5rem;
 }
 
 .site-header__drawer-item {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 1rem 1rem;
-  border-radius: 1rem;
-  background: rgba(34, 38, 45, 0.55);
-  border: 1px solid var(--border);
-  opacity: 0;
-  transform: translateY(0.75rem);
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease,
-    border-color 0.2s,
-    background 0.2s;
-  transition-delay: calc(var(--i, 0) * 0.05s + 0.05s);
-}
-
-.site-header__drawer--open .site-header__drawer-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.site-header__drawer-item:hover {
-  border-color: var(--border-accent);
-  background: rgba(34, 38, 45, 0.85);
+  display: block;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--opening-border);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--opening-text);
 }
 
 .site-header__drawer-item--active {
-  border-color: rgba(18, 247, 214, 0.35);
-  background: var(--brand-dim);
-}
-
-.site-header__drawer-item--active .site-header__drawer-index {
-  color: var(--brand);
-  opacity: 0.85;
-}
-
-.site-header__drawer-item--active .site-header__drawer-title {
-  color: var(--brand);
-}
-
-.site-header__drawer-index {
-  flex-shrink: 0;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--brand);
-  opacity: 0.45;
-}
-
-.site-header__drawer-title {
-  flex: 1;
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.site-header__drawer-arrow {
-  flex-shrink: 0;
-  color: var(--text-muted);
-  opacity: 0.5;
-  transition:
-    opacity 0.2s,
-    transform 0.2s,
-    color 0.2s;
-}
-
-.site-header__drawer-item:hover .site-header__drawer-arrow {
-  opacity: 1;
-  color: var(--brand);
-  transform: translateX(2px);
-}
-
-.site-header__drawer-sections {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-}
-
-.site-header__drawer-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 0.625rem;
-  border-radius: 0.75rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  background: rgba(34, 38, 45, 0.45);
-  border: 1px solid var(--border);
-  opacity: 0;
-  transform: translateY(0.5rem);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    color 0.2s,
-    border-color 0.2s,
-    background 0.2s;
-  transition-delay: calc(var(--i, 0) * 0.04s + 0.1s);
-}
-
-.site-header__drawer--open .site-header__drawer-chip {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.site-header__drawer-chip:hover {
-  color: var(--brand);
-  border-color: var(--border-accent);
-  background: var(--brand-dim);
+  color: #fff;
 }
 
 .site-header__drawer-foot {
-  flex-shrink: 0;
   padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--opening-border);
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: 0.75rem;
 }
 
 .site-header__drawer-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.625rem;
+  gap: 0.5rem;
 }
 
-.site-header__drawer-resume,
-.site-header__drawer-telegram {
+.site-header__drawer-actions :deep(.btn-opening),
+.site-header__drawer-actions :deep(.btn-opening-ghost) {
   justify-content: center;
-  font-size: 0.8125rem;
-  padding: 0.75rem 0.875rem;
-  gap: 0.375rem;
 }
 
-/* Burger */
 .site-header__burger {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
-  border-radius: 0.75rem;
-  background: rgba(34, 38, 45, 0.72);
-  border: 1px solid var(--border-accent);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--opening-border);
+  background: transparent;
   cursor: pointer;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
-}
-
-.site-header__burger:hover {
-  border-color: rgba(18, 247, 214, 0.35);
-}
-
-.site-header__burger--open {
-  border-color: rgba(18, 247, 214, 0.4);
-  background: var(--brand-dim);
 }
 
 .site-header__burger-box {
   position: relative;
-  width: 1.125rem;
-  height: 0.875rem;
-  display: block;
+  width: 0.875rem;
+  height: 0.625rem;
 }
 
 .site-header__burger-line {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--text);
+  height: 1.5px;
+  background: var(--opening-text);
   transition:
-    transform 0.25s ease,
-    top 0.25s ease,
-    opacity 0.2s ease,
-    background 0.2s;
+    top 0.2s ease,
+    transform 0.2s ease;
 }
 
-.site-header__burger-line:nth-child(1) {
+.site-header__burger-line:first-child {
   top: 0;
 }
 
-.site-header__burger-line:nth-child(2) {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.site-header__burger-line:nth-child(3) {
+.site-header__burger-line:last-child {
   bottom: 0;
 }
 
-.site-header__burger--open .site-header__burger-line {
-  background: var(--brand);
-}
-
-.site-header__burger--open .site-header__burger-line:nth-child(1) {
+.site-header__burger--open .site-header__burger-line:first-child {
   top: 50%;
   transform: translateY(-50%) rotate(45deg);
 }
 
-.site-header__burger--open .site-header__burger-line:nth-child(2) {
-  opacity: 0;
+.site-header__burger--open .site-header__burger-line:last-child {
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
 }
 
-.site-header__burger--open .site-header__burger-line:nth-child(3) {
-  bottom: 50%;
-  transform: translateY(50%) rotate(-45deg);
+@media (max-width: 47.99rem) {
+  .site-header {
+    padding: 0.55rem 0.85rem 0;
+  }
+
+  .site-header__bar {
+    grid-template-columns: 1fr auto;
+    padding-right: 0.45rem;
+  }
+
+  .site-header__nav {
+    display: none;
+  }
 }
 
 @media (min-width: 48rem) {
@@ -679,34 +468,6 @@ useScrollFrame(() => {
   .site-header__drawer,
   .site-header__backdrop {
     display: none;
-  }
-
-  .site-header__nav {
-    display: flex;
-  }
-}
-
-@media (max-width: 47.99rem) {
-  .site-header__nav {
-    display: none;
-  }
-}
-
-@keyframes header-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-header__drawer-item,
-  .site-header__drawer-chip {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 }
 </style>
