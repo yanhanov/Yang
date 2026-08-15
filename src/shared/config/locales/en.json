@@ -28,7 +28,7 @@
     "lang-label": "Language"
   },
   "footer": {
-    "copy": "©2026 Yazmyrat Hanov.",
+    "copy": "©2026 Yan Hanov.",
     "all": "All rights reserved",
     "tagline": "Software Engineer · Full Stack · Vue · Node · Flutter",
     "edition": "Vol. 01 · Ashgabat",
@@ -42,7 +42,7 @@
     "hero-terminal-comment": "available for hire",
     "hero-greeting": "Hey, I'm",
     "bio-name": "Yan",
-    "bio-fullname": "Yazmyrat Hanov",
+    "bio-fullname": "Yan Hanov",
     "bio-prof": "Middle Software Engineer",
     "bio-job": "Ashgabat · Remote",
     "bio-write": "Telegram",
@@ -239,7 +239,7 @@
     "seo": {
       "title-suffix": "Blog",
       "list-title": "Blog — Frontend Development Articles",
-      "list-description": "Articles about Vue.js, frontend architecture, career growth, and product development by Yazmyrat Hanov.",
+      "list-description": "Articles about Vue.js, frontend architecture, career growth, and product development by Yan Hanov.",
       "breadcrumb-home": "Home",
       "breadcrumb-blog": "Blog"
     }
@@ -251,8 +251,8 @@
   "projects-sub": "Products I worked on in teams",
   "seo": {
     "title": "Yan Hanov — Frontend & Full-Stack Developer | Vue, React, Node.js",
-    "description": "Middle Frontend & Full-Stack Developer. Vue 3, React, TypeScript, Node.js, Flutter. Production apps from UI to backend. Open to remote hire — portfolio of Yan (Yazmyrat) Hanov.",
-    "keywords": "frontend developer, full-stack developer, Vue.js developer, React developer, Node.js, TypeScript, Middle Frontend, hire frontend developer, remote developer, Yan Hanov, Yazmyrat Hanov"
+    "description": "Middle Frontend & Full-Stack Developer. Vue 3, React, TypeScript, Node.js, Flutter. Production apps from UI to backend. Open to remote hire — portfolio of Yan Hanov.",
+    "keywords": "frontend developer, full-stack developer, Vue.js developer, React developer, Node.js, TypeScript, Middle Frontend, hire frontend developer, remote developer, Yan Hanov"
   },
   "notfound": {
     "text": "Page not found. It may have moved or never existed.",

@@ -28,7 +28,7 @@
     "lang-label": "Язык"
   },
   "footer": {
-    "copy": "©2026 Yazmyrat Hanov.",
+    "copy": "©2026 Yan Hanov.",
     "all": "Все права защищены",
     "tagline": "Software Engineer · Full Stack · Vue · Node · Flutter",
     "edition": "Том 01 · Ашхабад",
@@ -42,7 +42,7 @@
     "hero-terminal-comment": "открыт к работе",
     "hero-greeting": "Привет, я",
     "bio-name": "Ян",
-    "bio-fullname": "Язмырат Ханов",
+    "bio-fullname": "Ян Ханов",
     "bio-prof": "Middle Software Engineer",
     "bio-job": "Ашхабад · Удалённо",
     "bio-write": "Telegram",
@@ -239,7 +239,7 @@
     "seo": {
       "title-suffix": "Блог",
       "list-title": "Блог — статьи о фронтенд-разработке",
-      "list-description": "Статьи о Vue.js, архитектуре фронтенда, карьерном росте и продуктовой разработке от Язмырата Ханова.",
+      "list-description": "Статьи о Vue.js, архитектуре фронтенда, карьерном росте и продуктовой разработке от Яна Ханова.",
       "breadcrumb-home": "Главная",
       "breadcrumb-blog": "Блог"
     }
@@ -250,8 +250,8 @@
   "projects-sub": "Продукты, над которыми работал в командах",
   "seo": {
     "title": "Ян Ханов — Frontend и Full-Stack разработчик | Vue, React, Node.js",
-    "description": "Middle Frontend и Full-Stack разработчик. Vue 3, React, TypeScript, Node.js, Flutter. Продакшен-приложения от UI до бэкенда. Открыт к удалённой работе — портфолио Яна (Язмырата) Ханова.",
-    "keywords": "frontend разработчик, full-stack разработчик, Vue.js разработчик, React разработчик, Node.js, TypeScript, Middle Frontend, удаленный разработчик, нанять фронтенд разработчика, Ян Ханов, Язмырат Ханов"
+    "description": "Middle Frontend и Full-Stack разработчик. Vue 3, React, TypeScript, Node.js, Flutter. Продакшен-приложения от UI до бэкенда. Открыт к удалённой работе — портфолио Яна Ханова.",
+    "keywords": "frontend разработчик, full-stack разработчик, Vue.js разработчик, React разработчик, Node.js, TypeScript, Middle Frontend, удаленный разработчик, нанять фронтенд разработчика, Ян Ханов"
   },
   "notfound": {
     "text": "Страница не найдена. Возможно, она переехала или никогда не существовала.",

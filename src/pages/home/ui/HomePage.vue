@@ -32,8 +32,8 @@ usePageSeo(() => {
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: 'Yazmyrat Hanov',
-      alternateName: ['Yan Hanov', 'Ян Ханов', 'Язмырат Ханов'],
+      name: 'Yan Hanov',
+      alternateName: ['Ян Ханов'],
       jobTitle: ['Frontend Developer', 'Full-Stack Developer', 'Middle Software Engineer'],
       description,
       url: SITE_URL + '/',
