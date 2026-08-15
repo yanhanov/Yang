@@ -73,13 +73,13 @@
       "p4": "I design and ship production-grade software across the stack: from pixel-perfect interfaces to scalable backends, APIs, and cross-platform apps. I don't just write code — I architect systems, choose the right tools, and deliver solutions that last."
     },
     "skills": "Tech Stack",
-    "skills-sub": "Frontend, backend, and multi-platform tools I work with",
+    "skills-sub": "A cabinet of tools — stacked, framed, and used in production",
     "skills-groups": {
-      "frontend": "// frontend",
-      "backend": "// backend",
-      "multiplatform": "// multi-platform"
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "multiplatform": "Multi-platform"
     },
-    "skills-primary-label": "// core",
+    "skills-primary-label": "Core",
     "whatido-title": "What I Do",
     "whatido-sub": "End-to-end software across the stack",
     "whatido": {

@@ -73,13 +73,13 @@
       "p4": "Проектирую и выпускаю production-grade софт на весь стек: от pixel-perfect интерфейсов до масштабируемых бэкендов, API и кроссплатформенных приложений. Не просто пишу код — проектирую системы, выбираю инструменты и делаю решения, которые живут долго."
     },
     "skills": "Технологии",
-    "skills-sub": "Frontend, backend и multi-platform инструменты, с которыми работаю",
+    "skills-sub": "Кабинет инструментов — плотно, в рамах, в продакшене",
     "skills-groups": {
-      "frontend": "// frontend",
-      "backend": "// backend",
-      "multiplatform": "// multi-platform"
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "multiplatform": "Multi-platform"
     },
-    "skills-primary-label": "// core",
+    "skills-primary-label": "Ядро",
     "whatido-title": "Чем занимаюсь",
     "whatido-sub": "Софт end-to-end на весь стек",
     "whatido": {

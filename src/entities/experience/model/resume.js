@@ -7,10 +7,8 @@ export const experience = [
     typeKey: 'experience.remote',
     url: 'https://информатик.онлайн/',
     current: true,
+    code: '01',
     year: '2026',
-    symbol: 'Co',
-    rest: 'okie',
-    atomic: '26',
     bullets: 4,
   },
   {
@@ -21,10 +19,8 @@ export const experience = [
     typeKey: 'experience.remote',
     url: 'https://lookformer.ru/',
     current: false,
+    code: '02',
     year: '2025',
-    symbol: 'Lo',
-    rest: 'okformer',
-    atomic: '25',
     bullets: 5,
   },
   {
@@ -35,10 +31,8 @@ export const experience = [
     typeKey: 'experience.remote',
     url: 'https://neurounit.ai/',
     current: false,
+    code: '03',
     year: '2025',
-    symbol: 'Ne',
-    rest: 'urounite',
-    atomic: '25',
     bullets: 4,
   },
   {
@@ -49,11 +43,8 @@ export const experience = [
     typeKey: 'experience.freelance',
     url: 'https://kwork.ru/user/yanhanov',
     current: true,
+    code: '04',
     year: '2024',
-    symbol: 'Kw',
-    rest: 'ork',
-    atomic: '24',
     bullets: 5,
   },
 ]
-

@@ -36,13 +36,14 @@
   --about-font-body: 'Literata', Georgia, 'Times New Roman', serif;
   --about-font-meta: 'Onest', 'Ubuntu', system-ui, sans-serif;
 
-  /* Experience — Breaking Bad title cards */
-  --exp-bg: #10140c;
-  --exp-ink: #f3ead0;
-  --exp-muted: #8b9a78;
-  --exp-accent: #f1c40f;
-  --exp-green: #3f5c45;
-  --exp-font: 'Onest', 'Ubuntu', system-ui, sans-serif;
+  /* Experience — cyanotype blueprint */
+  --exp-bg: #0b3d62;
+  --exp-ink: #e8f4ff;
+  --exp-muted: #8ebcd8;
+  --exp-accent: #f0d78c;
+  --exp-rule: rgba(232, 244, 255, 0.28);
+  --exp-stamp: #ff5a4f;
+  --exp-font: 'IBM Plex Mono', ui-monospace, monospace;
 
   /* Projects — Swiss grid */
   --swiss-bg: #f2f2f0;
@@ -52,15 +53,18 @@
   --swiss-rule: #111111;
   --swiss-font: 'Onest', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  /* Skills — Breaking Bad periodic table */
-  --lab-bg: #10140c;
-  --lab-surface: #161c12;
-  --lab-ink: #f3ead0;
-  --lab-muted: #8b9a78;
-  --lab-accent: #f1c40f;
-  --lab-green: #3f5c45;
-  --lab-border: #2a3320;
-  --lab-font: 'Onest', 'Ubuntu', system-ui, sans-serif;
+  /* Skills — maximalist cabinet */
+  --maxi-bg: #1a0d14;
+  --maxi-ink: #f8ead4;
+  --maxi-muted: #c4a090;
+  --maxi-gold: #e0b04a;
+  --maxi-rose: #c73e66;
+  --maxi-teal: #2a9d8f;
+  --maxi-coral: #e76f51;
+  --maxi-cream: #f3e6c8;
+  --maxi-plum: #4a1830;
+  --maxi-font-display: 'Literata', Georgia, serif;
+  --maxi-font: 'Onest', 'Ubuntu', system-ui, sans-serif;
 
   /* What I Do — Bauhaus */
   --bauhaus-bg: #f7f4ef;

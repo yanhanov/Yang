@@ -76,14 +76,13 @@ usePageSeo(() => {
   <section id="experience" class="zone zone--exp">
     <div class="zone__inner">
       <header class="zone__head zone__head--exp reveal">
-        <p class="zone__kicker">02 / Formula</p>
-        <h2 class="bb-title" :aria-label="$t('home.experience-title')">
-          <span class="bb-title__box">
-            <span class="bb-title__n">99</span>
-            Ex
-          </span>
-          <span class="bb-title__rest">perience</span>
-        </h2>
+        <p class="zone__kicker">02 / Drawing</p>
+        <div class="exp-titleblock">
+          <h2 class="zone__title">{{ $t('home.experience-title') }}</h2>
+          <p class="exp-titleblock__meta">
+            PROJECT: CAREER · SCALE: 1:1 · DRAWN: YAN HANOV
+          </p>
+        </div>
         <p class="zone__sub">{{ $t('home.experience-sub') }}</p>
       </header>
       <ExperienceTimeline />
@@ -113,22 +112,15 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="skills" class="zone zone--lab">
+  <section id="skills" class="zone zone--maxi">
     <div class="zone__inner">
-      <header class="zone__head zone__head--lab reveal">
-        <p class="zone__kicker">04 / Periodic</p>
-        <h2 class="bb-title" :aria-label="$t('home.skills')">
-          <span class="bb-title__box">
-            <span class="bb-title__n">52</span>
-            Te
-          </span>
-          <span class="bb-title__rest">ch</span>
-          <span class="bb-title__box">
-            <span class="bb-title__n">16</span>
-            St
-          </span>
-          <span class="bb-title__rest">ack</span>
-        </h2>
+      <header class="zone__head zone__head--maxi reveal">
+        <p class="zone__kicker">04 / More is more</p>
+        <div class="maxi-mast">
+          <span class="maxi-mast__ghost" aria-hidden="true">STACK</span>
+          <h2 class="zone__title">{{ $t('home.skills') }}</h2>
+        </div>
+        <p class="maxi-ornament" aria-hidden="true">✦ · ❦ · ✦</p>
         <p class="zone__sub">{{ $t('home.skills-sub') }}</p>
       </header>
       <SkillsBento />
@@ -251,31 +243,58 @@ usePageSeo(() => {
   margin-top: 2rem;
 }
 
-/* Experience */
+/* Experience — cyanotype */
 .zone--exp {
-  background:
-    radial-gradient(ellipse 90% 55% at 80% 0%, rgba(241, 196, 15, 0.1), transparent 55%),
-    linear-gradient(180deg, #161c10 0%, var(--exp-bg) 32%, #0c1008 100%);
+  background-color: var(--exp-bg);
+  background-image:
+    linear-gradient(var(--exp-rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--exp-rule) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--exp-ink) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--exp-ink) 8%, transparent) 1px, transparent 1px);
+  background-size:
+    96px 96px,
+    96px 96px,
+    24px 24px,
+    24px 24px;
   color: var(--exp-ink);
   font-family: var(--exp-font);
+}
+
+.zone__head--exp {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1rem 1.1rem;
+  border: 1px solid var(--exp-rule);
+  background: color-mix(in srgb, var(--exp-bg) 82%, #000);
 }
 
 .zone__head--exp .zone__kicker {
   color: var(--exp-accent);
 }
 
+.zone__head--exp .zone__title {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
 .zone__head--exp .zone__sub {
   color: var(--exp-muted);
-  max-width: 32rem;
+  max-width: 28rem;
 }
 
-.zone__head--exp .bb-title {
-  color: var(--exp-green);
+.exp-titleblock {
+  display: grid;
+  gap: 0.35rem;
 }
 
-.zone__head--exp .bb-title__box {
-  background: var(--exp-accent);
-  color: #111;
+.exp-titleblock__meta {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--exp-muted);
 }
 
 /* Swiss projects */
@@ -340,64 +359,122 @@ usePageSeo(() => {
   color: var(--swiss-accent);
 }
 
-/* Lab table */
-.zone--lab {
+/* Maximalist cabinet */
+.zone--maxi {
   position: relative;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(241, 196, 15, 0.08), transparent 50%),
-    linear-gradient(180deg, #14190e 0%, var(--lab-bg) 28%, #0c1008 100%);
-  color: var(--lab-ink);
-  font-family: var(--lab-font);
+  overflow: hidden;
+  background-color: var(--maxi-bg);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(224, 176, 74, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(199, 62, 102, 0.18), transparent 26%),
+    radial-gradient(circle at 70% 92%, rgba(42, 157, 143, 0.12), transparent 30%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 18px,
+      rgba(224, 176, 74, 0.045) 18px,
+      rgba(224, 176, 74, 0.045) 19px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 18px,
+      rgba(199, 62, 102, 0.04) 18px,
+      rgba(199, 62, 102, 0.04) 19px
+    );
+  color: var(--maxi-ink);
+  font-family: var(--maxi-font);
 }
 
-.zone__head--lab .zone__kicker {
-  color: var(--lab-accent);
-}
-
-.zone__head--lab .zone__sub {
-  color: var(--lab-muted);
-  max-width: 28rem;
-}
-
-.bb-title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 0.35rem 0.2rem;
-  margin: 0;
-  font-size: clamp(2.4rem, 7vw, 4.25rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--lab-green);
-}
-
-.bb-title__box {
-  position: relative;
-  display: inline-flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-width: 1.15em;
-  padding: 0.42em 0.12em 0.08em;
-  margin-right: 0.08em;
-  background: var(--lab-accent);
-  color: #111;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.bb-title__n {
+.zone--maxi::before,
+.zone--maxi::after {
   position: absolute;
-  top: 0.18em;
-  left: 0.22em;
-  font-size: 0.22em;
-  font-weight: 700;
-  letter-spacing: 0;
+  font-family: var(--maxi-font-display);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  color: rgba(224, 176, 74, 0.07);
+  pointer-events: none;
 }
 
-.bb-title__rest {
-  padding-bottom: 0.04em;
+.zone--maxi::before {
+  content: 'MORE IS MORE  ·  MORE IS MORE  ·  MORE IS MORE  ·  MORE IS MORE';
+  top: 6%;
+  left: -8%;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  transform: rotate(-11deg);
+}
+
+.zone--maxi::after {
+  content: 'HORROR VACUI  ·  HORROR VACUI  ·  HORROR VACUI';
+  bottom: 8%;
+  right: -10%;
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  transform: rotate(8deg);
+}
+
+.zone--maxi .zone__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.zone__head--maxi {
+  position: relative;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.zone__head--maxi .zone__kicker {
+  color: var(--maxi-gold);
+}
+
+.zone__head--maxi .zone__title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--maxi-font-display);
+  font-size: clamp(2.6rem, 8vw, 5.2rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: var(--maxi-cream);
+  text-shadow: 0 2px 0 var(--maxi-rose);
+}
+
+.zone__head--maxi .zone__sub {
+  margin-inline: auto;
+  color: var(--maxi-muted);
+}
+
+.maxi-mast {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(5rem, 14vw, 8rem);
+  margin: 0.4rem 0 0.2rem;
+}
+
+.maxi-mast__ghost {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  font-family: var(--maxi-font-display);
+  font-size: clamp(4.5rem, 16vw, 9rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--maxi-gold) 38%, transparent);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.maxi-ornament {
+  margin: 0.15rem 0 0.55rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.45em;
+  color: var(--maxi-gold);
 }
 
 /* Bauhaus */
