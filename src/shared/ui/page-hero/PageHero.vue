@@ -8,16 +8,10 @@ defineProps({
 
 <template>
   <section class="page-hero">
-    <div class="page-hero__backdrop" aria-hidden="true">
-      <div class="page-hero__glow" />
-    </div>
-
-    <div class="page-hero__inner container">
-      <p v-if="label" class="section-label page-hero__label">{{ label }}</p>
-      <h1 class="page-hero__title secont-font">{{ title }}</h1>
-      <p v-if="subtitle" class="page-hero__subtitle">
-        {{ subtitle }}
-      </p>
+    <div class="page-hero__inner">
+      <p v-if="label" class="page-hero__label">{{ label }}</p>
+      <h1 class="page-hero__title">{{ title }}</h1>
+      <p v-if="subtitle" class="page-hero__subtitle">{{ subtitle }}</p>
     </div>
   </section>
 </template>
@@ -25,69 +19,51 @@ defineProps({
 <style scoped>
 .page-hero {
   position: relative;
-  margin-top: -3.75rem;
-  padding: calc(3.75rem + 2.75rem) 0 2.5rem;
-  overflow: hidden;
-  isolation: isolate;
-  background: var(--surface);
-}
-
-.page-hero__backdrop {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(34, 38, 45, 0.55) 0%, transparent 100%);
-}
-
-.page-hero__glow {
-  position: absolute;
-  top: -40%;
-  left: 50%;
-  width: min(36rem, 90vw);
-  height: 12rem;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(18, 247, 214, 0.14) 0%,
-    rgba(18, 247, 214, 0.04) 45%,
-    transparent 72%
-  );
+  padding: 4.5rem 0 0;
+  background: transparent;
+  color: var(--now-ink);
+  font-family: var(--now-font);
 }
 
 .page-hero__inner {
-  position: relative;
-  z-index: 1;
-  text-align: center;
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .page-hero__label {
-  margin-bottom: 0.75rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--now-accent);
 }
 
 .page-hero__title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  margin: 0;
+  max-width: 42rem;
+  font-size: clamp(2.4rem, 7vw, 4.25rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--now-ink);
 }
 
 .page-hero__subtitle {
-  margin: 0.875rem auto 0;
+  margin: 1rem 0 0;
   max-width: 32rem;
-  font-size: 0.9375rem;
+  font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--now-muted);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .page-hero {
-    padding: calc(3.75rem + 3.25rem) 0 3rem;
-  }
-
-  .page-hero__subtitle {
-    font-size: 1rem;
+    padding-top: 5rem;
   }
 }
 </style>

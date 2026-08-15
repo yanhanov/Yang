@@ -2,8 +2,6 @@
 import { computed, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { PageHero } from '@/shared/ui/page-hero'
-import { SectionHeading } from '@/shared/ui/section-heading'
 import { useScrollReveal, usePageSeo } from '@/shared/lib'
 import {
   blogs,
@@ -56,11 +54,6 @@ const formattedDate = computed(() => {
     month: 'long',
     day: 'numeric',
   }).format(new Date(blog.value.date))
-})
-
-const heroSubtitle = computed(() => {
-  const parts = [formattedDate.value, readingTime.value].filter(Boolean)
-  return parts.join(' · ')
 })
 
 const articlePath = computed(() =>
@@ -159,55 +152,33 @@ watch(
 
 <template>
   <template v-if="blog">
-    <PageHero label="// article" :title="title" :subtitle="heroSubtitle" />
+    <div class="article-shell">
+      <article class="article" itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="headline" :content="title" />
+        <meta itemprop="description" :content="excerpt" />
+        <meta itemprop="datePublished" :content="blog.date" />
+        <meta itemprop="dateModified" :content="blog.date" />
+        <meta itemprop="author" :content="t('blog.author')" />
+        <link itemprop="mainEntityOfPage" :href="absoluteUrl(articlePath)" />
+        <link v-if="blog.img" itemprop="image" :href="absoluteUrl(blog.img)" />
 
-    <article class="article mb-20" itemscope itemtype="https://schema.org/BlogPosting">
-      <meta itemprop="headline" :content="title" />
-      <meta itemprop="description" :content="excerpt" />
-      <meta itemprop="datePublished" :content="blog.date" />
-      <meta itemprop="dateModified" :content="blog.date" />
-      <meta itemprop="author" :content="t('blog.author')" />
-      <link itemprop="mainEntityOfPage" :href="absoluteUrl(articlePath)" />
-      <link v-if="blog.img" itemprop="image" :href="absoluteUrl(blog.img)" />
-
-      <div class="container">
-        <div class="article__layout">
-          <nav class="article__breadcrumb reveal" aria-label="Breadcrumb">
-            <ol class="article__breadcrumb-list">
-              <li>
-                <RouterLink to="/">{{ $t('blog.seo.breadcrumb-home') }}</RouterLink>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <RouterLink to="/blogs">{{ $t('blog.seo.breadcrumb-blog') }}</RouterLink>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page">{{ title }}</li>
-            </ol>
-          </nav>
-
-          <RouterLink to="/blogs" class="article__back btn-ghost reveal">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M19 12H5M5 12L11 6M5 12L11 18"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-            {{ $t('blog.back') }}
+        <div class="article__wrap">
+          <RouterLink to="/blogs" class="article__back reveal">
+            ← {{ $t('blog.back') }}
           </RouterLink>
 
-          <header class="article__meta reveal reveal-delay-1">
-            <time class="article__date" :datetime="blog.date" itemprop="datePublished">
-              {{ formattedDate }}
-            </time>
-            <span class="article__meta-sep" aria-hidden="true">·</span>
-            <span class="article__reading-time">{{ readingTime }}</span>
-            <span class="article__meta-sep" aria-hidden="true">·</span>
-            <address class="article__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <span itemprop="name">{{ $t('blog.author') }}</span>
-            </address>
+          <header class="article__head reveal">
+            <p class="article__kicker">{{ $t('blog.seo.breadcrumb-blog') }}</p>
+            <h1 class="article__title" itemprop="headline">{{ title }}</h1>
+            <div class="article__meta">
+              <time :datetime="blog.date" itemprop="datePublished">{{ formattedDate }}</time>
+              <span aria-hidden="true">·</span>
+              <span>{{ readingTime }}</span>
+              <span aria-hidden="true">·</span>
+              <address itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <span itemprop="name">{{ $t('blog.author') }}</span>
+              </address>
+            </div>
           </header>
 
           <figure v-if="blog.img" class="article__cover reveal reveal-delay-1">
@@ -224,61 +195,69 @@ watch(
               {{ paragraph }}
             </p>
           </div>
-        </div>
 
-        <section v-if="moreArticles.length" class="article__related" :aria-label="$t('blog.more')">
-          <SectionHeading
-            class="reveal"
-            :label="$t('blog.more-label')"
-            :title="$t('blog.more')"
-          />
-          <div class="article__related-grid reveal reveal-delay-1">
-            <BlogCard v-for="item in moreArticles" :key="item.id" :blog="item" />
-          </div>
-        </section>
-      </div>
-    </article>
+          <section v-if="moreArticles.length" class="article__related" :aria-label="$t('blog.more')">
+            <p class="article__related-kicker reveal">{{ $t('blog.more-label') }}</p>
+            <h2 class="article__related-title reveal">{{ $t('blog.more') }}</h2>
+            <div class="article__related-list reveal reveal-delay-1">
+              <BlogCard
+                v-for="item in moreArticles"
+                :key="item.id"
+                :blog="item"
+                layout="row"
+              />
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
   </template>
 </template>
 
 <style scoped>
-.article__layout {
+.article-shell {
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse 70% 45% at 12% 0%, rgba(196, 181, 253, 0.12), transparent 52%),
+    var(--now-bg);
+  color: var(--now-ink);
+  font-family: var(--now-font);
+  padding: 5.5rem 1.25rem 5rem;
+  box-sizing: border-box;
+}
+
+.article__wrap {
+  width: 100%;
   max-width: 42rem;
-  margin: 0 auto;
-}
-
-.article__breadcrumb {
-  margin-bottom: 1rem;
-}
-
-.article__breadcrumb-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 0.5rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-}
-
-.article__breadcrumb-list a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.article__breadcrumb-list a:hover {
-  color: var(--accent);
-}
-
-.article__breadcrumb-list li[aria-current='page'] {
-  color: var(--text);
+  margin-inline: auto;
 }
 
 .article__back {
-  margin-bottom: 1.5rem;
+  display: inline-flex;
+  margin-bottom: 1.75rem;
+  font-size: 0.875rem;
+  color: var(--now-muted);
+}
+
+.article__back:hover {
+  color: var(--now-ink);
+}
+
+.article__kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--now-accent);
+}
+
+.article__title {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
 }
 
 .article__meta {
@@ -286,28 +265,23 @@ watch(
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem 0.5rem;
-  margin-bottom: 1.75rem;
+  margin-top: 1.1rem;
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: var(--now-muted);
 }
 
-.article__date,
-.article__reading-time,
-.article__author {
+.article__meta address {
+  margin: 0;
   font-style: normal;
 }
 
-.article__meta-sep {
-  opacity: 0.5;
-}
-
 .article__cover {
-  margin: 0 0 2.5rem;
+  margin: 2rem 0 2.5rem;
   overflow: hidden;
   border-radius: 1.25rem;
-  border: 1px solid var(--border-accent);
+  border: 1px solid rgba(250, 250, 250, 0.08);
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, rgba(18, 247, 214, 0.06), rgba(12, 115, 184, 0.1));
+  background: #111113;
 }
 
 .article__cover img {
@@ -318,14 +292,11 @@ watch(
   object-position: top center;
 }
 
-.article__prose {
-  padding-bottom: 0.5rem;
-}
-
 .article__paragraph {
+  margin: 0;
   font-size: 1.0625rem;
   line-height: 1.85;
-  color: var(--text-muted);
+  color: var(--now-muted);
 }
 
 .article__paragraph + .article__paragraph {
@@ -335,34 +306,44 @@ watch(
 .article__paragraph--lead {
   font-size: 1.2rem;
   line-height: 1.75;
-  color: var(--text);
+  color: var(--now-ink);
 }
 
 .article__related {
-  margin-top: 4rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--border);
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(250, 250, 250, 0.08);
 }
 
-.article__related-grid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: 1fr;
+.article__related-kicker {
+  margin: 0 0 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--now-accent);
 }
 
-@media (min-width: 768px) {
+.article__related-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.article__related-list {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 48rem) {
   .article__paragraph {
     font-size: 1.125rem;
     line-height: 1.9;
   }
 
   .article__paragraph--lead {
-    font-size: 1.3rem;
-  }
-
-  .article__related-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+    font-size: 1.28rem;
   }
 }
 </style>

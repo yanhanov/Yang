@@ -14,7 +14,7 @@ const isHome = computed(() => route.path === '/')
 <template>
   <div class="app-shell">
     <SiteHeader />
-    <main class="app-shell__main relative z-10 page-main" :class="{ 'pt-14': !isHome }">
+    <main class="app-shell__main relative z-10 page-main">
       <RouterView v-slot="{ Component, route: viewRoute }">
         <Transition name="page">
           <component :is="Component" :key="viewRoute.path" />

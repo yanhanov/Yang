@@ -15,6 +15,11 @@ import TypingRoles from './TypingRoles.vue'
         decoding="async"
         fetchpriority="high"
       />
+      <div class="hero__mist">
+        <span class="hero__mist-layer hero__mist-layer--a" />
+        <span class="hero__mist-layer hero__mist-layer--b" />
+        <span class="hero__mist-layer hero__mist-layer--c" />
+      </div>
       <div class="hero__veil" />
       <div class="hero__grain" />
     </div>
@@ -84,7 +89,52 @@ import TypingRoles from './TypingRoles.vue'
   object-fit: cover;
   object-position: 82% 50%;
   transform: scale(1.04);
-  animation: hero-photo 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation:
+    hero-photo 1.4s cubic-bezier(0.16, 1, 0.3, 1) both,
+    hero-drift 28s ease-in-out 1.4s infinite alternate;
+}
+
+.hero__mist {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+.hero__mist-layer {
+  position: absolute;
+  inset: -20% -10%;
+  filter: blur(28px);
+  will-change: transform, opacity;
+}
+
+.hero__mist-layer--a {
+  background:
+    radial-gradient(ellipse 55% 40% at 18% 78%, rgba(244, 240, 234, 0.28), transparent 68%),
+    radial-gradient(ellipse 40% 35% at 72% 88%, rgba(180, 160, 130, 0.16), transparent 70%);
+  animation: hero-mist-a 22s ease-in-out infinite alternate;
+}
+
+.hero__mist-layer--b {
+  background:
+    radial-gradient(ellipse 50% 32% at 88% 42%, rgba(244, 240, 234, 0.12), transparent 72%),
+    radial-gradient(ellipse 45% 28% at 40% 18%, rgba(120, 100, 80, 0.14), transparent 70%);
+  animation: hero-mist-b 30s ease-in-out infinite alternate;
+}
+
+.hero__mist-layer--c {
+  inset: auto 0 0 0;
+  height: 42%;
+  filter: blur(18px);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(244, 240, 234, 0.06) 40%,
+    rgba(14, 12, 10, 0.35) 100%
+  );
+  animation: hero-mist-c 18s ease-in-out infinite alternate;
+  mix-blend-mode: normal;
 }
 
 .hero__veil {
@@ -208,6 +258,48 @@ import TypingRoles from './TypingRoles.vue'
   }
 }
 
+@keyframes hero-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(-1.2%, 0.6%, 0);
+  }
+}
+
+@keyframes hero-mist-a {
+  from {
+    transform: translate3d(-2%, 2%, 0) scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate3d(4%, -3%, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-mist-b {
+  from {
+    transform: translate3d(3%, -1%, 0) scale(1.05);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate3d(-4%, 3%, 0) scale(1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes hero-mist-c {
+  from {
+    opacity: 0.55;
+    transform: translate3d(0, 4%, 0);
+  }
+  to {
+    opacity: 0.95;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (max-width: 47.99rem) {
   .hero__photo {
     object-position: 88% 48%;
@@ -217,6 +309,15 @@ import TypingRoles from './TypingRoles.vue'
     background:
       linear-gradient(180deg, rgba(14, 12, 10, 0.5) 0%, rgba(14, 12, 10, 0.72) 38%, rgba(14, 12, 10, 0.96) 100%),
       linear-gradient(90deg, rgba(14, 12, 10, 0.72) 0%, transparent 62%);
+  }
+
+  .hero__mist-layer {
+    filter: blur(22px);
+  }
+
+  .hero__mist-layer--a,
+  .hero__mist-layer--b {
+    animation-duration: 26s;
   }
 
   .hero__inner {
@@ -237,7 +338,8 @@ import TypingRoles from './TypingRoles.vue'
 
 @media (prefers-reduced-motion: reduce) {
   .hero__inner,
-  .hero__photo {
+  .hero__photo,
+  .hero__mist-layer {
     animation: none;
   }
 }

@@ -383,8 +383,8 @@ body,
 }
 
 body {
-  background-color: var(--surface);
-  color: var(--text);
+  background-color: var(--now-bg);
+  color: var(--now-ink);
   overflow-x: hidden;
   width: 100%;
 }

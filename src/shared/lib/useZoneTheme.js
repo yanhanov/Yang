@@ -33,13 +33,13 @@ export function useZoneTheme() {
   const zone = ref('opening')
 
   function update() {
-    if (route.path.startsWith('/projects')) {
-      zone.value = 'y2k'
+    if (route.path.startsWith('/projects') || route.path.startsWith('/blogs')) {
+      zone.value = 'now'
       return
     }
 
     if (route.path !== '/') {
-      zone.value = 'opening'
+      zone.value = 'now'
       return
     }
 
