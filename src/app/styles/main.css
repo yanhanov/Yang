@@ -94,13 +94,13 @@
   --now-accent: #c4b5fd;
   --now-font: 'Onest', system-ui, sans-serif;
 
-  /* Footer — newspaper colophon */
-  --colophon-bg: #ebe6d8;
-  --colophon-ink: #1a1814;
-  --colophon-muted: #6a6458;
-  --colophon-rule: #1a1814;
-  --colophon-font: 'Literata', Georgia, serif;
-  --colophon-meta: 'Onest', system-ui, sans-serif;
+  /* Footer — 2026 now */
+  --colophon-bg: var(--now-bg);
+  --colophon-ink: var(--now-ink);
+  --colophon-muted: var(--now-muted);
+  --colophon-rule: rgba(250, 250, 250, 0.08);
+  --colophon-font: var(--now-font);
+  --colophon-meta: var(--now-font);
 }
 
 @layer components {
