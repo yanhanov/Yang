@@ -1,19 +1,21 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useScrollReveal, usePageSeo } from '@/shared/lib'
+import { useScrollReveal, usePageSeo, useEraDeck } from '@/shared/lib'
 import { SITE_NAME, SITE_URL, SITE_DEFAULT_IMAGE, absoluteUrl } from '@/shared/config/site'
 import { featuredProjects, WorkProjectCard } from '@/entities/project'
 import { HeroSection } from '@/widgets/hero'
-import { TechMarquee } from '@/widgets/tech-marquee'
 import { SkillsBento } from '@/widgets/skills-bento'
 import { ExperienceTimeline } from '@/widgets/experience-timeline'
 import { ProcessSteps } from '@/widgets/process-steps'
 import { LanguagesSection } from '@/widgets/languages-section'
 import { AboutText } from '@/widgets/about-section'
 import { WhatIDo } from '@/widgets/what-i-do'
+import { EraStamp } from '@/widgets/era-stamp'
+import { SiteFooter } from '@/widgets/site-footer'
 
 useScrollReveal()
+useEraDeck()
 
 const { t, locale } = useI18n()
 
@@ -69,11 +71,11 @@ usePageSeo(() => {
 </script>
 
 <template>
+  <EraStamp />
   <HeroSection />
-  <TechMarquee />
   <AboutText />
 
-  <section id="experience" class="zone zone--exp">
+  <section id="experience" class="zone zone--exp" data-era-panel>
     <div class="zone__inner">
       <header class="zone__head zone__head--exp reveal">
         <p class="zone__kicker">1996 · Tables</p>
@@ -84,7 +86,7 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="projects" class="zone zone--y2k">
+  <section id="projects" class="zone zone--y2k" data-era-panel>
     <div class="zone__inner">
       <header class="zone__head zone__head--y2k reveal">
         <p class="zone__kicker">2000 · Y2K</p>
@@ -107,10 +109,10 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="skills" class="zone zone--web2">
+  <section id="skills" class="zone zone--web2" data-era-panel>
     <div class="zone__inner">
       <header class="zone__head zone__head--web2 reveal">
-        <p class="zone__kicker">2005 · Web 2.0</p>
+        <p class="zone__kicker">2005 · Zen Garden</p>
         <h2 class="zone__title">{{ $t('home.skills') }}</h2>
         <p class="zone__sub">{{ $t('home.skills-sub') }}</p>
       </header>
@@ -118,7 +120,7 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="what-i-do" class="zone zone--para">
+  <section id="what-i-do" class="zone zone--para" data-era-panel>
     <div class="zone__inner">
       <header class="zone__head zone__head--para reveal">
         <p class="zone__kicker">2011 · Parallax</p>
@@ -129,7 +131,7 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="languages" class="zone zone--flat">
+  <section id="languages" class="zone zone--flat" data-era-panel>
     <div class="zone__inner">
       <header class="zone__head zone__head--flat reveal">
         <p class="zone__kicker">2013 · Flat</p>
@@ -140,7 +142,7 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="process" class="zone zone--glass">
+  <section id="process" class="zone zone--glass" data-era-panel>
     <div class="zone__inner">
       <header class="zone__head zone__head--glass reveal">
         <p class="zone__kicker">2020 · Glass</p>
@@ -151,8 +153,8 @@ usePageSeo(() => {
     </div>
   </section>
 
-  <section id="contact" class="zone zone--now">
-    <div class="zone__inner">
+  <section id="contact" class="zone zone--now" data-era-panel>
+    <div class="zone__inner zone__inner--now">
       <div class="now reveal">
         <p class="zone__kicker">2026 · Now</p>
         <h2 class="now__title">{{ $t('home.cta-title') }}</h2>
@@ -171,6 +173,7 @@ usePageSeo(() => {
           </a>
         </div>
       </div>
+      <SiteFooter />
     </div>
   </section>
 </template>
@@ -178,9 +181,12 @@ usePageSeo(() => {
 <style scoped>
 .zone {
   position: relative;
-  min-height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .zone__inner {
@@ -188,10 +194,12 @@ usePageSeo(() => {
   max-width: 1140px;
   margin-inline: auto;
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100dvh;
+  justify-content: safe center;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: 5.5rem 1.25rem 3rem;
   box-sizing: border-box;
 }
@@ -234,8 +242,20 @@ usePageSeo(() => {
   font-family: var(--exp-font);
 }
 
+.zone--exp .zone__inner {
+  overflow: hidden;
+  justify-content: flex-start;
+  padding-top: 4.75rem;
+  padding-bottom: 1.5rem;
+}
+
+.zone--exp .zone__head {
+  margin-bottom: 1rem;
+  flex: none;
+}
+
 .zone__head--exp {
-  padding: 0.8rem 0.9rem 1rem;
+  padding: 0.55rem 0.7rem 0.65rem;
   background: var(--exp-surface);
   box-shadow:
     inset -1px -1px #0a0a0a,
@@ -249,10 +269,13 @@ usePageSeo(() => {
 }
 
 .zone__head--exp .zone__title {
+  font-size: clamp(1.55rem, 3.8vw, 2.35rem);
   font-weight: 700;
 }
 
 .zone__head--exp .zone__sub {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
   color: var(--exp-muted);
 }
 
@@ -308,31 +331,47 @@ usePageSeo(() => {
   color: var(--y2k-bg);
 }
 
-/* 2005 — Web 2.0 */
+/* 2005 — CSS Zen Garden / Web Standards */
 .zone--web2 {
-  background: linear-gradient(#fff, var(--web2-bg));
   color: var(--web2-ink);
   font-family: var(--web2-font);
+  background:
+    radial-gradient(ellipse 70% 45% at 100% 0%, rgba(138, 59, 18, 0.07), transparent 52%),
+    linear-gradient(180deg, var(--web2-paper), var(--web2-bg));
+}
+
+.zone--web2::before {
+  content: '';
+  position: absolute;
+  width: min(22rem, 48vw);
+  height: min(22rem, 48vw);
+  right: 3%;
+  top: 12%;
+  border: 1px solid var(--web2-rule);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .zone__head--web2 {
-  text-align: center;
+  max-width: 36rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--web2-rule);
 }
 
 .zone__head--web2 .zone__kicker {
+  font-style: italic;
+  letter-spacing: 0.16em;
   color: var(--web2-accent);
 }
 
 .zone__head--web2 .zone__title {
-  font-weight: 700;
-  background: linear-gradient(#4aa3e0, #1f6fad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-weight: 600;
+  letter-spacing: -0.04em;
 }
 
 .zone__head--web2 .zone__sub {
-  margin-inline: auto;
+  max-width: 28rem;
+  font-style: italic;
   color: var(--web2-muted);
 }
 
@@ -439,8 +478,24 @@ usePageSeo(() => {
   font-family: var(--now-font);
 }
 
+.zone__inner--now {
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+}
+
 .now {
   max-width: 42rem;
+}
+
+.zone--now :deep(.site-foot) {
+  background: transparent;
+  margin-top: auto;
+}
+
+.zone--now :deep(.site-foot__inner) {
+  max-width: none;
+  padding-inline: 0;
+  padding-bottom: 0.5rem;
 }
 
 .zone--now .zone__kicker {

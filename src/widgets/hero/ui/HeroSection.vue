@@ -4,7 +4,7 @@ import TypingRoles from './TypingRoles.vue'
 </script>
 
 <template>
-  <section id="hero" class="hero">
+  <section id="hero" class="hero" data-era-panel>
     <div class="hero__media" aria-hidden="true">
       <img
         src="/hero.png"
@@ -59,8 +59,9 @@ import TypingRoles from './TypingRoles.vue'
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 100dvh;
-  margin: -3.5rem 0 0;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
   display: flex;
   align-items: flex-end;
   overflow: hidden;

@@ -249,15 +249,13 @@ useScrollFrame(() => {
 .site-header[data-zone='web2'] {
   --hdr-ink: var(--web2-ink);
   --hdr-muted: var(--web2-muted);
-  --hdr-bar: linear-gradient(#ffffff, #d7e8f5);
-  --hdr-border: rgba(255, 255, 255, 0.8);
+  --hdr-bar: rgba(250, 246, 238, 0.92);
+  --hdr-border: var(--web2-rule);
   --hdr-cta: var(--web2-accent);
-  --hdr-cta-ink: #ffffff;
-  --hdr-radius: 26px;
+  --hdr-cta-ink: var(--web2-paper);
+  --hdr-radius: 2px;
   --hdr-font: var(--web2-font);
-  --hdr-shadow:
-    inset 0 1px 0 #fff,
-    0 2px 6px rgba(43, 90, 130, 0.18);
+  --hdr-shadow: 0 1px 0 var(--web2-rule);
   --hdr-blur: 0px;
   --hdr-drawer: var(--web2-bg);
 }
@@ -463,10 +461,9 @@ useScrollFrame(() => {
 }
 
 .site-header[data-zone='web2'] .site-header__resume {
-  background: linear-gradient(#7ec8f8, var(--web2-accent) 48%, #2176b8);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    0 2px 0 #1a5f96;
+  background: var(--web2-accent);
+  box-shadow: none;
+  letter-spacing: 0.04em;
 }
 
 .site-header__backdrop {

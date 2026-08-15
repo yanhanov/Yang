@@ -14,6 +14,18 @@ const ZONE_BY_ID = {
   contact: 'now',
 }
 
+export const ERA_META = {
+  opening: { year: '2026', name: 'Now' },
+  about: { year: '1993', name: 'Mosaic', light: true },
+  exp: { year: '1996', name: 'Tables' },
+  y2k: { year: '2000', name: 'Y2K' },
+  web2: { year: '2005', name: 'Zen Garden', light: true },
+  para: { year: '2011', name: 'Parallax' },
+  flat: { year: '2013', name: 'Flat', light: true },
+  glass: { year: '2020', name: 'Glass' },
+  now: { year: '2026', name: 'Now' },
+}
+
 const ZONE_IDS = Object.keys(ZONE_BY_ID)
 
 export function useZoneTheme() {

@@ -66,14 +66,26 @@ const { t } = useI18n()
 
 <style scoped>
 .desk {
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  flex: 1;
+  min-height: 0;
   font-family: var(--exp-font);
   color: var(--exp-ink);
 }
 
+@media (min-width: 48rem) {
+  .desk {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+}
+
 .win {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   background: var(--exp-surface);
   box-shadow:
     inset -1px -1px #0a0a0a,
@@ -85,16 +97,16 @@ const { t } = useI18n()
 .win__bar {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  margin: 3px;
-  padding: 0.2rem 0.3rem;
+  gap: 0.35rem;
+  margin: 2px;
+  padding: 0.1rem 0.25rem;
   background: linear-gradient(90deg, #000080, #1084d0);
   color: #fff;
 }
 
 .win__icon {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.58rem;
+  height: 0.58rem;
   flex: none;
   background: #c0c0c0;
   box-shadow:
@@ -106,9 +118,12 @@ const { t } = useI18n()
   margin: 0;
   flex: 1;
   min-width: 0;
-  font-size: 0.85rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .win__title a {
@@ -128,12 +143,12 @@ const { t } = useI18n()
 .win__controls i {
   display: grid;
   place-items: center;
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 0.9rem;
+  height: 0.9rem;
   background: var(--exp-surface);
   color: #000;
   font-style: normal;
-  font-size: 0.7rem;
+  font-size: 0.62rem;
   line-height: 1;
   box-shadow:
     inset -1px -1px #0a0a0a,
@@ -141,47 +156,49 @@ const { t } = useI18n()
 }
 
 .win__body {
-  padding: 0.75rem 0.85rem 0.9rem;
+  flex: 1;
+  min-height: 0;
+  padding: 0.4rem 0.5rem 0.35rem;
 }
 
 .win__table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 0.75rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
 }
 
 .win__table th,
 .win__table td {
   border: 1px solid #808080;
-  padding: 0.35rem 0.5rem;
+  padding: 0.22rem 0.35rem;
   text-align: left;
   vertical-align: top;
 }
 
 .win__table th {
-  width: 42%;
+  width: 46%;
   background: #dfdfdf;
   font-weight: 700;
 }
 
 .win__notes {
   margin: 0;
-  padding-left: 1.15rem;
+  padding-left: 0.95rem;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  font-size: 0.84rem;
-  line-height: 1.45;
+  gap: 0.12rem;
+  font-size: 0.7rem;
+  line-height: 1.3;
   color: var(--exp-muted);
 }
 
 .win__status {
   display: flex;
   justify-content: space-between;
-  margin: 0 3px 3px;
-  padding: 0.15rem 0.4rem;
-  font-size: 0.68rem;
+  margin: 0 2px 2px;
+  padding: 0.08rem 0.3rem;
+  font-size: 0.58rem;
   background: var(--exp-surface);
   box-shadow:
     inset 1px 1px #808080,

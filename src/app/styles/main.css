@@ -59,13 +59,14 @@
   --y2k-cyan: #39f3ff;
   --y2k-font: 'Onest', 'Arial Black', Arial, sans-serif;
 
-  /* Skills — 2005 Web 2.0 */
-  --web2-bg: #e8f3fb;
-  --web2-ink: #2b3a4a;
-  --web2-muted: #5b6f82;
-  --web2-accent: #3b9ae1;
-  --web2-shine: #7ec8f8;
-  --web2-font: 'Onest', 'Lucida Grande', Arial, sans-serif;
+  /* Skills — 2005 CSS Zen Garden / Web Standards */
+  --web2-bg: #f3eee4;
+  --web2-paper: #faf6ee;
+  --web2-ink: #2c281f;
+  --web2-muted: #6f6758;
+  --web2-accent: #8a3b12;
+  --web2-rule: rgba(44, 40, 31, 0.16);
+  --web2-font: 'Literata', Georgia, 'Times New Roman', serif;
 
   /* What I Do — 2011 parallax / one-page */
   --para-bg: #141820;
@@ -322,6 +323,26 @@
 html {
   scroll-behavior: auto;
   min-height: 100%;
+}
+
+html.era-deck {
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: none;
+}
+
+html.era-deck [id] {
+  scroll-margin-top: 0;
+}
+
+html.era-deck [data-era-panel] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.era-deck {
+    scroll-snap-type: none;
+  }
 }
 
 body,

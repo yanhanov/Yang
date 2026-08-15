@@ -8,7 +8,7 @@ const lead = computed(() => t('home.about.p1'))
 </script>
 
 <template>
-  <section id="about" class="about page-section">
+  <section id="about" class="about" data-era-panel>
     <div class="about__sheet">
       <p class="about__kicker reveal">{{ $t('home.about-kicker') }}</p>
       <h2 class="about__title reveal">{{ $t('home.about-title') }}</h2>
@@ -49,7 +49,9 @@ const lead = computed(() => t('home.about.p1'))
 
 <style scoped>
 .about {
-  min-height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background: var(--about-bg);
@@ -62,10 +64,12 @@ const lead = computed(() => t('home.about.p1'))
   max-width: 46rem;
   margin-inline: auto;
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100dvh;
+  justify-content: safe center;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: 5.5rem 1.25rem 3rem;
   box-sizing: border-box;
   background: var(--about-paper);
