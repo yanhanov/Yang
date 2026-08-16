@@ -77,6 +77,22 @@ const lead = computed(() => t('home.about.p1'))
   border-right: 1px solid var(--about-rule);
 }
 
+@media (max-width: 47.99rem) {
+  .about {
+    height: auto;
+    max-height: none;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .about__sheet {
+    overflow: visible;
+    justify-content: flex-start;
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
 .about__kicker {
   margin: 0;
   font-family: var(--about-font-meta);

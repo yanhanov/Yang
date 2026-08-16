@@ -26,8 +26,9 @@ function clearTimers() {
 function animateTo(targetYear, targetName) {
   clearTimers()
   const end = Number(targetYear)
+  const mobile = window.matchMedia('(max-width: 47.99rem)').matches
 
-  if (!Number.isFinite(end) || prefersReducedMotion() || !visible.value) {
+  if (!Number.isFinite(end) || prefersReducedMotion() || !visible.value || mobile) {
     displayYear.value = Number.isFinite(end) ? end : targetYear
     displayName.value = targetName
     return
@@ -178,6 +179,23 @@ onUnmounted(clearTimers)
 @media (max-width: 47.99rem) {
   .era {
     padding: 0.85rem;
+    min-height: 0;
+  }
+
+  .era__veil {
+    display: none;
+  }
+
+  .era__year,
+  .era__name,
+  .era--light .era__year,
+  .era--light .era__name {
+    mix-blend-mode: normal;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  }
+
+  .era__year {
+    font-size: 2rem;
   }
 }
 

@@ -339,6 +339,18 @@ html.era-deck [data-era-panel] {
   scroll-snap-stop: always;
 }
 
+@media (max-width: 47.99rem) {
+  html.era-deck {
+    scroll-snap-type: none;
+    overscroll-behavior-y: auto;
+  }
+
+  html.era-deck [data-era-panel] {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html.era-deck {
     scroll-snap-type: none;
@@ -411,6 +423,7 @@ body::after {
 }
 
 @media (max-width: 48rem) {
+  body::before,
   body::after {
     display: none;
   }

@@ -367,6 +367,13 @@ useScrollFrame(() => {
   -webkit-backdrop-filter: blur(var(--hdr-blur));
 }
 
+@media (max-width: 47.99rem) {
+  .site-header--solid .site-header__bar {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 .site-header__logo {
   justify-self: start;
   font-size: 1.02rem;

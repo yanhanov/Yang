@@ -58,6 +58,15 @@ const { t } = useI18n()
   -webkit-backdrop-filter: blur(18px);
 }
 
+@media (max-width: 47.99rem) {
+  .process__principle,
+  .pane {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
 .process__principle {
   padding: 0.45rem 0.75rem;
   border-radius: 999px;

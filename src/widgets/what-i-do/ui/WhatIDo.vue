@@ -14,6 +14,7 @@ function tagsFor(key) {
 }
 
 useScrollFrame(() => {
+  if (window.matchMedia('(max-width: 47.99rem)').matches) return
   const el = root.value
   if (!el) return
   const r = el.getBoundingClientRect()
@@ -71,6 +72,13 @@ useScrollFrame(() => {
   pointer-events: none;
   border-radius: 50%;
   filter: blur(2px);
+}
+
+@media (max-width: 47.99rem) {
+  .story__far,
+  .story__near {
+    display: none;
+  }
 }
 
 .story__far {

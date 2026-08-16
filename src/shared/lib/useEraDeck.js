@@ -3,9 +3,14 @@ import { useRoute } from 'vue-router'
 
 const SELECTOR = '[data-era-panel]'
 const LOCK_MS = 720
+const DESKTOP_MQ = '(min-width: 48rem)'
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+function isDesktopDeck() {
+  return window.matchMedia(DESKTOP_MQ).matches
 }
 
 function canScroll(el, dy) {
@@ -33,15 +38,19 @@ export function useEraDeck() {
 
   let locked = false
   let unlockTimer = 0
-  let touchY = 0
   let panels = []
+  let mq
 
   function isHome() {
     return route.path === '/'
   }
 
+  function active() {
+    return isHome() && isDesktopDeck()
+  }
+
   function syncClass() {
-    document.documentElement.classList.toggle('era-deck', isHome())
+    document.documentElement.classList.toggle('era-deck', active())
   }
 
   function collect() {
@@ -59,6 +68,7 @@ export function useEraDeck() {
   }
 
   function go(next) {
+    if (!active()) return
     collect()
     if (!panels.length) return
     const index = Math.max(0, Math.min(panels.length - 1, next))
@@ -77,12 +87,12 @@ export function useEraDeck() {
   }
 
   function step(direction) {
-    if (locked) return
+    if (locked || !active()) return
     go(currentIndex() + direction)
   }
 
   function onWheel(event) {
-    if (!isHome()) return
+    if (!active()) return
     if (event.ctrlKey) return
     const dy = event.deltaY
     if (Math.abs(dy) < 6) return
@@ -100,7 +110,7 @@ export function useEraDeck() {
   }
 
   function onKey(event) {
-    if (!isHome()) return
+    if (!active()) return
     const tag = event.target?.tagName
     if (tag === 'INPUT' || tag === 'TEXTAREA' || event.target?.isContentEditable) return
 
@@ -123,25 +133,8 @@ export function useEraDeck() {
     }
   }
 
-  function onTouchStart(event) {
-    if (!isHome()) return
-    touchY = event.touches[0]?.clientY ?? 0
-  }
-
-  function onTouchEnd(event) {
-    if (!isHome()) return
-    const y = event.changedTouches[0]?.clientY ?? touchY
-    const dy = touchY - y
-    if (Math.abs(dy) < 56) return
-
-    const index = currentIndex()
-    const panel = panels[index]
-    if (innerCanScroll(panel, dy)) return
-    step(dy > 0 ? 1 : -1)
-  }
-
   function onClick(event) {
-    if (!isHome()) return
+    if (!active()) return
     const link = event.target.closest?.('a[href^="#"]')
     if (!link) return
     const id = link.getAttribute('href')?.slice(1)
@@ -154,31 +147,30 @@ export function useEraDeck() {
   }
 
   function onResize() {
-    if (!isHome()) return
-    collect()
+    syncClass()
+    if (active()) collect()
   }
 
   watch(() => route.path, syncClass, { immediate: true })
 
   onMounted(() => {
+    mq = window.matchMedia(DESKTOP_MQ)
     syncClass()
     collect()
     window.addEventListener('wheel', onWheel, { passive: false })
     window.addEventListener('keydown', onKey)
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
     window.addEventListener('click', onClick)
     window.addEventListener('resize', onResize)
+    mq.addEventListener?.('change', onResize)
   })
 
   onUnmounted(() => {
     window.clearTimeout(unlockTimer)
     window.removeEventListener('wheel', onWheel)
     window.removeEventListener('keydown', onKey)
-    window.removeEventListener('touchstart', onTouchStart)
-    window.removeEventListener('touchend', onTouchEnd)
     window.removeEventListener('click', onClick)
     window.removeEventListener('resize', onResize)
+    mq?.removeEventListener?.('change', onResize)
     document.documentElement.classList.remove('era-deck')
   })
 }

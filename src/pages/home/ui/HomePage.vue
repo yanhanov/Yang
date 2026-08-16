@@ -204,6 +204,22 @@ usePageSeo(() => {
   box-sizing: border-box;
 }
 
+@media (max-width: 47.99rem) {
+  .zone {
+    height: auto;
+    max-height: none;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .zone__inner {
+    overflow: visible;
+    justify-content: flex-start;
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
 .zone__head {
   margin-bottom: 2.25rem;
 }
@@ -247,6 +263,24 @@ usePageSeo(() => {
   justify-content: flex-start;
   padding-top: 4.75rem;
   padding-bottom: 1.5rem;
+}
+
+@media (max-width: 47.99rem) {
+  .zone--exp .zone__inner {
+    overflow: visible;
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .zone--para {
+    overflow: visible;
+  }
+
+  .zone--para::before,
+  .zone--para::after,
+  .zone--web2::before {
+    display: none;
+  }
 }
 
 .zone--exp .zone__head {

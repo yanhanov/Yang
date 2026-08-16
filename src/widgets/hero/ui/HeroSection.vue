@@ -301,8 +301,21 @@ import TypingRoles from './TypingRoles.vue'
 }
 
 @media (max-width: 47.99rem) {
+  .hero {
+    height: auto;
+    max-height: none;
+    min-height: 100dvh;
+  }
+
   .hero__photo {
     object-position: 88% 48%;
+    transform: none;
+    animation: none;
+  }
+
+  .hero__mist,
+  .hero__grain {
+    display: none;
   }
 
   .hero__veil {
@@ -311,18 +324,10 @@ import TypingRoles from './TypingRoles.vue'
       linear-gradient(90deg, rgba(14, 12, 10, 0.72) 0%, transparent 62%);
   }
 
-  .hero__mist-layer {
-    filter: blur(22px);
-  }
-
-  .hero__mist-layer--a,
-  .hero__mist-layer--b {
-    animation-duration: 26s;
-  }
-
   .hero__inner {
     padding-top: 6.5rem;
     padding-bottom: 3.25rem;
+    animation: none;
   }
 
   .hero__actions {
