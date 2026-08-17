@@ -1,5 +1,18 @@
 export const projects = [
   {
+    id: 'apply-filler',
+    titleKey: 'work.apply-filler.title',
+    descKey: 'work.apply-filler.desc',
+    img: '/projects/apply-filler.webp',
+    github: 'https://github.com/yanhanov/apply_filler',
+    tags: ['TypeScript', 'Vite', 'Extension', 'Gemini'],
+    featured: true,
+    year: '2026',
+    roleKey: 'work.apply-filler.role',
+    featuresKey: 'work.apply-filler.features',
+    paragraphsKey: 'work.apply-filler.paragraphs',
+  },
+  {
     id: 'cookie',
     titleKey: 'work.cookie.title',
     descKey: 'work.cookie.desc',
@@ -50,3 +63,15 @@ export const projects = [
 ]
 
 export const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)
+
+export function getProjectBySlug(slug) {
+  return projects.find((project) => project.id === slug)
+}
+
+export function projectHasPage(project) {
+  return Boolean(project?.paragraphsKey)
+}
+
+export function getProjectPath(project) {
+  return projectHasPage(project) ? `/projects/${project.id}` : null
+}

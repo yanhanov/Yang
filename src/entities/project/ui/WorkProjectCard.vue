@@ -1,7 +1,9 @@
 <script setup>
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { TechIcon } from '@/shared/ui/tech-icon'
+import { getProjectPath } from '../model/projects.js'
 
 const props = defineProps({
   project: { type: Object, required: true },
@@ -11,7 +13,14 @@ const props = defineProps({
 })
 
 const { t } = useI18n()
-const tag = computed(() => (props.project.url ? 'a' : 'article'))
+const internalPath = computed(() => getProjectPath(props.project))
+const isExternal = computed(() => Boolean(props.project.url) && !internalPath.value)
+const isLinked = computed(() => Boolean(internalPath.value || props.project.url))
+const tag = computed(() => {
+  if (internalPath.value) return RouterLink
+  if (props.project.url) return 'a'
+  return 'article'
+})
 const isNow = computed(() => props.tone === 'now')
 
 const tagIcons = {
@@ -19,6 +28,9 @@ const tagIcons = {
   Vue: 'vue',
   TypeScript: 'typescript',
   TS: 'typescript',
+  Vite: null,
+  Extension: null,
+  Gemini: null,
   Lead: null,
   Architecture: null,
   'REST API': 'api',
@@ -31,20 +43,23 @@ const tagIcons = {
 <template>
   <component
     :is="tag"
-    :href="project.url || undefined"
-    :target="project.url ? '_blank' : undefined"
-    :rel="project.url ? 'noopener noreferrer' : undefined"
+    :to="internalPath || undefined"
+    :href="isExternal ? project.url : undefined"
+    :target="isExternal ? '_blank' : undefined"
+    :rel="isExternal ? 'noopener noreferrer' : undefined"
     class="project-card"
     :class="{
       'project-card--featured': featured,
-      'project-card--linked': project.url,
+      'project-card--linked': isLinked,
       'project-card--now': isNow,
       'project-card--y2k': !isNow,
     }"
   >
     <div class="project-card__meta">
       <span class="project-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-      <span v-if="project.url" class="project-card__visit">{{ $t('home.view-project') }} ↗</span>
+      <span v-if="isLinked" class="project-card__visit">
+        {{ $t('home.view-project') }} {{ isExternal ? '↗' : '→' }}
+      </span>
     </div>
 
     <div class="project-card__media">

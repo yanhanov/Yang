@@ -2,7 +2,9 @@ import { watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const SELECTOR = '[data-era-panel]'
-const LOCK_MS = 720
+const ANIM_MS = 850
+const GESTURE_IDLE_MS = 180
+const WHEEL_THRESHOLD = 24
 const DESKTOP_MQ = '(min-width: 48rem)'
 
 function prefersReducedMotion() {
@@ -33,11 +35,23 @@ function innerCanScroll(panel, dy) {
   return false
 }
 
+function normalizeDeltaY(event) {
+  let dy = event.deltaY
+  if (event.deltaMode === 1) dy *= 16
+  else if (event.deltaMode === 2) dy *= window.innerHeight
+  return dy
+}
+
 export function useEraDeck() {
   const route = useRoute()
 
-  let locked = false
+  let animating = false
+  let consumed = false
+  let gestureLive = false
+  let targetIndex = -1
+  let acc = 0
   let unlockTimer = 0
+  let gestureTimer = 0
   let panels = []
   let mq
 
@@ -58,6 +72,7 @@ export function useEraDeck() {
   }
 
   function currentIndex() {
+    if (targetIndex >= 0) return targetIndex
     collect()
     const probe = window.innerHeight * 0.45
     let index = 0
@@ -65,6 +80,16 @@ export function useEraDeck() {
       if (panels[i].getBoundingClientRect().top <= probe) index = i
     }
     return index
+  }
+
+  function noteGesture() {
+    gestureLive = true
+    window.clearTimeout(gestureTimer)
+    gestureTimer = window.setTimeout(() => {
+      gestureLive = false
+      consumed = false
+      acc = 0
+    }, GESTURE_IDLE_MS)
   }
 
   function go(next) {
@@ -75,27 +100,37 @@ export function useEraDeck() {
     const target = panels[index]
     if (!target) return
 
-    locked = true
+    animating = true
+    consumed = true
+    acc = 0
+    targetIndex = index
     window.clearTimeout(unlockTimer)
     target.scrollIntoView({
       behavior: prefersReducedMotion() ? 'auto' : 'smooth',
       block: 'start',
     })
     unlockTimer = window.setTimeout(() => {
-      locked = false
-    }, prefersReducedMotion() ? 80 : LOCK_MS)
+      animating = false
+      targetIndex = -1
+      if (!gestureLive) {
+        consumed = false
+        acc = 0
+      }
+    }, prefersReducedMotion() ? 80 : ANIM_MS)
   }
 
   function step(direction) {
-    if (locked || !active()) return
+    if (animating || !active()) return
     go(currentIndex() + direction)
   }
 
   function onWheel(event) {
     if (!active()) return
     if (event.ctrlKey) return
-    const dy = event.deltaY
-    if (Math.abs(dy) < 6) return
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return
+
+    const dy = normalizeDeltaY(event)
+    if (!dy) return
 
     const index = currentIndex()
     const panel = panels[index]
@@ -106,7 +141,14 @@ export function useEraDeck() {
     if (atStart || atEnd) return
 
     event.preventDefault()
-    step(dy > 0 ? 1 : -1)
+    noteGesture()
+
+    if (animating || consumed) return
+
+    acc += dy
+    if (Math.abs(acc) < WHEEL_THRESHOLD) return
+
+    step(acc > 0 ? 1 : -1)
   }
 
   function onKey(event) {
@@ -166,6 +208,7 @@ export function useEraDeck() {
 
   onUnmounted(() => {
     window.clearTimeout(unlockTimer)
+    window.clearTimeout(gestureTimer)
     window.removeEventListener('wheel', onWheel)
     window.removeEventListener('keydown', onKey)
     window.removeEventListener('click', onClick)

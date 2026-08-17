@@ -199,6 +199,26 @@
     }
   },
   "work": {
+    "apply-filler": {
+      "title": "Apply Filler",
+      "desc": "Browser extension that fills job applications from your profile, attaches a CV, and drafts cover letters with Gemini.",
+      "role": "Personal product · Browser extension",
+      "paragraphs": [
+        "Apply Filler is a browser extension for job applications. You save your profile once — name, contacts, salary prefs, links, bio — and on an apply page one click fills the form, can attach your CV, and optionally drafts a cover letter or answers to open questions with a free Gemini API key.",
+        "The idea came from repeating the same work on every vacancy: the same fields, the same resume upload, and a blank cover letter. I wanted something local-first: no account, no server that stores your data, just an extension that helps and leaves the final submit to you.",
+        "How it works: the content script scrapes the form and vacancy text from the page. Known fields are matched locally by id, name, placeholder, label, aria-label, and autocomplete — those always fill from your profile, without AI. If a Gemini key is set, the extension sends vacancy context and open-question labels to draft cover letters and custom answers. Without a key, profile fields and CV still work; cover letter falls back to Bio.",
+        "Resume import lives on the Options page: PDF and DOCX are parsed locally with pdfjs-dist and mammoth, then stored in extension storage and auto-attached on Fill. The API key is only read in the background when calling Gemini. Restricted pages (about:, AMO, and similar) cannot be scripted — you use a normal job-site tab.",
+        "Stack: TypeScript, Vite, @crxjs/vite-plugin; separate Firefox and Chromium builds; Mozilla signing for permanent Firefox installs. Privacy rule is simple: profile stays in the browser, the form is never auto-submitted, and you always review before sending."
+      ],
+      "features": [
+        "Local profile fill for name, email, phone, salary prefs, links, and more",
+        "Optional Gemini drafts for cover letters and open questions",
+        "Vacancy text scraped from the page as Gemini context",
+        "Resume import (PDF/DOCX) with auto-attach on Fill",
+        "Firefox signed builds plus Chrome/Edge unpacked support",
+        "Privacy-first: no backend, review-before-submit"
+      ]
+    },
     "cookie": {
       "title": "informatics.online",
       "desc": "EdTech platform for programming and CS education with interactive, learning-focused interfaces."
@@ -244,11 +264,25 @@
       "breadcrumb-blog": "Blog"
     }
   },
+  "project": {
+    "back": "All projects",
+    "kicker": "Case study",
+    "github": "GitHub",
+    "live": "Live site",
+    "features": "What it does",
+    "more-label": "// more",
+    "more": "More projects",
+    "seo": {
+      "title-suffix": "Projects",
+      "breadcrumb-home": "Home",
+      "breadcrumb-projects": "Projects"
+    }
+  },
   "read-more": "read more",
   "collapse": "↑ collapse",
   "ups": "Oops... Refresh the page",
   "projects": "My Projects",
-  "projects-sub": "Products I worked on in teams",
+  "projects-sub": "Products I shipped — team work and personal builds",
   "seo": {
     "title": "Yan Hanov — Frontend & Full-Stack Developer | Vue, React, Node.js",
     "description": "Middle Frontend & Full-Stack Developer. Vue 3, React, TypeScript, Node.js, Flutter. Production apps from UI to backend. Open to remote hire — portfolio of Yan Hanov.",

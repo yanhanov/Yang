@@ -32,6 +32,7 @@
 
 ## Product experience
 
+- [Apply Filler](https://yanhanov.com/projects/apply-filler): Personal browser extension — fills job applications from a local profile, attaches CV, optional Gemini cover letters ([GitHub](https://github.com/yanhanov/apply_filler))
 - [cookie.rf / информатик.онлайн](https://информатик.онлайн/): Middle Frontend Engineer — EdTech platform for programming and CS education
 - [Lookformer.ru](https://lookformer.ru/): Lead Frontend Developer — frontend architecture, component system, production release
 - [Neurounite / neurounit.ai](https://neurounit.ai/): Frontend Engineer — Vue features, REST integrations, UX and performance
