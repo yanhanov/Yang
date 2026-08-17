@@ -1,6 +1,6 @@
 # Yan Hanov — Middle Software Engineer
 
-> Yan Hanov is a self-made Middle Software Engineer who designs and ships production-grade software across the stack — from pixel-perfect interfaces to scalable backends, APIs, and cross-platform apps. No college, no shortcuts: he opened an HTML file one day and built his path line by line. Open to remote work worldwide.
+> Yan Hanov is a self-taught Middle Software Engineer. He takes problems from the interface to the API and through to production software people can use. Architecture first, then the tools that serve it. Open to remote work worldwide.
 
 ## Primary site
 

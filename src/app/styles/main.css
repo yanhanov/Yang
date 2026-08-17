@@ -330,6 +330,10 @@ html.era-deck {
   overscroll-behavior-y: none;
 }
 
+html.era-deck--jump {
+  scroll-snap-type: none;
+}
+
 html.era-deck [id] {
   scroll-margin-top: 0;
 }

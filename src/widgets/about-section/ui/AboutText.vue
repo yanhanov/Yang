@@ -1,12 +1,3 @@
-<script setup>
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-
-const lead = computed(() => t('home.about.p1'))
-</script>
-
 <template>
   <section id="about" class="about" data-era-panel>
     <div class="about__sheet">
@@ -15,23 +6,7 @@ const lead = computed(() => t('home.about.p1'))
       <hr class="about__hr" />
 
       <div class="about__body reveal reveal-delay-1">
-        <figure class="about__figure reveal reveal-delay-2">
-          <picture>
-            <source srcset="/Image-400.webp 400w" sizes="(min-width: 64rem) 280px, 40vw" type="image/webp" />
-            <img
-              src="/Image-400.webp"
-              alt=""
-              class="about__photo"
-              width="400"
-              height="480"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-          <figcaption class="about__caption">{{ $t('home.about-figcaption') }}</figcaption>
-        </figure>
-
-        <p class="about__lead">{{ lead }}</p>
+        <p class="about__lead">{{ $t('home.about.p1') }}</p>
 
         <p class="about__p">
           {{ $t('home.about.p2Before') }}<em>{{ $t('home.about.p2Role') }}</em>{{ $t('home.about.p2After') }}
@@ -61,7 +36,7 @@ const lead = computed(() => t('home.about.p1'))
 
 .about__sheet {
   width: 100%;
-  max-width: 46rem;
+  max-width: 42rem;
   margin-inline: auto;
   flex: 1;
   min-height: 0;
@@ -125,30 +100,8 @@ const lead = computed(() => t('home.about.p1'))
 }
 
 .about__body {
-  overflow: hidden;
   font-size: 1.0625rem;
-  line-height: 1.65;
-}
-
-.about__figure {
-  float: right;
-  width: min(16rem, 42%);
-  margin: 0.15rem 0 1rem 1.25rem;
-}
-
-.about__photo {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 2px solid var(--about-ink);
-  background: var(--about-paper);
-}
-
-.about__caption {
-  margin: 0.35rem 0 0;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--about-muted);
+  line-height: 1.7;
 }
 
 .about__lead,
@@ -169,13 +122,5 @@ const lead = computed(() => t('home.about.p1'))
 .about__p--quote {
   color: var(--about-ink);
   font-style: italic;
-}
-
-@media (max-width: 39.99rem) {
-  .about__figure {
-    float: none;
-    width: min(18rem, 100%);
-    margin: 0 0 1.25rem;
-  }
 }
 </style>

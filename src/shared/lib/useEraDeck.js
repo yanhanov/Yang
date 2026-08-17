@@ -3,8 +3,8 @@ import { useRoute } from 'vue-router'
 
 const SELECTOR = '[data-era-panel]'
 const ANIM_MS = 850
-const GESTURE_IDLE_MS = 180
-const WHEEL_THRESHOLD = 24
+const WHEEL_THRESHOLD = 40
+const INERTIA_DELTA = 14
 const DESKTOP_MQ = '(min-width: 48rem)'
 
 function prefersReducedMotion() {
@@ -46,12 +46,11 @@ export function useEraDeck() {
   const route = useRoute()
 
   let animating = false
-  let consumed = false
-  let gestureLive = false
   let targetIndex = -1
   let acc = 0
+  let lockedUntil = 0
+  let lastWheelAt = 0
   let unlockTimer = 0
-  let gestureTimer = 0
   let panels = []
   let mq
 
@@ -82,16 +81,6 @@ export function useEraDeck() {
     return index
   }
 
-  function noteGesture() {
-    gestureLive = true
-    window.clearTimeout(gestureTimer)
-    gestureTimer = window.setTimeout(() => {
-      gestureLive = false
-      consumed = false
-      acc = 0
-    }, GESTURE_IDLE_MS)
-  }
-
   function go(next) {
     if (!active()) return
     collect()
@@ -101,22 +90,26 @@ export function useEraDeck() {
     if (!target) return
 
     animating = true
-    consumed = true
     acc = 0
     targetIndex = index
     window.clearTimeout(unlockTimer)
-    target.scrollIntoView({
+
+    const html = document.documentElement
+    html.classList.add('era-deck--jump')
+    const top = Math.round(window.scrollY + target.getBoundingClientRect().top)
+    window.scrollTo({
+      top,
       behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-      block: 'start',
     })
+
+    const wait = prefersReducedMotion() ? 80 : ANIM_MS
+    lockedUntil = performance.now() + wait
     unlockTimer = window.setTimeout(() => {
       animating = false
       targetIndex = -1
-      if (!gestureLive) {
-        consumed = false
-        acc = 0
-      }
-    }, prefersReducedMotion() ? 80 : ANIM_MS)
+      acc = 0
+      html.classList.remove('era-deck--jump')
+    }, wait)
   }
 
   function step(direction) {
@@ -141,14 +134,22 @@ export function useEraDeck() {
     if (atStart || atEnd) return
 
     event.preventDefault()
-    noteGesture()
 
-    if (animating || consumed) return
+    const now = performance.now()
+    const gap = now - lastWheelAt
+    lastWheelAt = now
+
+    if (now < lockedUntil || animating) return
+
+    if (gap > 140) acc = 0
+    if (Math.abs(dy) < INERTIA_DELTA && gap < 90) return
 
     acc += dy
     if (Math.abs(acc) < WHEEL_THRESHOLD) return
 
-    step(acc > 0 ? 1 : -1)
+    const direction = acc > 0 ? 1 : -1
+    acc = 0
+    go(index + direction)
   }
 
   function onKey(event) {
@@ -208,12 +209,11 @@ export function useEraDeck() {
 
   onUnmounted(() => {
     window.clearTimeout(unlockTimer)
-    window.clearTimeout(gestureTimer)
     window.removeEventListener('wheel', onWheel)
     window.removeEventListener('keydown', onKey)
     window.removeEventListener('click', onClick)
     window.removeEventListener('resize', onResize)
     mq?.removeEventListener?.('change', onResize)
-    document.documentElement.classList.remove('era-deck')
+    document.documentElement.classList.remove('era-deck', 'era-deck--jump')
   })
 }

@@ -63,14 +63,13 @@
     "hero-years": "Years in development",
     "about-title": "About Me",
     "about-kicker": "1993 · Mosaic",
-    "about-figcaption": "Image 1. Desk notes — where the work begins",
     "about": {
-      "p1": "There was a time I used to gaze at websites and wonder, \"Someone out there builds this.\" Now — I am that someone.",
+      "p1": "I used to look at websites and think: someone builds this. Now I do.",
       "p2Before": "I'm a ",
       "p2Role": "Middle Software Engineer",
-      "p2After": " with a self-made path: no college, no expensive courses, no titles I didn't earn. One day I opened an HTML file and began.",
-      "p3": "Since then, every line of code has been a line in my own book — written carefully, with meaning, and above all — so it works.",
-      "p4": "I design and ship production-grade software across the stack: from pixel-perfect interfaces to scalable backends, APIs, and cross-platform apps. I don't just write code — I architect systems, choose the right tools, and deliver solutions that last."
+      "p2After": ". I taught myself — an HTML file on day one — and kept going until the work was production, not practice.",
+      "p3": "I still write as if I'll have to read it a year from now. Careful, concrete, and working.",
+      "p4": "I take a problem from the interface to the API, and through to something people can use. Architecture first, then the tools that serve it."
     },
     "skills": "Tech Stack",
     "skills-sub": "A demonstration of what can be accomplished with standards — not skins.",
